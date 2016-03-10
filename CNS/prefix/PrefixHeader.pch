@@ -1,0 +1,66 @@
+//
+//  PrefixHeader.pch
+//  CNS
+//
+//  Created by Mac on 16/2/29.
+//  Copyright © 2016年 竞思教育. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define JSFrame [UIScreen mainScreen].bounds
+
+#define JSNavigationBounds  self.navigationController.navigationBar.frame
+
+#define JSFont(s)  [UIFont systemFontOfSize:(s)]
+
+#define JSColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define JSCOLOR JSColor(57, 104, 55)
+//定义UIimage对象
+#define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
+
+//定义UIImage对象
+#define IMAGE(imageFileName) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:imageFileName ofType:nil]]
+
+#ifdef DEBUG  // 调试状态
+// 打开LOG功能
+#define JSLog(...) NSLog(__VA_ARGS__)
+#define JSFunc JSLog(@"%s", __func__);
+#define DebugLog(log, ...) NSLog((@"%s [Line %d]\n\t" log), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else // 发布状态
+// 关闭LOG功能
+#define JSLog(...)
+#define DebugLog(log, ...) ((void)0)
+#define JSFunc
+#endif
+
+#import "UIImageView+WebCache.h"
+
+#import "AFNetworking.h"
+
+#import "MJRefresh.h"
+
+#import "UIButton+Extension.h"
+
+#import "UIImage+Render.h"
+
+#import "UIView+Frame.h"
+
+#import "NSDate+Extension.h"
+
+#import "UIBarButtonItem+Extension.h"
+
+#import "timerTool.h"
+
+#import "UIView+Animated.h"
+
+#import "animationFlashLabel.h"
+
+#import "JSLoading.h"
+
+#import <UIKit/UIKit.h>
+
+
+#endif /* PrefixHeader_pch */
