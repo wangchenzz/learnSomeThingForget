@@ -12,6 +12,7 @@
 @protocol JSKeyBoardViewDelegate <NSObject>
 
 - (void) numberKeyBoardInput:(NSInteger) number;
+
 @end
 
 @interface JSKeyBoardView : UIView

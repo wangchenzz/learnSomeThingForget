@@ -33,6 +33,10 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    self.tabBarController.tabBar.hidden = YES;
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
     
 //    JSLanguageAttentionTests *te = [JSLanguageAttentionTests test];
 //    
@@ -82,7 +86,7 @@
     
     SymbolAndDigit *dig = [[SymbolAndDigit alloc] initWithStyle:SymbolAndDigitStyleShow];
     
-    dig.x = 50;
+    dig.x = 20;
     
     dig.y = 80;
     
@@ -91,7 +95,7 @@
     
     SymbolAndDigit *digtest = [[SymbolAndDigit alloc] initWithStyle:SymbolAndDigitStyleTest];
     
-    digtest.x = 250;
+    digtest.x = 240;
     
     digtest.y = 80;
     
@@ -99,18 +103,10 @@
     
     [self.view addSubview:digtest];
     
-    
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [UIView animateWithDuration:1 animations:^{
-        
-        SymbolAndDigit *digtest = (SymbolAndDigit *)[self.view viewWithTag:1];
-        
-        digtest.height = 450;
-    }];
-    
-    
+    [JSLoading loadSuccessCompletion:nil];
 }
 
 #pragma mark -- JSLanguageAttentionTestsDelegate

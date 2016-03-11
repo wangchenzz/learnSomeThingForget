@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "JSKeyBoardView.h"
-
-@interface DiamandsView : UIView<UITextFieldDelegate,JSKeyBoardViewDelegate>
+@interface DiamandsView : UIView<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *symbolView;
 

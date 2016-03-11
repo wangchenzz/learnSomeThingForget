@@ -8,8 +8,10 @@
 
 #import "SymbolAndDigit.h"
 
-@interface SymbolAndDigit ()
+@interface SymbolAndDigit ()<JSKeyBoardViewDelegate>
 
+
+@property (nonatomic,strong) NSMutableArray *textFileArray;
 
 
 
@@ -18,7 +20,7 @@
 @implementation SymbolAndDigit
 
 -(instancetype)initWithStyle:(SymbolAndDigitStyle)style{
-
+    
     if (self = [super initWithFrame:CGRectMake(0, 0, 120, 480)]) {
         
         
@@ -32,14 +34,22 @@
         
         self.layer.shadowOpacity = 0.8;
         
-//        self.layer.shadowRadius = 5;
+        //        self.layer.shadowRadius = 5;
         
     }
     return self;
 }
 
--(void)setStyle:(SymbolAndDigitStyle)style{
+-(NSMutableArray *)textFileArray{
+    
+    if (!_textFileArray) {
+        self.textFileArray = [@[self.view_number2,self.view_number3,self.view_number4,self.view_number5,self.view_number6,self.view_number7,self.view_number8,self.view_number9] mutableCopy];
+    }
+    return _textFileArray;
+}
 
+-(void)setStyle:(SymbolAndDigitStyle)style{
+    
     if (_style != style) {
         _style = style;
         
@@ -68,10 +78,35 @@
             [self.view_number9.digitView setText:@"9"];
             self.view_number9.digitView.enabled = NO;
             
+        }else{
+            
+            JSKeyBoardView *keyBoard = [[JSKeyBoardView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+            for (DiamandsView *text in self.textFileArray) {
+                text.digitView.inputView = keyBoard;
+            }
+            
+            keyBoard.delegate = self;
+            
         }
-        
     }
+    
+}
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+//    for (DiamandsView *v in self.textFileArray) {
+//        if (v.digitView.enabled) {
+//            [v.digitView becomeFirstResponder];
+//        }
+//    }
+    
+    for (int i = 0 ; i < 8; i ++ ) {
+        DiamandsView *v = self.textFileArray[i];
+        if (v.digitView.enabled) {
+            [v.digitView becomeFirstResponder];
+            return;
+        }
+    }
 }
 
 -(void)setUpIni{
@@ -85,25 +120,6 @@
     self.view_number8 = [DiamandsView getView];
     self.view_number9 = [DiamandsView getView];
     
-    self.view_number2.width =  120;
-    self.view_number3.width =  120;
-    self.view_number4.width =  120;
-    self.view_number5.width =  120;
-    self.view_number6.width =  120;
-    self.view_number7.width =  120;
-    self.view_number8.width =  120;
-    self.view_number9.width =  120;
-    
-    self.view_number2.height = 60;
-    self.view_number3.height = 60;
-    self.view_number4.height = 60;
-    self.view_number5.height = 60;
-    self.view_number6.height = 60;
-    self.view_number7.height = 60;
-    self.view_number8.height = 60;
-    self.view_number9.height = 60;
-
-    
     self.view_number2.y = 0;
     self.view_number3.y = 60;
     self.view_number4.y = 120;
@@ -113,20 +129,17 @@
     self.view_number8.y = 360;
     self.view_number9.y = 420;
     
-    [self addSubview:self.view_number2];
-    [self addSubview:self.view_number3];
-    [self addSubview:self.view_number4];
-    [self addSubview:self.view_number5];
-    [self addSubview:self.view_number6];
-    [self addSubview:self.view_number7];
-    [self addSubview:self.view_number8];
-    [self addSubview:self.view_number9];
+    for (DiamandsView *text in self.textFileArray) {
+        text.digitView.height =60;
+        text.digitView.width = 120;
+        [self addSubview:text];
+    }
     
 }
 
 
 -(void)setModel:(SymbolDigitsModel *)model{
-
+    
     if (_model != model) {
         _model = model;
         self.view_number2.symbolView.image = [UIImage imageNamed:_model.ImageName_2];
@@ -141,6 +154,31 @@
 }
 
 
+#pragma mark - delegate
+
+-(void)numberKeyBoardInput:(NSInteger)number{
+    
+    for (DiamandsView *text in self.textFileArray) {
+        
+        if (text.digitView.editing) {
+            text.digitView.text = [NSString stringWithFormat:@"%ld",number];
+            [text.digitView resignFirstResponder];
+            [text.digitView setEnabled:NO];
+        }
+        if (text.digitView.enabled) {
+            [text.digitView becomeFirstResponder];
+            return;
+        }else if (text == self.view_number9){
+        
+            DebugLog(@"123123");
+            
+            JSFunc;
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"endOfText" object:nil];
+            
+        }
+    }
+}
 
 
 @end

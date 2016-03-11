@@ -22,20 +22,11 @@
     
     vi.digitView.layer.borderWidth = 1.0;
     
-    JSKeyBoardView *keyBoard = [[JSKeyBoardView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-    
-    vi.digitView.inputView = keyBoard;
-
-//    keyBoard.delegate = self;
+    [vi.digitView addEffectView];
     
     return vi;
 }
 
-//
-//-(void)numberKeyBoardInput:(NSInteger)number{
-//
-//    
-//}
 
 
 

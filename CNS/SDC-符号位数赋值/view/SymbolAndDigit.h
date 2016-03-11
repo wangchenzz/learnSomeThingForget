@@ -12,6 +12,8 @@
 
 #import "SymbolDigitsModel.h"
 
+#import "JSKeyBoardView.h"
+
 typedef NS_ENUM(NSInteger,SymbolAndDigitStyle){
     SymbolAndDigitStyleTest  =  1 ,
     SymbolAndDigitStyleShow
