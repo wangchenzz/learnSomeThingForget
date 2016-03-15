@@ -22,7 +22,9 @@
     
     vi.digitView.layer.borderWidth = 1.0;
     
-    [vi.digitView addEffectView];
+    UIView *v = [[UIView alloc] initWithFrame:vi.bounds];
+    
+    [vi addSubview:v];
     
     return vi;
 }

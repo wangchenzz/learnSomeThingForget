@@ -11,7 +11,6 @@
 @interface SymbolAndDigit ()<JSKeyBoardViewDelegate>
 
 
-@property (nonatomic,strong) NSMutableArray *textFileArray;
 
 
 
@@ -34,7 +33,6 @@
         
         self.layer.shadowOpacity = 0.8;
         
-        //        self.layer.shadowRadius = 5;
         
     }
     return self;
@@ -84,29 +82,12 @@
             for (DiamandsView *text in self.textFileArray) {
                 text.digitView.inputView = keyBoard;
             }
-            
+
             keyBoard.delegate = self;
             
         }
     }
     
-}
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
-//    for (DiamandsView *v in self.textFileArray) {
-//        if (v.digitView.enabled) {
-//            [v.digitView becomeFirstResponder];
-//        }
-//    }
-    
-    for (int i = 0 ; i < 8; i ++ ) {
-        DiamandsView *v = self.textFileArray[i];
-        if (v.digitView.enabled) {
-            [v.digitView becomeFirstResponder];
-            return;
-        }
-    }
 }
 
 -(void)setUpIni{
@@ -133,6 +114,7 @@
         text.digitView.height =60;
         text.digitView.width = 120;
         [self addSubview:text];
+        
     }
     
 }
@@ -142,37 +124,78 @@
     
     if (_model != model) {
         _model = model;
-        self.view_number2.symbolView.image = [UIImage imageNamed:_model.ImageName_2];
-        self.view_number3.symbolView.image = [UIImage imageNamed:_model.ImageName_3];
-        self.view_number4.symbolView.image = [UIImage imageNamed:_model.ImageName_4];
-        self.view_number5.symbolView.image = [UIImage imageNamed:_model.ImageName_5];
-        self.view_number6.symbolView.image = [UIImage imageNamed:_model.ImageName_6];
-        self.view_number7.symbolView.image = [UIImage imageNamed:_model.ImageName_7];
-        self.view_number8.symbolView.image = [UIImage imageNamed:_model.ImageName_8];
-        self.view_number9.symbolView.image = [UIImage imageNamed:_model.ImageName_9];
+        
+        if (self.style == SymbolAndDigitStyleShow) {
+            self.view_number2.symbolView.image = [UIImage imageNamed:_model.ImageName_2];
+            self.view_number3.symbolView.image = [UIImage imageNamed:_model.ImageName_3];
+            self.view_number4.symbolView.image = [UIImage imageNamed:_model.ImageName_4];
+            self.view_number5.symbolView.image = [UIImage imageNamed:_model.ImageName_5];
+            self.view_number6.symbolView.image = [UIImage imageNamed:_model.ImageName_6];
+            self.view_number7.symbolView.image = [UIImage imageNamed:_model.ImageName_7];
+            self.view_number8.symbolView.image = [UIImage imageNamed:_model.ImageName_8];
+            self.view_number9.symbolView.image = [UIImage imageNamed:_model.ImageName_9];
+            
+        }else{
+            self.view_number2.symbolView.image = [UIImage imageNamed:_model.testImageName_2];
+            self.view_number3.symbolView.image = [UIImage imageNamed:_model.testImageName_3];
+            self.view_number4.symbolView.image = [UIImage imageNamed:_model.testImageName_4];
+            self.view_number5.symbolView.image = [UIImage imageNamed:_model.testImageName_5];
+            self.view_number6.symbolView.image = [UIImage imageNamed:_model.testImageName_6];
+            self.view_number7.symbolView.image = [UIImage imageNamed:_model.testImageName_7];
+            self.view_number8.symbolView.image = [UIImage imageNamed:_model.testImageName_8];
+            self.view_number9.symbolView.image = [UIImage imageNamed:_model.testImageName_9];
+        }
     }
 }
 
 
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    [super touchesBegan:touches withEvent:event];
+//            for (DiamandsView *v in self.textFileArray) {
+//                if (v.digitView.editing) {
+//                    //            [v.digitView resignFirstResponder];
+//                    [self endEditing:YES];
+//                    return;
+//                }
+//            }
+//    
+//            for (int i = 0 ; i < 8; i ++ ) {
+//                DiamandsView *v = self.textFileArray[i];
+//                if (v.digitView.enabled) {
+//                    [v.digitView becomeFirstResponder];
+//                    return;
+//                }
+//                
+//            }
+
+}
+
+
+
 #pragma mark - delegate
+
+
+
 
 -(void)numberKeyBoardInput:(NSInteger)number{
     
     for (DiamandsView *text in self.textFileArray) {
         
         if (text.digitView.editing) {
+            
             text.digitView.text = [NSString stringWithFormat:@"%ld",number];
+            
             [text.digitView resignFirstResponder];
+            
             [text.digitView setEnabled:NO];
+            
         }
         if (text.digitView.enabled) {
             [text.digitView becomeFirstResponder];
             return;
         }else if (text == self.view_number9){
-        
-            DebugLog(@"123123");
-            
-            JSFunc;
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"endOfText" object:nil];
             

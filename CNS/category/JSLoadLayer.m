@@ -44,7 +44,7 @@
     CGFloat currentOrigin = originStart - (originStart - originEnd) * self.progress;
     
     // D
-    CGFloat destStart = M_PI * 3;
+    CGFloat destStart = M_PI * 4;
     CGFloat destEnd = 0;
     CGFloat currentDest = destStart - (destStart - destEnd) * self.progress;
     

@@ -65,7 +65,7 @@
     
     model.theTestsAllWordsArray = [self getWordsFormArray:self.allWordsArray withCount:30];
     
-    model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:15];
+    model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:3];
     
     self.model = model;
 }
@@ -157,21 +157,21 @@
  */
 -(void)showWords{
     
-    [self.showWordsLabel jsLabel_AnimatgionRollDirctionToText:self.model.theRightWordsArray[self.currentWordsCount] andColor:[UIColor blackColor]];
-    
-    self.currentWordsCount ++;
-    
     if (self.currentWordsCount >= self.model.theRightWordsArray.count) {
         [self.calculatTimer invalidate];
         self.currentWordsCount = 0;
         [self.showWordsLabel removeFromSuperview];
-       
+        
         [self.tipsLabel removeFromSuperview];
         
         if ([self.delegate respondsToSelector:@selector(JSLanguageAttentionTests:didFinsiShowWord:)]) {
             [self.delegate JSLanguageAttentionTests:self didFinsiShowWord:self.model];
         }
     }
+    
+    [self.showWordsLabel jsLabel_AnimatgionRollDirctionToText:self.model.theRightWordsArray[self.currentWordsCount] andColor:[UIColor blackColor]];
+    
+    self.currentWordsCount ++;
 }
 
 
@@ -183,6 +183,9 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickScreen)];
     
     [self addGestureRecognizer:tap];
+    
+    
+    [self.tipsLabel setText:@"如果您被要求记住这一单词,请点击屏幕"];
     
     
     self.tapScreen = tap;
@@ -202,12 +205,6 @@
 
 -(void)showWordsMore{
     
-    [self.tipsLabel setText:@"如果您被要求记住这一单词,请点击屏幕"];
-    
-    [self.showWordsLabel jsLabel_AnimatgionRollDirctionToText:self.model.theTestsAllWordsArray[self.currentWordsCount] andColor:[UIColor blackColor]];
-    
-    self.currentWordsCount ++;
-    
     if (self.currentWordsCount >= self.model.theTestsAllWordsArray.count) {
         [self.calculatTimer invalidate];
         self.currentWordsCount = 0;
@@ -218,6 +215,12 @@
             [self.delegate JSLanguageAttentionTests:self didFinsihTests:self.model];
         }
     }
+    
+    [self.showWordsLabel jsLabel_AnimatgionRollDirctionToText:self.model.theTestsAllWordsArray[self.currentWordsCount] andColor:[UIColor blackColor]];
+    
+    self.currentWordsCount ++;
+    
+
 }
 
 -(NSMutableArray *)allWordsArray{

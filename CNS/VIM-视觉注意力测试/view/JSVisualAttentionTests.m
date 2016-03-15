@@ -89,6 +89,9 @@
     self.calculatTimer = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(showTestsImage) userInfo:nil repeats:YES];
     
     [[timerTool tool] fireInTheHoll:self.calculatTimer];
+    
+    
+    [self.tipsLabel setText:@"如果是要求记忆的图像请点击屏幕"];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickScreen)];
     

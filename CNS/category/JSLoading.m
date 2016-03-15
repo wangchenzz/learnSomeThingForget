@@ -33,7 +33,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 @interface JSLoading ()
 @property (nonatomic) BOOL isSuccess;
 
-@property (nonatomic) JSLoadLayer *JSLoadLayer;
+@property (nonatomic) CAShapeLayer *JSLoadLayer;
 @property (nonatomic) CAShapeLayer *moveArcLayer;
 @property (nonatomic) CALayer *verticalMoveLayer;
 @property (nonatomic) CAShapeLayer *verticalDisappearLayer;
@@ -59,11 +59,20 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     
     JSLoading *lei = [[JSLoading alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
     [[UIApplication sharedApplication].keyWindow addSubview:lei];
+    
+    lei.alpha = 0;
+    
+    [lei addEffectView];
+    
     [lei reset];
     lei.isSuccess = YES;
     [lei doStep1];
 
     lei.conpletion = completion;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        lei.alpha = 1;
+    }];
 }
 
 + (void)loadFailCompletion:(void (^)(BOOL))completion {
@@ -74,6 +83,10 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     lei.isSuccess = NO;
     [lei doStep1];
     lei.conpletion = completion;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        lei.alpha = 1;
+    }];
 }
 
 #pragma mark - reset
@@ -111,30 +124,66 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 
 #pragma mark - step1
 - (void)doStep1 {
-    self.JSLoadLayer = [JSLoadLayer layer];
-    self.JSLoadLayer.color = self.likeBlackColor;
+    self.JSLoadLayer = [CAShapeLayer layer];
+    self.JSLoadLayer.strokeColor = self.likeBlackColor.CGColor;
     self.JSLoadLayer.lineWidth = kLineWidth;
     self.JSLoadLayer.bounds = CGRectMake(0,00, kRadius * 2 + kLineWidth, kRadius * 2 + kLineWidth);
     self.JSLoadLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     
     
-    //    self.layer.backgroundColor = [UIColor redColor].CGColor;
-    
-    
     [self.layer addSublayer:self.JSLoadLayer];
     
-    // end status
-    self.JSLoadLayer.progress = 1;
+    self.JSLoadLayer.fillColor = [UIColor clearColor].CGColor;
     
-    NSLog(@"%@",NSStringFromCGPoint(self.JSLoadLayer.position));
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    CGPoint centerA = CGPointMake(CGRectGetMaxX(self.JSLoadLayer.bounds) * .5, CGRectGetMaxY(self.JSLoadLayer.bounds) * .5);
+    
+    [path addArcWithCenter:centerA radius:CGRectGetMaxX(self.JSLoadLayer.bounds)*.5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    
+    self.JSLoadLayer.path = path.CGPath;
     // animation
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"progress"];
-    animation.duration = kStep1Duration;
-    animation.fromValue = @0.2;
-    animation.toValue = @1.0;
-    animation.delegate = self;
-    [animation setValue:@"step1" forKey:kName];
-    [self.JSLoadLayer addAnimation:animation forKey:@"step1"];
+    
+    // SS(strokeStart)
+    CGFloat SSFrom = 0;
+    CGFloat SSTo = 0;
+    
+    // SE(strokeEnd)
+    CGFloat SEFrom = 0;
+    CGFloat SETo = 1;
+    
+    // end status
+    self.JSLoadLayer.strokeStart = SSTo;
+    self.JSLoadLayer.strokeEnd = SETo;
+    
+    // animation
+    CABasicAnimation *startAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
+    startAnimation.fromValue = @(SSFrom);
+    startAnimation.toValue = @(SSTo);
+    
+    CABasicAnimation *endAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    endAnimation.fromValue = @(SEFrom);
+    endAnimation.toValue = @(SETo);
+    
+    
+    
+    CABasicAnimation *rotain = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotain.fromValue = 0;
+    rotain.toValue = @(-M_2_PI * 10 - 2*M_PI);
+    
+    rotain.repeatCount = 1;
+    
+    CAAnimationGroup *step1 = [CAAnimationGroup animation];
+    step1.animations = @[startAnimation, endAnimation,rotain];
+    step1.duration = kStep1Duration * 2;
+    step1.delegate = self;
+    
+    [step1 setValue:@"step1" forKey:kName];
+    
+    step1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    [self.JSLoadLayer addAnimation:step1 forKey:nil];
+
 }
 
 #pragma mark - step2
@@ -596,7 +645,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 // 圆变色
 - (void)processStep6SuccessA {
     
-    self.JSLoadLayer.color = self.likeGreenColor;
+    self.JSLoadLayer.strokeColor = self.likeGreenColor.CGColor;
 
 }
 
@@ -653,7 +702,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 
 // 圆变色
 - (void)processStep6FailA {
-    self.JSLoadLayer.color = self.likeRedColor;
+    self.JSLoadLayer.strokeColor = self.likeRedColor.CGColor;
 }
 
 // 叹号上半部分出现
@@ -793,7 +842,13 @@ static CGFloat const kVerticalFatLayerWidth = 6;
         if (self.conpletion) {
         self.conpletion(YES);
         }
-        [self removeFromSuperview];
+        
+        [UIView animateWithDuration:0.8 animations:^{
+            self.alpha = 0;
+        } completion:^(BOOL finished) {
+              [self removeFromSuperview];
+        }];
+        
     }
 }
 

@@ -54,4 +54,7 @@ typedef NS_ENUM(NSInteger,SymbolAndDigitStyle){
 
 -(instancetype)initWithStyle:(SymbolAndDigitStyle)style;
 
+
+@property (nonatomic,strong) NSMutableArray *textFileArray;
+
 @end
