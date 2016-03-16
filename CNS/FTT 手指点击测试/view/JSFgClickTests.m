@@ -290,6 +290,10 @@
         
         if (self.currentCount >= [self.delegate numberOfTestsCountInJSFgClickTests:self]) {
             
+            self.tipsLabel.text = @"";
+            
+            self.countDownLabel.text = @"";
+            
             /**
              *  测试完毕的回调;
              */
