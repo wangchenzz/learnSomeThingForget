@@ -162,6 +162,7 @@
 }
 
 -(void)drawTextInRect:(CGRect)requestedRect {
+    
     CGRect actualRect = [self textRectForBounds:requestedRect limitedToNumberOfLines:self.numberOfLines];
     
     [super drawTextInRect:actualRect];

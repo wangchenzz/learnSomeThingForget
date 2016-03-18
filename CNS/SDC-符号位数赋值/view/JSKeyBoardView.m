@@ -57,17 +57,13 @@
             
             btn.layer.cornerRadius = 5;
             
-//            btn.layer.masksToBounds = YES;
-            
-//            btn.layer.borderColor = [UIColor blackColor].CGColor;
-//            
-//            btn.layer.borderWidth = 1;
-            
             btn.layer.shadowColor = [UIColor blackColor].CGColor;
             
             btn.layer.shadowOffset = CGSizeMake(-6, 6);
             
             btn.layer.shadowOpacity = 0.9;
+            
+            btn.layer.shadowRadius = 6;
     
             btn;
         });

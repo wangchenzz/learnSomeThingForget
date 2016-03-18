@@ -97,19 +97,24 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     [beginButton addTarget:self action:@selector(clickIn) forControlEvents:UIControlEventTouchUpInside];
     
     self.beginButton = beginButton;
+    
+
 }
 -(void)clickIn{
     
-    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
         self.beginButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
         
         self.beginButton.layer.cornerRadius = 30;
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            self.beginButton.bounds = CGRectMake(0, 0, 60*1.2, 60*1.2);
             
+            self.beginButton.bounds = CGRectMake(0, 0, 60*1.2, 60*1.2);
+           
             self.beginButton.layer.cornerRadius = 30 * 1.2;
+            
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:0.2 animations:^{

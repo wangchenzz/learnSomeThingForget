@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040730E61C9118D300534773 /* JSKeyBoardView.m */; };
 		040730E91C91376C00534773 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 040730E81C91376B00534773 /* Podfile.lock */; };
+		040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F2C4D1C99588D00C5A929 /* StroopModel.m */; };
 		041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */; };
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
 		0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */; };
@@ -44,6 +45,7 @@
 		04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C30E1C89552800A92300 /* JSTabBarController.m */; };
 		04E6C3141C895DC300A92300 /* JSVisualAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C3131C895DC300A92300 /* JSVisualAttentionModel.m */; };
 		04E6C3161C89800100A92300 /* ImageName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E6C3151C89800100A92300 /* ImageName.plist */; };
+		04F7C40B1C9A84AB000C3A16 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7C40A1C9A84AB000C3A16 /* testViewController.m */; };
 		95E97B8D9D3F02446DAEC54C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC3A7BDF7FF8EE799389403 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		040730E51C9118D300534773 /* JSKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSKeyBoardView.h; sourceTree = "<group>"; };
 		040730E61C9118D300534773 /* JSKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSKeyBoardView.m; sourceTree = "<group>"; };
 		040730E81C91376B00534773 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		040F2C4C1C99588D00C5A929 /* StroopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StroopModel.h; sourceTree = "<group>"; };
+		040F2C4D1C99588D00C5A929 /* StroopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StroopModel.m; sourceTree = "<group>"; };
 		041FB9791C86825A00F35659 /* JSLanguageAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionTests.h; sourceTree = "<group>"; };
 		041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLanguageAttentionTests.m; sourceTree = "<group>"; };
 		0438855A1C90237300E1A3E9 /* diamondsXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = diamondsXib.xib; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		04E6C3121C895DC300A92300 /* JSVisualAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVisualAttentionModel.h; sourceTree = "<group>"; };
 		04E6C3131C895DC300A92300 /* JSVisualAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVisualAttentionModel.m; sourceTree = "<group>"; };
 		04E6C3151C89800100A92300 /* ImageName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageName.plist; sourceTree = "<group>"; };
+		04F7C4091C9A84AB000C3A16 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		04F7C40A1C9A84AB000C3A16 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		71E70B531ECE1EECF5159E97 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9EC3A7BDF7FF8EE799389403 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0FA04B649CDDFFBFEE87B6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -287,6 +293,8 @@
 		041FB9711C86817800F35659 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				040F2C4C1C99588D00C5A929 /* StroopModel.h */,
+				040F2C4D1C99588D00C5A929 /* StroopModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -358,8 +366,8 @@
 		04B0FEC01C8419540020D1A5 = {
 			isa = PBXGroup;
 			children = (
-				04B0FF011C841B1D0020D1A5 /* Default-568h@2x.png */,
 				040730E81C91376B00534773 /* Podfile.lock */,
+				04B0FF011C841B1D0020D1A5 /* Default-568h@2x.png */,
 				04B0FECB1C8419540020D1A5 /* CNS */,
 				04B0FEE51C8419540020D1A5 /* CNSTests */,
 				04B0FEF01C8419540020D1A5 /* CNSUITests */,
@@ -453,6 +461,8 @@
 			children = (
 				04B0FF261C841DEE0020D1A5 /* FirstViewController.h */,
 				04B0FF271C841DEE0020D1A5 /* FirstViewController.m */,
+				04F7C4091C9A84AB000C3A16 /* testViewController.h */,
+				04F7C40A1C9A84AB000C3A16 /* testViewController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -711,6 +721,8 @@
 				04B0FF151C841C720020D1A5 /* NSDate+Extension.m in Sources */,
 				04A5DD051C8FF64800D31DB9 /* JSFgClickModel.m in Sources */,
 				04B0FF3E1C8420610020D1A5 /* JSWriteAnimationView.m in Sources */,
+				040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */,
+				04F7C40B1C9A84AB000C3A16 /* testViewController.m in Sources */,
 				04A273C71C882D4600B9FAE1 /* JSVisualAttentionTests.m in Sources */,
 				04E3291E1C86D60600843D08 /* JSLanguageAttentionModel.m in Sources */,
 				04B0FF181C841C720020D1A5 /* UIButton+Extension.m in Sources */,

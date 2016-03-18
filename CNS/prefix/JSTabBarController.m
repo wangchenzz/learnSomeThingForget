@@ -10,6 +10,8 @@
 
 #import "FirstViewController.h"
 
+#import "testViewController.h"
+
 /**
  *  测试的控制器
  *
@@ -26,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    testViewController *test = [[testViewController alloc] init];
+    
+    [self addJSChildViewController:test withNormalImage:nil selectImage:nil title:nil];
     
     FirstViewController *fvc = [[FirstViewController alloc] init];
     
