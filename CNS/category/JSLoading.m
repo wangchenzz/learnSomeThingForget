@@ -364,9 +364,9 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     CGFloat SEFrom = height / pathHeight;
     CGFloat SETo = 1.0;
     
-    // end status
-    //    self.verticalDisappearLayer.strokeStart = SSTo;
-    //    self.verticalDisappearLayer.strokeEnd = SETo;
+//     end status
+        self.verticalDisappearLayer.strokeStart = SSTo;
+        self.verticalDisappearLayer.strokeEnd = SETo;
     
     // animation
     CABasicAnimation *startAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];

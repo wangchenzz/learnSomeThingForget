@@ -19,9 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     StroopTests *test = [StroopTests test];
     
+    test.frame = self.view.bounds;
+    
     [self.view addSubview:test];
+    
+    [test showComplication];
+
+}
+
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    [super touchesBegan:touches withEvent:event];
 
 }
 @end

@@ -37,11 +37,20 @@
  */
 @property (nonatomic,strong) NSTimer *actionTimer;
 
+/**
+ *  当前 label 的展示时间;
+ */
+@property (nonatomic,assign) float currentShowTime;
 
 /**
  *  记录经过了多少时间
  */
 @property (nonatomic,assign) float timeTravel;
+
+/**
+ *  当前经过了多久.
+ */
+@property (nonatomic,assign) float currentTimeTravel;
 
 /**
  *  当前所进行的测试状态
@@ -72,10 +81,27 @@
  */
 @property (nonatomic,strong) NSMutableArray *ColorInContrastModelArray;
 
-
+/**
+ *  存放颜色的数组
+ */
 @property (nonatomic,strong) NSArray *colorArray;
 
+/**
+ *  显示当前数组里的数组 index.  [0:]
+ */
+@property (nonatomic,assign) NSInteger currentCount;
+
+/**
+ *  存放文字的数组
+ */
 @property (nonatomic,strong) NSArray *textArray;
+
+
+/**
+ 手势
+ */
+
+@property (nonatomic,strong) UITapGestureRecognizer *clickScreen;
 
 @end
 
@@ -84,11 +110,74 @@
 -(instancetype)init{
     if (self = [super init]) {
         
+        self.backgroundColor = [UIColor whiteColor];
+        
         [self setUpInfo];
+        
+        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+        
+        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
+
+        self.clickScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
         
     }
     return self;
 }
+
+-(void)click{
+    
+    if ([self.delegate respondsToSelector:@selector(StroopTests:clickScreenWithModel:andCurrentCount:andClickTime:)]) {
+        
+        StroopModel *model;
+        
+        if (self.StroopTestType == StroopTestsTypeSimplify) {
+            
+            model = self.SimplifyModelArray[_currentCount];
+            
+        }else if(self.StroopTestType == StroopTestsTypeComplication){
+        
+            model = self.ComplicationModelArray[_currentCount];
+        }else{
+            model = self.ColorInContrastModelArray[_currentCount];
+        
+        }
+        [self.delegate StroopTests:self clickScreenWithModel:model andCurrentCount:self.currentCount andClickTime:self.currentTimeTravel];
+    }
+    
+
+    
+    
+        self.currentTimeTravel = 0;
+        self.currentCount++;
+        if (self.currentCount >= 20) {
+            [self.timeTimer invalidate];
+            
+            [self.actionTimer invalidate];
+            
+            [self removeGestureRecognizer:self.clickScreen];
+            
+            self.showWordsLabel.text = @"";
+            
+            if (self.StroopTestType == StroopTestsTypeSimplify) {
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihSimplifyTest:)]) {
+                    [self.delegate StroopTestsDidFinsihSimplifyTest:self];
+                }
+                
+            }else if(self.StroopTestType == StroopTestsTypeComplication){
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihComplicationTest:)]) {
+                    [self.delegate StroopTestsDidFinsihComplicationTest:self];
+                }
+                
+            }else{
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihInContrastTest:)]) {
+                    [self.delegate StroopTestsDidFinsihInContrastTest:self];
+                }
+            }
+            return;
+        }
+        [self seeLabel];
+}
+
 
 -(NSArray *)colorArray{
 
@@ -98,10 +187,23 @@
     return _colorArray;
 }
 
+/**
+ *  设置数据数组,三种测试的数据完全填充完毕;
+ */
 -(void)setUpInfo{
+    
+    self.SimplifyModelArray = [NSMutableArray array];
+    self.ColorInContrastModelArray = [NSMutableArray array];
+    self.ComplicationModelArray = [NSMutableArray array];
 
     for (int i = 0; i < 20; i ++) {
         [self.SimplifyModelArray addObject:[self getModelForType:StroopTestsTypeSimplify]];
+    }
+    for (int i = 0; i < 20; i ++) {
+        [self.ColorInContrastModelArray addObject:[self getModelForType:StroopTestsTypeInContrast]];
+    }
+    for (int i = 0; i < 20; i ++) {
+        [self.ComplicationModelArray addObject:[self getModelForType:StroopTestsTypeComplication]];
     }
 }
 
@@ -120,7 +222,7 @@
         StroopModel *model = [[StroopModel alloc] init];
         
         model.textColor = [UIColor blackColor];
-        model.showTime = 1 + arc4random()%100/10.0;
+        model.showTime = 1 + arc4random()%200/100.0;
         model.showText = self.textArray[arc4random()%counts];
     
         return model;
@@ -129,7 +231,7 @@
         StroopModel *model = [[StroopModel alloc] init];
         
         model.textColor = self.colorArray[arc4random()%counts];
-        model.showTime = 1 + arc4random()%100/10.0;
+        model.showTime = 1 + arc4random()%200/100.0;
         model.showText = self.textArray[arc4random()%counts];
         
         return model;
@@ -147,14 +249,16 @@
         
         self.showWordsLabel.font = [UIFont boldSystemFontOfSize:29];
         
-        self.showWordsLabel.textColor = [UIColor whiteColor];
-        
-        self.showWordsLabel.height = self.showWordsLabel.width = self.width * .2;
+        self.showWordsLabel.height = self.showWordsLabel.width = self.width * .1;
         
         self.showWordsLabel.centerX = self.centerX;
-        
+    
         self.showWordsLabel.centerY = self.height * .5;
     
+        self.showWordsLabel.textAlignment = NSTextAlignmentCenter;
+    
+        [self addSubview:self.showWordsLabel];
+        
         self.showWordsLabel;
     });
     
@@ -162,24 +266,32 @@
         
         self.tipsLabel = [[UILabel alloc] init];
         
+        self.tipsLabel.textAlignment = NSTextAlignmentCenter;
+        
         self.tipsLabel.font = JSFont(19);
         
-        self.tipsLabel.textColor = [UIColor whiteColor];
+        self.tipsLabel.textColor = [UIColor blackColor];
         
         self.tipsLabel.height = self.width * .1;
         
-        self.showWordsLabel.width = self.width * .2;
+        self.tipsLabel.width = self.width * .2;
         
         self.tipsLabel.centerX = self.centerX;
         
-        self.tipsLabel.centerY = self.height * .8;
+        self.tipsLabel.centerY = self.height * .7;
     
+        [self addSubview:self.tipsLabel];
+
+        self.tipsLabel.text = @"123";
+        
+//        [self.tipsLabel setBackgroundColor:[UIColor redColor]];
+        
         self.tipsLabel;
+        
     });
 }
 
 -(void)setLabelTextColor:(UIColor *)labelTextColor{
-    
     if (_labelTextColor != labelTextColor) {
         _labelTextColor = labelTextColor;
         [self.showWordsLabel setTextColor:_labelTextColor];
@@ -188,30 +300,138 @@
 
 /**
  *  初始化方法
- *
- *  @return ...
+ *  依然需要设置 frame 和加入 superview
  */
 +(instancetype)test{
     return [[self alloc] init];
 }
 
 
-
 /**
- *  简单测试.
+ *  简单测试.   高内聚,低耦合.
  */
 -(void)showSimplify{
     self.StroopTestType = StroopTestsTypeSimplify;
     
+    [self settingUi];
+    
+    self.currentCount = 0;
+    
+    [self addGestureRecognizer:self.clickScreen];
+    
+    [self seeLabel];
+    
+    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    
+    [[timerTool tool] fireInTheHoll:self.timeTimer];
 }
+
+
+
 -(void)showComplication{
     self.StroopTestType = StroopTestsTypeComplication;
     
+    
+    [self settingUi];
+    
+    self.currentCount = 0;
+    
+    [self seeLabel];
+    
+    [self addGestureRecognizer:self.clickScreen];
+    
+    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    
+    [[timerTool tool] fireInTheHoll:self.timeTimer];
+
 }
 
 -(void)showColorInContrast{
     self.StroopTestType = StroopTestsTypeInContrast;
+    self.currentCount = 0;
+    
+    [self seeLabel];
+    
+    [self addGestureRecognizer:self.clickScreen];
+    
+    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    
+    [[timerTool tool] fireInTheHoll:self.timeTimer];
+
+}
+
+
+//定时器方法
+/**
+ *  暂时未定用来干什么
+ */
+-(void)doSomeThing{
+
+    
     
 }
+
+
+/**
+ *  定时器方法  此方法会一直全程执行, 知道任务结束;
+ */
+-(void)someThingForNothing{
+    
+    /**
+     *  timetravel 是当前经过的时间,一直随时间增长
+     */
+    self.timeTravel += 0.01;
+    self.currentTimeTravel += 0.01;
+    
+    if (self.currentTimeTravel >= self.currentShowTime) {
+        self.currentTimeTravel = 0;
+        self.currentCount++;
+        if (self.currentCount >= 20) {
+            [self.timeTimer invalidate];
+            
+            [self.actionTimer invalidate];
+            
+            [self removeGestureRecognizer:self.clickScreen];
+            
+            self.showWordsLabel.text = @"";
+            
+            if (self.StroopTestType == StroopTestsTypeSimplify) {
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihSimplifyTest:)]) {
+                    [self.delegate StroopTestsDidFinsihSimplifyTest:self];
+                }
+                
+            }else if(self.StroopTestType == StroopTestsTypeComplication){
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihComplicationTest:)]) {
+                    [self.delegate StroopTestsDidFinsihComplicationTest:self];
+                }
+                
+            }else{
+                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihInContrastTest:)]) {
+                    [self.delegate StroopTestsDidFinsihInContrastTest:self];
+                }
+                
+            }
+            return;
+        }
+        [self seeLabel];
+    }
+}
+
+/**
+ *  根据 currentCount 显示 label
+ */
+-(void)seeLabel{
+    StroopModel *model;
+    if (self.StroopTestType == StroopTestsTypeSimplify) {
+       model = self.SimplifyModelArray[self.currentCount];
+    }else if(self.StroopTestType == StroopTestsTypeComplication){
+        model = self.ComplicationModelArray[self.currentCount];
+    }else{
+        model = self.ColorInContrastModelArray[self.currentCount];
+    }
+    [self.showWordsLabel JSLabel_StarAnimationWithDirection:JSFakeAnimationRight toText:model.showText andToColor:model.textColor];
+    self.currentShowTime = model.showTime;
+}
+
 
 @end

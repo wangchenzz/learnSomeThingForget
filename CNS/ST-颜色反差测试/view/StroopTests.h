@@ -17,6 +17,30 @@
  
 
  */
+@class StroopTests;
+
+@class StroopModel;
+
+@protocol StroopTestsDelegate <NSObject>
+
+@optional
+
+/**
+ *  这里只是将数据传出,不会做任何操作;
+ *
+ *  @param test        ...
+ *  @param model       ..
+ *  @param count       ...
+ *  @param currentTime ...
+ */
+-(void)StroopTests:(StroopTests *)test clickScreenWithModel:(StroopModel *)model andCurrentCount:(NSInteger)count andClickTime:(float)currentTime;
+
+-(void)StroopTestsDidFinsihSimplifyTest:(StroopTests *)test;
+
+-(void)StroopTestsDidFinsihComplicationTest:(StroopTests *)test;
+
+-(void)StroopTestsDidFinsihInContrastTest:(StroopTests *)test;
+@end
 
 
 typedef NS_ENUM(NSInteger,StroopTestType){
@@ -25,6 +49,8 @@ typedef NS_ENUM(NSInteger,StroopTestType){
     StroopTestsTypeInContrast
 };
 @interface StroopTests : UIView
+
+@property (nonatomic,weak) id <StroopTestsDelegate> delegate;
 
 
 /**
