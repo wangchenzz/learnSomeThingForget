@@ -10,7 +10,11 @@
 
 #import "StroopTests.h"
 
-@interface testViewController ()
+#import "ShiftingAttentionTests.h"
+
+#import "ContinuousPerformanceTests.h"
+
+@interface testViewController ()<ShiftingAttentionTestsDelegate>
 
 @end
 
@@ -21,20 +25,42 @@
     
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    StroopTests *test = [StroopTests test];
-    
-    test.frame = self.view.bounds;
-    
-    [self.view addSubview:test];
-    
-    [test showComplication];
+//    StroopTests *test = [StroopTests test];
+//    
+//    test.frame = self.view.bounds;
+//    
+//    [self.view addSubview:test];
+//    
+//    [test showComplication];
 
+//    ShiftingAttentionTests *test = [ShiftingAttentionTests test];
+//    
+//    test.frame = self.view.bounds;
+//    
+//    [self.view addSubview:test];
+//    
+//    [test beginOneTest];
+//    
+//    test.delegate = self;
+    
+    ContinuousPerformanceTests *ss = [ContinuousPerformanceTests test];
+
+    ss.frame = self.view.bounds;
+    
+    [self.view addSubview:ss];
+    
+    [ss showMeTheTest];
 }
-
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
     [super touchesBegan:touches withEvent:event];
+    
+}
 
+-(void)ShiftingAttentionTests:(ShiftingAttentionTests *)test clickInCount:(NSInteger)count clickIsRight:(BOOL)isRight andClickPTime:(float)timetravel{
+
+    JSLog(@"%ld______%d_______%f",(long)count,isRight,timetravel);
+    
 }
 @end

@@ -223,12 +223,12 @@
     CGPoint currentPoint = self.testScrollView.contentOffset;
     
     if (currentPoint.x < self.frame.size.width * (self.modelArray.count-1)) {
+        
+        
         NSInteger currentCount = currentPoint.x / self.testScrollView.width;
         [self changeModelWithCount:currentCount];
 
         [self.testScrollView setContentOffset:CGPointMake(self.testScrollView.width + currentPoint.x, 0) animated:YES];
-        
-        
         
     }else{
         
@@ -236,6 +236,7 @@
     
         if ([self.delegate respondsToSelector:@selector(SymbolDigitCodingTests:didFinsihTestWithModelArray:)]) {
             [self.delegate SymbolDigitCodingTests:self didFinsihTestWithModelArray:self.modelArray];
+            
         }
     }
 }

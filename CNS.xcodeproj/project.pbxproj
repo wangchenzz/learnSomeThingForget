@@ -42,6 +42,7 @@
 		04B0FF3C1C8420610020D1A5 /* JSLoadLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF341C8420610020D1A5 /* JSLoadLayer.m */; };
 		04B0FF3D1C8420610020D1A5 /* JSPresentBut.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF361C8420610020D1A5 /* JSPresentBut.m */; };
 		04B0FF3E1C8420610020D1A5 /* JSWriteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF381C8420610020D1A5 /* JSWriteAnimationView.m */; };
+		04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CC90C81CAD02E2003D095C /* ContinuousPerformanceTests.m */; };
 		04D8A9461CA3B0970016106D /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7C40A1C9A84AB000C3A16 /* testViewController.m */; };
 		04E3291E1C86D60600843D08 /* JSLanguageAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3291D1C86D60600843D08 /* JSLanguageAttentionModel.m */; };
 		04E6C3101C89552800A92300 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C30C1C89552800A92300 /* AppDelegate.m */; };
@@ -83,10 +84,10 @@
 		043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolDigitsModel.m; sourceTree = "<group>"; };
 		047D089E1C8D69DA0092EAE4 /* JSFgClickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSFgClickTests.h; sourceTree = "<group>"; };
 		047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSFgClickTests.m; sourceTree = "<group>"; };
-		0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftingAttentionTests.h; sourceTree = "<group>"; };
-		0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftingAttentionTests.m; sourceTree = "<group>"; };
-		0485BAE21CA50B740012CECD /* ShiftingAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftingAttentionModel.h; sourceTree = "<group>"; };
-		0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftingAttentionModel.m; sourceTree = "<group>"; };
+		0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftingAttentionTests.h; path = "../../CPT-持续注意力测试/view/ShiftingAttentionTests.h"; sourceTree = "<group>"; };
+		0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftingAttentionTests.m; path = "../../CPT-持续注意力测试/view/ShiftingAttentionTests.m"; sourceTree = "<group>"; };
+		0485BAE21CA50B740012CECD /* ShiftingAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftingAttentionModel.h; path = "../../CPT-持续注意力测试/model/ShiftingAttentionModel.h"; sourceTree = "<group>"; };
+		0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftingAttentionModel.m; path = "../../CPT-持续注意力测试/model/ShiftingAttentionModel.m"; sourceTree = "<group>"; };
 		04864B781C96B8D00035DAB1 /* StroopTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StroopTests.h; sourceTree = "<group>"; };
 		04864B791C96B8D00035DAB1 /* StroopTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StroopTests.m; sourceTree = "<group>"; };
 		04A273C51C882D4600B9FAE1 /* JSVisualAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVisualAttentionTests.h; sourceTree = "<group>"; };
@@ -137,6 +138,8 @@
 		04B0FF361C8420610020D1A5 /* JSPresentBut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPresentBut.m; sourceTree = "<group>"; };
 		04B0FF371C8420610020D1A5 /* JSWriteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSWriteAnimationView.h; sourceTree = "<group>"; };
 		04B0FF381C8420610020D1A5 /* JSWriteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWriteAnimationView.m; sourceTree = "<group>"; };
+		04CC90C71CAD02E2003D095C /* ContinuousPerformanceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinuousPerformanceTests.h; sourceTree = "<group>"; };
+		04CC90C81CAD02E2003D095C /* ContinuousPerformanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinuousPerformanceTests.m; sourceTree = "<group>"; };
 		04E3291C1C86D60600843D08 /* JSLanguageAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionModel.h; sourceTree = "<group>"; };
 		04E3291D1C86D60600843D08 /* JSLanguageAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLanguageAttentionModel.m; sourceTree = "<group>"; };
 		04E6C30B1C89552800A92300 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -192,8 +195,6 @@
 		041FB9651C86817800F35659 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				0485BAE21CA50B740012CECD /* ShiftingAttentionModel.h */,
-				0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -201,8 +202,8 @@
 		041FB9661C86817800F35659 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */,
-				0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */,
+				04CC90C71CAD02E2003D095C /* ContinuousPerformanceTests.h */,
+				04CC90C81CAD02E2003D095C /* ContinuousPerformanceTests.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -246,6 +247,8 @@
 		041FB96B1C86817800F35659 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				0485BAE21CA50B740012CECD /* ShiftingAttentionModel.h */,
+				0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -253,6 +256,8 @@
 		041FB96C1C86817800F35659 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */,
+				0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -409,8 +414,8 @@
 				041FB9671C86817800F35659 /* FTT 手指点击测试 */,
 				041FB96D1C86817800F35659 /* SDC-符号位数赋值 */,
 				041FB9701C86817800F35659 /* ST-颜色反差测试 */,
-				041FB9641C86817800F35659 /* CPT-持续注意力测试 */,
 				041FB96A1C86817800F35659 /* SAT-注意力转移测试 */,
+				041FB9641C86817800F35659 /* CPT-持续注意力测试 */,
 				04B0FED81C8419540020D1A5 /* Assets.xcassets */,
 				04B0FEDA1C8419540020D1A5 /* LaunchScreen.storyboard */,
 				04B0FEDD1C8419540020D1A5 /* Info.plist */,
@@ -746,6 +751,7 @@
 				04B0FF191C841C720020D1A5 /* UIImage+Render.m in Sources */,
 				04B0FF3A1C8420610020D1A5 /* eyeView.m in Sources */,
 				0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */,
+				04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

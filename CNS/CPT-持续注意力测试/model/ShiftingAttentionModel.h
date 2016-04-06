@@ -10,12 +10,12 @@
 
 typedef NS_ENUM(NSInteger,ShifitingTestType) {
     ShifitingTestTypeColor  =  1,
-    shifitingTestTyoeForm
+    ShifitingTestTyoeForm
 };
 
 typedef NS_ENUM(NSInteger,ShifitingColorType) {
     ShifitingColorTypeRed  =  1,
-    shifitingColorTyoeGreen
+    ShifitingColorTyoeGreen
 };
 
 typedef NS_ENUM(NSInteger,ShifitingFormType) {

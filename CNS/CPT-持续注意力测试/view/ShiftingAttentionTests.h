@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShiftingAttentionTests : UIView
+@class ShiftingAttentionTests;
+
+@protocol  ShiftingAttentionTestsDelegate <NSObject>
+
+@optional
+
+-(void)ShiftingAttentionTests:(ShiftingAttentionTests*)test clickInCount:(NSInteger)count clickIsRight:(BOOL)isRight andClickPTime:(float)timetravel;
+
+-(void)ShiftingAttentionTestsDidFinsih:(ShiftingAttentionTests*)test;
 
 @end
+
+@interface ShiftingAttentionTests : UIView
+
+@property (nonatomic,weak) id <ShiftingAttentionTestsDelegate> delegate;
+
+-(void)beginOneTest;
+
+@end
+

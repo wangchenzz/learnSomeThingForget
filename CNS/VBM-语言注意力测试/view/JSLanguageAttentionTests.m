@@ -53,12 +53,16 @@
         [self setUpModel];
         
         self.currentWordsCount = 0;
-        
     }
     return self;
 }
 
 //越是要无拘无束的，便越是要用万钧重压，越是年少无知的，便越是要让他痛苦害怕。
+
+
+
+/*
+ */
 
 -(void)setUpModel{
     JSLanguageAttentionModel *model = [[JSLanguageAttentionModel alloc] init];
