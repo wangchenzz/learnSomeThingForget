@@ -18,7 +18,7 @@
 @property (nonatomic,retain) UIColor *textColor;
 
 /**
- *  时间范围在1~2秒之间'
+ *  时间范围在1~2秒之间
  */
 @property (nonatomic,assign) float showTime;
 

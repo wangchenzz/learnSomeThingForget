@@ -22,21 +22,34 @@
 
 #import "animationFlashLabel.h"
 
+//后期添加的模块.
+
+#import "StroopTests.h"
+
+#import "ShiftingAttentionTests.h"
+
+#import "ContinuousPerformanceTests.h"
+
 typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
-    JSTestCurrentLanguageShow  =  1,
-    JSTestCurrentLanguageImmediate,
-    JSTestCurrentLanguageDelaye,
-    JSTestCurrentVisualShow ,
-    JSTestCurrentVisualImmediate,
-    JSTestCurrentVisualDelaye,
-    JSTestCurrentClickTestLeft,
-    JSTestCurrentClickTestRight ,
-    JSTestCurrentSymbolTest
+    JSTestCurrentLanguageShow  =  1,                        //展示语言注意力测试
+    JSTestCurrentLanguageImmediate,                         //即时语言测试
+    JSTestCurrentLanguageDelaye,                            //延时语言测试
+    JSTestCurrentVisualShow ,                               //展示视觉注意力测试
+    JSTestCurrentVisualImmediate,                           //即时视觉注意力测试
+    JSTestCurrentVisualDelaye,                              //延时视觉注意力测试
+    JSTestCurrentClickTestLeft,                             //左手点击测试开始
+    JSTestCurrentClickTestRight ,                           //右手点击测试开始
+    JSTestCurrentSymbolTest,                                //符号位数赋值测试
+    JSTestCurrentSimplifyStroopTests,                       //颜色反差测试 简单测试
+    JSTestCurrentComplicationStroopTests,                   //颜色反差测试 复杂测试
+    JSTestCurrentInContrastStroopTests,                     //颜色反差测试 反色测试
+    JSTestCurrentShiftingAttentionTests,                    //注意力转移测试
+    JSTestCurrentContinuousPerformanceTests
     
 };
 
-@interface FirstViewController ()<JSLanguageAttentionTestsDelegate,JSVisualAttentionTestsDelegate,JSFgClickTestsDelegate,SymbolDigitCodingTestsDelegate>
+@interface FirstViewController ()<JSLanguageAttentionTestsDelegate,JSVisualAttentionTestsDelegate,JSFgClickTestsDelegate,SymbolDigitCodingTestsDelegate,StroopTestsDelegate,ShiftingAttentionTestsDelegate,ContinuousPerformanceTestsDelegate>
 
 @property (nonatomic,retain) JSPresentBut *flashButton;
 
@@ -61,6 +74,12 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 @property (nonatomic,strong) JSFgClickTests *clickRightTests;
 
 @property (nonatomic,strong) SymbolDigitCodingTests *symbolTest;
+
+@property (nonatomic,strong) StroopTests *stroopTest;
+
+@property (nonatomic,strong) ShiftingAttentionTests *shiftingAttentionTest;
+
+@property (nonatomic,strong) ContinuousPerformanceTests *continuousPerformanceTest;
 
 @end
 
@@ -159,8 +178,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     
                     [self.messageLabel showAnimation:3 completion:^(BOOL finished) {
                         
-                        self.JSTestCurrentState = JSTestCurrentLanguageShow;
-                        
+//                        self.JSTestCurrentState = JSTestCurrentLanguageShow;
+                         self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
                         [self.view addGestureRecognizer:self.tapContinue];
                     }];
                     
@@ -199,7 +218,35 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 }
 
 
+-(void)viewWithTheTitle:(NSString *)title withMessage:(NSString *)message withEnd:(NSString *)end andJSTestCurrentState:(JSTestCurrentState)state{
+    
+    self.titleLabel.willShowText = title;
+    self.messageLabel.willShowText = message;
+    self.endLabel.willShowText = end;
+    
+    [self.view addSubview:self.titleLabel];
+    
+    [self.view addSubview:self.messageLabel];
+    
+    [self.view addSubview:self.endLabel];
+    
+    [self.titleLabel showAnimation:1 completion:nil];
+    
+    [self.endLabel showAnimation:1 completion:nil];
+    
+    [self.messageLabel showAnimation:1 completion:^(BOOL finished) {
+        
+         self.JSTestCurrentState = state;
+        
+        [self.view addGestureRecognizer:self.tapContinue];
+    }];
+}
+
 -(void)beginFirstTest{
+    
+    
+    self.titleLabel.text =@"";
+    self.messageLabel.text =@"";
     
     [self.titleLabel removeFromSuperview];
     
@@ -207,8 +254,6 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     [self.messageLabel removeFromSuperview];
     
-    self.titleLabel.text =@"";
-    self.messageLabel.text =@"";
     //    self.endLabel.text = @"";
     switch (self.JSTestCurrentState) {
         case JSTestCurrentLanguageShow:
@@ -302,8 +347,73 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
             [test show];
             
             self.symbolTest = test;
+            
         }
             break;
+            
+        case JSTestCurrentSimplifyStroopTests:
+        {
+            
+                StroopTests *test = [StroopTests test];
+            
+                test.frame = JSFrame;
+            
+                [self.view addSubview:test];
+            
+                test.delegate = self;
+            
+                [test showSimplify];
+            
+                self.stroopTest = test;
+            
+        }
+            break;
+        case JSTestCurrentComplicationStroopTests:
+        {
+            [self.stroopTest showComplication];
+        }
+            break;
+            
+        case JSTestCurrentInContrastStroopTests:
+        {
+            [self.stroopTest showColorInContrast];
+        }
+            break;
+        
+        case JSTestCurrentShiftingAttentionTests:
+        {
+            ShiftingAttentionTests *test = [ShiftingAttentionTests test];
+            
+            test.frame = JSFrame;
+        
+            [self.view addSubview:test];
+        
+            [test beginOneTest];
+            
+            test.delegate = self;
+        
+            self.shiftingAttentionTest = test;
+        }
+            break;
+            
+        case JSTestCurrentContinuousPerformanceTests:
+        {
+            ContinuousPerformanceTests *ss = [ContinuousPerformanceTests test];
+            
+            ss.frame = JSFrame;
+            
+            [self.view addSubview:ss];
+            
+            [ss showMeTheTest];
+            
+            ss.delegate = self;
+            
+            self.continuousPerformanceTest = ss;
+        
+        }
+            break;
+            
+            
         default:
             break;
     }
@@ -324,8 +434,9 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 }
 
 -(void)JSLanguageAttentionTests:(JSLanguageAttentionTests *)test didClickScreen:(JSLanguageAttentionModel *)model withCurrentCount:(NSInteger)count{
-    JSLog(@"%ld",(long)count);
+//    JSLog(@"%ld",(long)count);
     
+    JSLog(@"%@",model);
 }
 
 -(void)JSLanguageAttentionTests:(JSLanguageAttentionTests *)test didFinsihTests:(JSLanguageAttentionModel *)model{
@@ -333,9 +444,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *title = @"图像注意测验";
     NSString *message = @"您将马上开始视觉记忆测验.\n\n本测验的目的是记忆图像.\n\n将向你展示一系列图像,但一次只能看到一副.尽最大努力记住这些图像,因为不久后您将被要求挑选出您刚见过的图像.\n\n您将看到所需记忆的15幅图像.\n\n每一幅图像都将显示两秒钟";
     NSString *end = @"双击屏幕继续";
-    
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentVisualShow];
-    
+
 }
 
 #pragma mark -- JSVisualAttentionTestsDelegate
@@ -413,36 +523,92 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 
 -(void)SymbolDigitCodingTests:(SymbolDigitCodingTests *)test didFinsihTestWithModelArray:(NSMutableArray *)array{
     
-    JSPresentBut *butt = [[JSPresentBut alloc] init];
+//    JSPresentBut *butt = [[JSPresentBut alloc] init];
+//
+//    [butt show];
     
-    [butt show];
     
+    //计划 .首先完成所有模块的整合. 测试效果,
+    // .接受测试数据 根据要求收集数据.
+    // 这是我最新的设计, 首先需要设置枚举来表示新的状态来显示出来在那些地方可以如此,
+    
+    [self.symbolTest removeFromSuperview];
+    NSString *title = @"斯特鲁普测试";
+    NSString *message = @"您将马上开始斯特鲁普测验\n\n本测验的目的是对词语和颜色做出反应\n\n本测验有三部分组成\n\n这是斯特鲁普测验的第一部分.\n\n一看到屏幕上显示一个词语,您就立即点击屏幕.\n\n所有词语都将是颜色的名称.\n\n现在,您将进行斯特鲁普测验的第一部分.\n\n一看到屏幕上显示一个词语,您就立即点击屏幕.\n\n本测验将测验您的反应速度";
+    NSString *end = @"双击屏幕以继续";
+    
+    [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentSimplifyStroopTests];
+    
+    /**
+     *  1.特殊情况是在 某些状态下面 点击屏幕 会展示新的信息 而不是直接开始,
+     *  2.所以需要一个特殊的方法去完成这个操作.
+     */
 }
 
 
--(void)viewWithTheTitle:(NSString *)title withMessage:(NSString *)message withEnd:(NSString *)end andJSTestCurrentState:(JSTestCurrentState)state{
-    
-    self.titleLabel.willShowText = title;
-    self.messageLabel.willShowText = message;
-    self.endLabel.willShowText = end;
-    
-    [self.view addSubview:self.titleLabel];
-    
-    [self.view addSubview:self.messageLabel];
-    
-    [self.view addSubview:self.endLabel];
-    
-    [self.titleLabel showAnimation:1 completion:nil];
-    
-    [self.endLabel showAnimation:1 completion:nil];
-    
-    [self.messageLabel showAnimation:1 completion:^(BOOL finished) {
-        
-        self.JSTestCurrentState = state;
-        
-        [self.view addGestureRecognizer:self.tapContinue];
-    }];
+#pragma mark - StroopTestsDelegate
+
+-(void)StroopTests:(StroopTests *)test clickScreenWithModel:(StroopModel *)model andCurrentCount:(NSInteger)count andClickTime:(float)currentTime{
+
+
 }
 
+-(void)StroopTestsDidFinsihSimplifyTest:(StroopTests *)test{
+    NSString *title = @"斯特鲁普测试";
+    NSString *message = @"这是斯特鲁普测验的第二部分.\n\n只有当词语的颜色与该词语所描述的颜色名称相符时,才点击屏幕.\n\n现在,您将练习斯特鲁普测验的第二部分";
+    NSString *end = @"双击屏幕以继续";
+    
+    [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentComplicationStroopTests];
 
+}
+
+-(void)StroopTestsDidFinsihComplicationTest:(StroopTests *)test{
+    NSString *title = @"斯特鲁普测试";
+    NSString *message = @"";
+    NSString *end = @"双击屏幕以继续";
+    
+    [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentInContrastStroopTests];
+
+}
+
+-(void)StroopTestsDidFinsihInContrastTest:(StroopTests *)test{
+    
+    [self.stroopTest removeFromSuperview];
+    
+    NSString *title = @"注意力转移测试";
+    NSString *message = @"现在,您将进行注意力转移测验.\n\n本测验的目的是根据测验规则来匹配颜色和形状.\n\n 屏幕顶部将显示一个彩色正方形或圆形以及测验规则--'匹配颜色'或'匹配形状'\n\n屏幕底部将显示两个形状.请根据规则,通过点击屏幕的方式作出反应\n\n对每一个屏幕,您将有了两秒钟的时间做出反应.\n\n将会测量您的速度和准确度.";
+    NSString *end = @"双击屏幕继续";
+    
+    [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentShiftingAttentionTests];
+
+}
+
+#pragma mark - ShiftingAttentionTestsDelegate
+
+-(void)ShiftingAttentionTests:(ShiftingAttentionTests *)test clickInCount:(NSInteger)count clickIsRight:(BOOL)isRight andClickPTime:(float)timetravel{
+
+}
+
+-(void)ShiftingAttentionTestsDidFinsih:(ShiftingAttentionTests *)test{
+    NSString *title = @"持续性操作测验";
+    NSString *message = @"您将马上开始持续性操作测验.本测验的目的是仅对字母表中的特定字母做出反应.字母表中的不同字母将在屏幕上闪烁.当您看到字母'b'时,请尽快点击屏幕,如果您看到'b'意外的其他字母,请不要做任何操作.";
+    NSString *end = @"双击屏幕继续";
+    
+    [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentContinuousPerformanceTests];
+
+
+
+}
+
+#pragma mark - jiekaimaneijiudeyaohai
+
+-(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didClickWithCount:(NSInteger)count andWords:(NSString *)word andTimeTravel:(float)time{
+
+
+}
+
+-(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didFinishWithTime:(float)time{
+
+    
+}
 @end

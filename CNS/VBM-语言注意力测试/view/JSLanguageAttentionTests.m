@@ -191,7 +191,7 @@
     
     [self.tipsLabel setText:@"如果您被要求记住这一单词,请点击屏幕"];
     
-    
+    self.currentWordsCount = 0;
     self.tapScreen = tap;
 
     self.calculatTimer = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(showWordsMore) userInfo:nil repeats:YES];
@@ -261,6 +261,8 @@
         [cotainArray addObject:copyArray[a]];
         
         [copyArray removeObjectAtIndex:a];
+        
+        
         
     }
     return cotainArray;

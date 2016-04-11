@@ -276,6 +276,12 @@
 }
 
 -(void)leftClick{
+    self.currentCounts ++;
+    
+    [self seeThis];
+    
+    self.currentTime = 0;
+
 
     if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTests:clickInCount:clickIsRight:andClickPTime:)]) {
         [self.delegate ShiftingAttentionTests:self clickInCount:self.currentCounts clickIsRight:self.isChooseLeft andClickPTime:self.currentTime];
@@ -284,6 +290,12 @@
 }
 
 -(void)rightClick{
+    self.currentCounts ++;
+    
+    [self seeThis];
+    
+    self.currentTime = 0;
+
     
     if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTests:clickInCount:clickIsRight:andClickPTime:)]) {
         [self.delegate ShiftingAttentionTests:self clickInCount:self.currentCounts clickIsRight:!self.isChooseLeft andClickPTime:self.currentTime];
@@ -324,7 +336,8 @@
     if (self.currentTime >= 2.2) {
         self.currentCounts ++;
         
-        [self seeThis];
+        
+        [self performSelectorOnMainThread:@selector(seeThis) withObject:nil waitUntilDone:nil];
         
         self.currentTime = 0;
         

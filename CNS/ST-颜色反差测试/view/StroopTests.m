@@ -145,7 +145,7 @@
     }
     
 
-    
+
     
         self.currentTimeTravel = 0;
         self.currentCount++;
@@ -413,7 +413,8 @@
             }
             return;
         }
-        [self seeLabel];
+        
+        [self performSelectorOnMainThread:@selector(seeLabel) withObject:nil waitUntilDone:nil];
     }
 }
 

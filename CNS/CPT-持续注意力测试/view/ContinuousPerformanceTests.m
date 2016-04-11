@@ -107,9 +107,7 @@
     [self addGestureRecognizer:self.tap];
     
     [[timerTool tool] fireInTheHoll:self.actionTimer];
-    
-    
-    
+
 }
 
 -(void)clickIn{
@@ -131,7 +129,6 @@
         self.currentCount +=1;
         [self seeLabel];
     }
-
 }
 
 -(void)seeLabel{
@@ -165,12 +162,10 @@
             NSString *l = [NSString stringWithFormat:@"%c",a];
             NSString *n = [NSString stringWithFormat:@"%c",biga];
             /**
-             *
+             
              */
-
             [array addObject:l];
             [array addObject:n];
-        
         }
         _wordsContainArray = array;
     }

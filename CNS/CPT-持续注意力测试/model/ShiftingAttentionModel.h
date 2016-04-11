@@ -46,5 +46,4 @@ typedef NS_ENUM(NSInteger,ShifitingFormType) {
 @property (nonatomic,assign) ShifitingFormType referenceFormType;
 
 
-
 @end
