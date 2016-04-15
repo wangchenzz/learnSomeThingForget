@@ -55,7 +55,10 @@
 /**
  *  测试数据, 封装在一个模型里面.
  */
-
+/**
+ *  按顺序每张图的名字都有 选择的数字也存在.  现在需要计算那个可以使用
+ 
+ */
 @property (nonatomic,copy) NSString *testImageName_2;
 
 @property (nonatomic,copy) NSString *selectNo_2;
@@ -87,5 +90,13 @@
 @property (nonatomic,copy) NSString *testImageName_9;
 
 @property (nonatomic,copy) NSString *selectNo_9;
+
+@property (nonatomic,retain) NSMutableArray *nameArray;
+
+
+@property (nonatomic,retain) NSMutableArray *testArray;
+
+
+@property (nonatomic,retain) NSMutableArray *selectArray;
 
 @end

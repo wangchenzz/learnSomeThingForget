@@ -23,8 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     StroopTests *test = [StroopTests test];
     
     test.frame = self.view.bounds;
@@ -32,28 +32,10 @@
     [self.view addSubview:test];
     
     [test showComplication];
-
-//    ShiftingAttentionTests *test = [ShiftingAttentionTests test];
-//    
-//    test.frame = self.view.bounds;
-//    
-//    [self.view addSubview:test];
-//    
-//    [test beginOneTest];
-//    
-//    test.delegate = self;
     
-//    ContinuousPerformanceTests *ss = [ContinuousPerformanceTests test];
-//
-//    ss.frame = self.view.bounds;
-//    
-//    [self.view addSubview:ss];
-//    
-//    [ss showMeTheTest];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
     [super touchesBegan:touches withEvent:event];
     
 }

@@ -30,6 +30,8 @@
 
 #import "ContinuousPerformanceTests.h"
 
+#import "JSTestsList.h"
+
 typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     JSTestCurrentLanguageShow  =  1,                        //展示语言注意力测试
@@ -81,6 +83,11 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 
 @property (nonatomic,strong) ContinuousPerformanceTests *continuousPerformanceTest;
 
+
+@property (nonatomic,strong) JSTestsList *testsList;
+
+@property (nonatomic,assign) NSInteger lastOne;
+
 @end
 
 @implementation FirstViewController
@@ -117,7 +124,9 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     self.beginButton = beginButton;
     
-
+    
+    self.testsList = [[JSTestsList alloc] init];
+    
 }
 -(void)clickIn{
     
@@ -131,7 +140,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
         [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
             self.beginButton.bounds = CGRectMake(0, 0, 60*1.2, 60*1.2);
-           
+            
             self.beginButton.layer.cornerRadius = 30 * 1.2;
             
         } completion:^(BOOL finished) {
@@ -178,8 +187,9 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     
                     [self.messageLabel showAnimation:3 completion:^(BOOL finished) {
                         
-//                        self.JSTestCurrentState = JSTestCurrentLanguageShow;
-                         self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
+//                    self.JSTestCurrentState = JSTestCurrentLanguageShow;
+                        self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
+                        //                         self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
                         [self.view addGestureRecognizer:self.tapContinue];
                     }];
                     
@@ -199,8 +209,6 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     self.endLabel.willShowText = @"双击屏幕继续";
                     
                     [self.endLabel showAnimation:3 completion:nil];
-                    
-                    
                 }];
             }];
         }];
@@ -236,7 +244,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     [self.messageLabel showAnimation:1 completion:^(BOOL finished) {
         
-         self.JSTestCurrentState = state;
+        self.JSTestCurrentState = state;
         
         [self.view addGestureRecognizer:self.tapContinue];
     }];
@@ -273,9 +281,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
             break;
         case JSTestCurrentLanguageImmediate:
         {
-            
             [self.languageTest showTestWords];
-            
         }
             break;
         case JSTestCurrentVisualShow:
@@ -291,12 +297,11 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
             [test show];
             
             self.visualTest = test;
-            
         }
             break;
-            
-        case JSTestCurrentVisualImmediate:
+            case JSTestCurrentVisualImmediate:
         {
+            
             [self.visualTest showTests];
             
         }
@@ -305,6 +310,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
         {
             
             JSFgClickTests *test = [JSFgClickTests test];
+            
             test.frame = JSFrame;
             
             [self.view addSubview:test];
@@ -354,17 +360,17 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
         case JSTestCurrentSimplifyStroopTests:
         {
             
-                StroopTests *test = [StroopTests test];
+            StroopTests *test = [StroopTests test];
             
-                test.frame = JSFrame;
+            test.frame = JSFrame;
             
-                [self.view addSubview:test];
+            [self.view addSubview:test];
             
-                test.delegate = self;
+            test.delegate = self;
             
-                [test showSimplify];
+            [test showSimplify];
             
-                self.stroopTest = test;
+            self.stroopTest = test;
             
         }
             break;
@@ -379,19 +385,19 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
             [self.stroopTest showColorInContrast];
         }
             break;
-        
+            
         case JSTestCurrentShiftingAttentionTests:
         {
             ShiftingAttentionTests *test = [ShiftingAttentionTests test];
             
             test.frame = JSFrame;
-        
+            
             [self.view addSubview:test];
-        
+            
             [test beginOneTest];
             
             test.delegate = self;
-        
+            
             self.shiftingAttentionTest = test;
         }
             break;
@@ -409,14 +415,18 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
             ss.delegate = self;
             
             self.continuousPerformanceTest = ss;
-        
+            
         }
             break;
             
+            /**
+             *
+             */
             
         default:
             break;
     }
+    
     
     [self.view removeGestureRecognizer:self.tapContinue];
 }
@@ -431,12 +441,23 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentLanguageImmediate];
     
+    
 }
 
 -(void)JSLanguageAttentionTests:(JSLanguageAttentionTests *)test didClickScreen:(JSLanguageAttentionModel *)model withCurrentCount:(NSInteger)count{
-//    JSLog(@"%ld",(long)count);
     
-    JSLog(@"%@",model);
+    if (self.lastOne != count && [model.theRightWordsArray containsObject:model.theTestsAllWordsArray[count-1]]) {
+        self.testsList.VIMimmediateRightReaction ++;
+    }
+    
+    if (self.lastOne != count && ![model.theRightWordsArray containsObject:model.theTestsAllWordsArray[count-1]]) {
+        self.testsList.VIMimmediateWrongReaction++;
+    }
+    
+    self.lastOne = count;
+    /**
+     *  每次显示完成时候 count 已经完成++
+     */
 }
 
 -(void)JSLanguageAttentionTests:(JSLanguageAttentionTests *)test didFinsihTests:(JSLanguageAttentionModel *)model{
@@ -444,14 +465,26 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *title = @"图像注意测验";
     NSString *message = @"您将马上开始视觉记忆测验.\n\n本测验的目的是记忆图像.\n\n将向你展示一系列图像,但一次只能看到一副.尽最大努力记住这些图像,因为不久后您将被要求挑选出您刚见过的图像.\n\n您将看到所需记忆的15幅图像.\n\n每一幅图像都将显示两秒钟";
     NSString *end = @"双击屏幕继续";
+    
+    
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentVisualShow];
-
+    
+    self.lastOne = 0;
 }
 
 #pragma mark -- JSVisualAttentionTestsDelegate
 
 -(void)JSVisualAttentionTests:(JSVisualAttentionTests *)test didClickScreen:(JSVisualAttentionModel *)model withCurrentCount:(NSInteger)count{
     
+    if (self.lastOne != count && [model.theRightImageArray containsObject:model.theTestsAllImageArray[count-1]]) {
+        self.testsList.VBMimmediateWrongReaction ++;
+    }
+    
+    if (self.lastOne != count && ![model.theRightImageArray containsObject:model.theTestsAllImageArray[count-1]]) {
+        self.testsList.VBMimmediateWrongReaction++;
+    }
+    
+    self.lastOne = count;
 }
 
 -(void)JSVisualAttentionTests:(JSVisualAttentionTests *)tests didFinishShowRightImage:(JSVisualAttentionModel *)model{
@@ -469,6 +502,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *end = @"双击屏幕继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentClickTestLeft];
+    
+    self.lastOne = 0;
 }
 
 
@@ -491,7 +526,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 
 -(NSInteger)numberOfTestsCountInJSFgClickTests:(JSFgClickTests *)test{
     
-    return 2;
+    return 3;
 }
 
 -(void)DidFinsihAllTest:(JSFgClickTests *)test{
@@ -509,24 +544,49 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
         NSString *end = @"双击屏幕继续";
         
         [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentSymbolTest];
-
-
+        
+        
     }
 }
 
 -(void)JSFgClickTests:(JSFgClickTests *)test clickCountForCurrentCount:(NSInteger)currentCount andClickCount:(NSInteger)clickCount{
-    
-    JSLog(@"%ld______%ld",currentCount,clickCount);
+    if (currentCount == 0 && test==self.clickLeftTests) {
+        self.testsList.left1ClickCount = clickCount;
+    }
+    if (currentCount == 1 && test==self.clickLeftTests) {
+        self.testsList.left2ClickCount = clickCount;
+    }
+    if (currentCount == 2 && test==self.clickLeftTests) {
+        self.testsList.left3ClickCount = clickCount;
+    }
+    if (currentCount == 0 && test==self.clickRightTests) {
+        self.testsList.right1ClickCount = clickCount;
+    }
+    if (currentCount == 1 && test==self.clickRightTests) {
+        self.testsList.right2ClickCount = clickCount;
+    }
+    if (currentCount == 2 && test==self.clickRightTests) {
+        self.testsList.right3ClickCount = clickCount;
+    }
 }
 
 #pragma mark - SymbolDigitCodingTestsDelegate;
 
 -(void)SymbolDigitCodingTests:(SymbolDigitCodingTests *)test didFinsihTestWithModelArray:(NSMutableArray *)array{
     
-//    JSPresentBut *butt = [[JSPresentBut alloc] init];
-//
-//    [butt show];
+    //    JSPresentBut *butt = [[JSPresentBut alloc] init];
+    //
+    //    [butt show];
     
+    for (SymbolDigitsModel *model in array) {
+        for (int i = 0;i < 8; i++ ) {
+            NSString *selecteStr = model.selectArray[i];
+            NSInteger selectNo = [selecteStr integerValue] - 2;
+            [model.nameArray[selectNo] isEqualToString:model.testArray[i]]?self.testsList.SDCRightSelect++:self.testsList.SDCWrongSelect++;
+            
+            
+        }
+    }
     
     //计划 .首先完成所有模块的整合. 测试效果,
     // .接受测试数据 根据要求收集数据.
@@ -543,23 +603,43 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
      *  1.特殊情况是在 某些状态下面 点击屏幕 会展示新的信息 而不是直接开始,
      *  2.所以需要一个特殊的方法去完成这个操作.
      */
+    
+    
 }
 
 
 #pragma mark - StroopTestsDelegate
 
 -(void)StroopTests:(StroopTests *)test clickScreenWithModel:(StroopModel *)model andCurrentCount:(NSInteger)count andClickTime:(float)currentTime{
-
-
+    
+    if (self.JSTestCurrentState == JSTestCurrentSimplifyStroopTests) {
+        if (self.lastOne!=count) {
+            [self.testsList.SimplifyTime addObject:@(currentTime)];
+        }
+    }
+    if (self.JSTestCurrentState == JSTestCurrentComplicationStroopTests) {
+        
+        if (self.lastOne!=count && [[model colorForText] isEqual:model.textColor]) {
+            [self.testsList.ComplicationTime addObject:@(currentTime)];
+        }
+        
+    }
+    if (self.JSTestCurrentState == JSTestCurrentInContrastStroopTests) {
+        
+        if (self.lastOne!=count && ![[model colorForText] isEqual:model.textColor]) {
+            [self.testsList.InContrastTime addObject:@(currentTime)];
+        }
+        
+    }
 }
 
 -(void)StroopTestsDidFinsihSimplifyTest:(StroopTests *)test{
     NSString *title = @"斯特鲁普测试";
-    NSString *message = @"这是斯特鲁普测验的第二部分.\n\n只有当词语的颜色与该词语所描述的颜色名称相符时,才点击屏幕.\n\n现在,您将练习斯特鲁普测验的第二部分";
+    NSString *message = @"这是斯特鲁普测验的第二部分.\n\n只有当词语的颜色与该词语 所描述的颜色名称相符时,才点击屏幕.\n\n现在,您将练习斯特鲁普测验的第二部分";
     NSString *end = @"双击屏幕以继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentComplicationStroopTests];
-
+    
 }
 
 -(void)StroopTestsDidFinsihComplicationTest:(StroopTests *)test{
@@ -568,10 +648,11 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *end = @"双击屏幕以继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentInContrastStroopTests];
-
+    
 }
 
 -(void)StroopTestsDidFinsihInContrastTest:(StroopTests *)test{
+
     
     [self.stroopTest removeFromSuperview];
     
@@ -580,13 +661,13 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *end = @"双击屏幕继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentShiftingAttentionTests];
-
+    
 }
 
 #pragma mark - ShiftingAttentionTestsDelegate
 
 -(void)ShiftingAttentionTests:(ShiftingAttentionTests *)test clickInCount:(NSInteger)count clickIsRight:(BOOL)isRight andClickPTime:(float)timetravel{
-
+    
 }
 
 -(void)ShiftingAttentionTestsDidFinsih:(ShiftingAttentionTests *)test{
@@ -595,20 +676,20 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     NSString *end = @"双击屏幕继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentContinuousPerformanceTests];
-
-
-
+    
+    
+    
 }
 
 #pragma mark - jiekaimaneijiudeyaohai
 
 -(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didClickWithCount:(NSInteger)count andWords:(NSString *)word andTimeTravel:(float)time{
-
-
+    
+    
 }
 
 -(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didFinishWithTime:(float)time{
-
+    
     
 }
 @end

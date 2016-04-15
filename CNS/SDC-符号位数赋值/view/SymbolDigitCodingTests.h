@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class SymbolDigitCodingTests;
+#import "SymbolDigitsModel.h"
 
-@class SymbolDigitsModel;
+@class SymbolDigitCodingTests;
 
 @protocol SymbolDigitCodingTestsDelegate <NSObject>
 

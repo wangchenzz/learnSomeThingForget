@@ -24,24 +24,6 @@
  */
 @property (nonatomic,retain) NSMutableArray *theRightWordsArray;
 
-/**
- *  即时正确的点击次数
- */
-@property (nonatomic,assign) NSInteger immediateRightReaction;
 
-/**
- *  即时错误点击次数
- */
-@property (nonatomic,assign) NSInteger immediateWrongReaction;
-
-/**
- *  延时正确点击次数
- */
-@property (nonatomic,assign) NSInteger delayedRightReaction;
-
-/**
- *  延时错误点击次数
- */
-@property (nonatomic,assign) NSInteger delayedWrongReaction;
 
 @end

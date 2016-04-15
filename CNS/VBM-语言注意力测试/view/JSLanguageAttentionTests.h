@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JSLanguageAttentionModel.h"
 @class JSLanguageAttentionTests;
-@class JSLanguageAttentionModel;
+
 @protocol JSLanguageAttentionTestsDelegate <NSObject>
 @optional
 

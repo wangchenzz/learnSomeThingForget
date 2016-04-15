@@ -8,8 +8,6 @@
 
 #import "StroopTests.h"
 
-#import "StroopModel.h"
-
 @interface StroopTests ()
 
 /**
@@ -114,15 +112,30 @@
         
         [self setUpInfo];
         
-        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
-        
-        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
+//        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+//        
+//        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
 
         self.clickScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
         
     }
     return self;
 }
+
+-(NSTimer *)actionTimer{
+    if (!_actionTimer) {
+        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+    }
+    return _actionTimer;
+}
+-(NSTimer *)timeTimer{
+    if (!_timeTimer) {
+        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
+    }
+    return _timeTimer;
+}
+
+
 
 -(void)click{
     
@@ -247,7 +260,7 @@
         
         self.showWordsLabel = [[UILabel alloc] init];
         
-        self.showWordsLabel.font = [UIFont boldSystemFontOfSize:29];
+        self.showWordsLabel.font = [UIFont boldSystemFontOfSize:39];
         
         self.showWordsLabel.height = self.showWordsLabel.width = self.width * .1;
         
@@ -282,7 +295,7 @@
     
         [self addSubview:self.tipsLabel];
 
-        self.tipsLabel.text = @"123";
+        self.tipsLabel.text = @"请按照规则进行操作";
         
 //        [self.tipsLabel setBackgroundColor:[UIColor redColor]];
         
@@ -348,6 +361,10 @@
 
 -(void)showColorInContrast{
     self.StroopTestType = StroopTestsTypeInContrast;
+    
+    
+    [self settingUi];
+    
     self.currentCount = 0;
     
     [self seeLabel];
@@ -390,6 +407,9 @@
             [self.timeTimer invalidate];
             
             [self.actionTimer invalidate];
+            
+            self.timeTimer = nil;
+            self.actionTimer = nil;
             
             [self removeGestureRecognizer:self.clickScreen];
             

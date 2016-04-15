@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSVisualAttentionModel.h"
 
 @class JSVisualAttentionTests;
-
-@class JSVisualAttentionModel;
 
 @protocol  JSVisualAttentionTestsDelegate <NSObject>
 

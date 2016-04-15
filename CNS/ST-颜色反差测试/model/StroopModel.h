@@ -22,4 +22,6 @@
  */
 @property (nonatomic,assign) float showTime;
 
+-(UIColor *)colorForText;
+
 @end

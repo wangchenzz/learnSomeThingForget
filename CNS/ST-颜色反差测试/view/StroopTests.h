@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+#import "StroopModel.h"
+
+
 /**
  *  斯特鲁普测试. 关于颜色反差的. 本测试一共分为三个部分--
  
@@ -18,8 +22,6 @@
 
  */
 @class StroopTests;
-
-@class StroopModel;
 
 @protocol StroopTestsDelegate <NSObject>
 

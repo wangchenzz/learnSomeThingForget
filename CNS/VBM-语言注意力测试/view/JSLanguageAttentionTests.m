@@ -8,7 +8,7 @@
 
 #import "JSLanguageAttentionTests.h"
 
-#import "JSLanguageAttentionModel.h"
+
 
 @interface JSLanguageAttentionTests ()
 
@@ -69,7 +69,7 @@
     
     model.theTestsAllWordsArray = [self getWordsFormArray:self.allWordsArray withCount:30];
     
-    model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:3];
+    model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:15];
     
     self.model = model;
 }

@@ -278,6 +278,17 @@
 -(void)leftClick{
     self.currentCounts ++;
     
+    if (self.currentCounts >= self.modelCotainArray.count) {
+        self.currentCounts = 0 ;
+        [self.actionTimer invalidate];
+        
+        if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTestsDidFinsih:)]) {
+            [self.delegate ShiftingAttentionTestsDidFinsih:self];
+        }
+        
+        return;
+    }
+    
     [self seeThis];
     
     self.currentTime = 0;
@@ -292,6 +303,15 @@
 -(void)rightClick{
     self.currentCounts ++;
     
+    
+    if (self.currentCounts >= self.modelCotainArray.count) {
+        self.currentCounts = 0 ;
+        [self.actionTimer invalidate];
+        if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTestsDidFinsih:)]) {
+            [self.delegate ShiftingAttentionTestsDidFinsih:self];
+        }
+        return;
+    }
     [self seeThis];
     
     self.currentTime = 0;
@@ -332,6 +352,17 @@
         
     }
     
+    if (self.currentCounts >= self.modelCotainArray.count) {
+        self.currentCounts = 0 ;
+        [self.actionTimer invalidate];
+        
+        if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTestsDidFinsih:)]) {
+            [self.delegate ShiftingAttentionTestsDidFinsih:self];
+        }
+        
+        return;
+        }
+    
     
     if (self.currentTime >= 2.2) {
         self.currentCounts ++;
@@ -343,8 +374,7 @@
         
         self.leftView.hidden = NO;
         self.rightView.hidden = NO;
-        self.referenceView.hidden = NO;
-    }
+        self.referenceView.hidden = NO;     }
     
 
 }

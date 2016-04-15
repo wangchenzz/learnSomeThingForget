@@ -8,8 +8,6 @@
 
 #import "JSVisualAttentionTests.h"
 
-#import "JSVisualAttentionModel.h"
-
 #import <Foundation/Foundation.h>
 
 @interface JSVisualAttentionTests ()
@@ -147,8 +145,6 @@
         }
         return;
     }
-
-
 }
 
 
@@ -174,6 +170,7 @@
     model.theRightImageArray = [self getSomeImageFromArray:model.theTestsAllImageArray withCount:15];
     
     self.model = model;
+    
 }
 -(UIImageView *)showImageView{
     
@@ -220,13 +217,14 @@
         self.tipsLabel.centerX = self.centerX;
         
         self.tipsLabel.centerY = self.height * .8;
+        
     }
     return _tipsLabel;
 }
 
 /**
  *  从一个数组中乱序得到一些元素
- *
+ *  3
  *  @param array 目标数组
  *  @param count 元素个数
  */

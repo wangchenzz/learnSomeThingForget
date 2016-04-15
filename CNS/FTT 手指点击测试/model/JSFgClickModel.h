@@ -10,16 +10,5 @@
 
 @interface JSFgClickModel : NSObject
 
-@property (nonatomic,assign) NSInteger left1ClickCount;
-
-@property (nonatomic,assign) NSInteger left2ClickCount;
-
-@property (nonatomic,assign) NSInteger left3ClickCount;
-
-@property (nonatomic,assign) NSInteger right1ClickCount;
-
-@property (nonatomic,assign) NSInteger right2ClickCount;
-
-@property (nonatomic,assign) NSInteger right3ClickCount;
 
 @end

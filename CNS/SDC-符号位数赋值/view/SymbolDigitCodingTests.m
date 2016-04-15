@@ -200,8 +200,10 @@
     NSMutableArray *copyArray = [NSMutableArray arrayWithArray:array];
     
     if (count > array.count) {
+        
         count = (int)array.count;
     }
+    
     for (int i = (int)count ;i > 0 ;i -- ) {
         
         int a = arc4random()%i;
