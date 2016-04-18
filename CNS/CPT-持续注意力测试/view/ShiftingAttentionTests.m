@@ -276,34 +276,34 @@
 }
 
 -(void)leftClick{
-    self.currentCounts ++;
     
-    if (self.currentCounts >= self.modelCotainArray.count) {
-        self.currentCounts = 0 ;
-        [self.actionTimer invalidate];
-        
-        if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTestsDidFinsih:)]) {
-            [self.delegate ShiftingAttentionTestsDidFinsih:self];
-        }
-        
-        return;
-    }
-    
-    [self seeThis];
-    
-    self.currentTime = 0;
-
-
     if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTests:clickInCount:clickIsRight:andClickPTime:)]) {
         [self.delegate ShiftingAttentionTests:self clickInCount:self.currentCounts clickIsRight:self.isChooseLeft andClickPTime:self.currentTime];
     }
     
+    self.currentCounts ++;
+    
+    if (self.currentCounts >= self.modelCotainArray.count) {
+        self.currentCounts = 0 ;
+        [self.actionTimer invalidate];
+        if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTestsDidFinsih:)]) {
+            [self.delegate ShiftingAttentionTestsDidFinsih:self];
+        }
+        
+        return;
+    }
+    
+    [self seeThis];
+    
+    self.currentTime = 0;
 }
 
 -(void)rightClick{
+    
+    if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTests:clickInCount:clickIsRight:andClickPTime:)]) {
+        [self.delegate ShiftingAttentionTests:self clickInCount:self.currentCounts clickIsRight:!self.isChooseLeft andClickPTime:self.currentTime];
+    }
     self.currentCounts ++;
-    
-    
     if (self.currentCounts >= self.modelCotainArray.count) {
         self.currentCounts = 0 ;
         [self.actionTimer invalidate];
@@ -313,13 +313,7 @@
         return;
     }
     [self seeThis];
-    
     self.currentTime = 0;
-
-    
-    if ([self.delegate respondsToSelector:@selector(ShiftingAttentionTests:clickInCount:clickIsRight:andClickPTime:)]) {
-        [self.delegate ShiftingAttentionTests:self clickInCount:self.currentCounts clickIsRight:!self.isChooseLeft andClickPTime:self.currentTime];
-    }
 }
 
 /**
@@ -336,8 +330,7 @@
     self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(timeRun) userInfo:nil repeats:YES];
     self.totalTime = 0;
     self.currentTime = 0;
-    
-    
+    [self seeThis];
     [[timerTool tool] fireInTheHoll:self.actionTimer];
 }
 
@@ -353,6 +346,7 @@
     }
     
     if (self.currentCounts >= self.modelCotainArray.count) {
+        
         self.currentCounts = 0 ;
         [self.actionTimer invalidate];
         
@@ -405,6 +399,14 @@
 }
 
 -(void)seeThis{
+    
+    if (self.currentCounts>=self.modelCotainArray.count) {
+        [self.referenceView removeFromSuperview];
+        [self.leftView removeFromSuperview];
+        [self.rightView removeFromSuperview];
+        [self.tipsLabel removeFromSuperview];
+        return;
+    }
     
     ShiftingAttentionModel *model = self.modelCotainArray[self.currentCounts];
     

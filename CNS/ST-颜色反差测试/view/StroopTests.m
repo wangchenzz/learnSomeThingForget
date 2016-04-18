@@ -57,10 +57,10 @@
 
 /**
  *  1... 需要规定每个字显示多久;
-    2... 过多久会更新一次 label;   默认显示的时间为 1~2s 时间.   一二点为同一属性.
-    3... 模型构造;
+ 2... 过多久会更新一次 label;   默认显示的时间为 1~2s 时间.   一二点为同一属性.
+ 3... 模型构造;
  
-    考虑之后 准备放置在一个类里面,供应调用,  模型数据存放于数组之中, 一共设置三个数组;
+ 考虑之后 准备放置在一个类里面,供应调用,  模型数据存放于数组之中, 一共设置三个数组;
  */
 
 
@@ -112,22 +112,22 @@
         
         [self setUpInfo];
         
-//        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
-//        
-//        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
-
+        //        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+        //
+        //        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
+        
         self.clickScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
         
     }
     return self;
 }
 
--(NSTimer *)actionTimer{
-    if (!_actionTimer) {
-        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
-    }
-    return _actionTimer;
-}
+//-(NSTimer *)actionTimer{
+//    if (!_actionTimer) {
+//        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+//    }
+//    return _actionTimer;
+//}
 -(NSTimer *)timeTimer{
     if (!_timeTimer) {
         self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
@@ -148,52 +148,52 @@
             model = self.SimplifyModelArray[_currentCount];
             
         }else if(self.StroopTestType == StroopTestsTypeComplication){
-        
+            
             model = self.ComplicationModelArray[_currentCount];
         }else{
             model = self.ColorInContrastModelArray[_currentCount];
-        
         }
         [self.delegate StroopTests:self clickScreenWithModel:model andCurrentCount:self.currentCount andClickTime:self.currentTimeTravel];
     }
     
-
-
-    
+    if (self.StroopTestType != StroopTestsTypeSimplify) {
         self.currentTimeTravel = 0;
         self.currentCount++;
-        if (self.currentCount >= 20) {
-            [self.timeTimer invalidate];
-            
-            [self.actionTimer invalidate];
-            
-            [self removeGestureRecognizer:self.clickScreen];
-            
-            self.showWordsLabel.text = @"";
-            
-            if (self.StroopTestType == StroopTestsTypeSimplify) {
-                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihSimplifyTest:)]) {
-                    [self.delegate StroopTestsDidFinsihSimplifyTest:self];
-                }
-                
-            }else if(self.StroopTestType == StroopTestsTypeComplication){
-                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihComplicationTest:)]) {
-                    [self.delegate StroopTestsDidFinsihComplicationTest:self];
-                }
-                
-            }else{
-                if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihInContrastTest:)]) {
-                    [self.delegate StroopTestsDidFinsihInContrastTest:self];
-                }
+    }
+    if (self.currentCount >= 20) {
+        [self.timeTimer invalidate];
+        
+        [self.actionTimer invalidate];
+        
+        [self removeGestureRecognizer:self.clickScreen];
+        
+        self.showWordsLabel.text = @"";
+        
+        if (self.StroopTestType == StroopTestsTypeSimplify) {
+            if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihSimplifyTest:)]) {
+                [self.delegate StroopTestsDidFinsihSimplifyTest:self];
             }
-            return;
+            
+        }else if(self.StroopTestType == StroopTestsTypeComplication){
+            if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihComplicationTest:)]) {
+                [self.delegate StroopTestsDidFinsihComplicationTest:self];
+            }
+            
+        }else{
+            if ([self.delegate respondsToSelector:@selector(StroopTestsDidFinsihInContrastTest:)]) {
+                [self.delegate StroopTestsDidFinsihInContrastTest:self];
+            }
         }
+        return;
+    }
+    if (self.StroopTestType != StroopTestsTypeSimplify) {
         [self seeLabel];
+    }
 }
 
 
 -(NSArray *)colorArray{
-
+    
     if (!_colorArray) {
         _colorArray = @[[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor blackColor],[UIColor yellowColor],[UIColor orangeColor]];
     }
@@ -208,7 +208,7 @@
     self.SimplifyModelArray = [NSMutableArray array];
     self.ColorInContrastModelArray = [NSMutableArray array];
     self.ComplicationModelArray = [NSMutableArray array];
-
+    
     for (int i = 0; i < 20; i ++) {
         [self.SimplifyModelArray addObject:[self getModelForType:StroopTestsTypeSimplify]];
     }
@@ -228,7 +228,7 @@
 }
 
 -(StroopModel*)getModelForType:(StroopTestType)type{
-
+    
     NSInteger counts = self.colorArray.count;
     
     if (type == StroopTestsTypeSimplify) {
@@ -237,7 +237,7 @@
         model.textColor = [UIColor blackColor];
         model.showTime = 1 + arc4random()%200/100.0;
         model.showText = self.textArray[arc4random()%counts];
-    
+        
         return model;
     }else{
         
@@ -265,11 +265,11 @@
         self.showWordsLabel.height = self.showWordsLabel.width = self.width * .1;
         
         self.showWordsLabel.centerX = self.centerX;
-    
+        
         self.showWordsLabel.centerY = self.height * .5;
-    
+        
         self.showWordsLabel.textAlignment = NSTextAlignmentCenter;
-    
+        
         [self addSubview:self.showWordsLabel];
         
         self.showWordsLabel;
@@ -287,17 +287,15 @@
         
         self.tipsLabel.height = self.width * .1;
         
-        self.tipsLabel.width = self.width * .2;
+        self.tipsLabel.width = self.width * .5;
         
         self.tipsLabel.centerX = self.centerX;
         
         self.tipsLabel.centerY = self.height * .7;
-    
-        [self addSubview:self.tipsLabel];
-
-        self.tipsLabel.text = @"请按照规则进行操作";
         
-//        [self.tipsLabel setBackgroundColor:[UIColor redColor]];
+        [self addSubview:self.tipsLabel];
+        
+        self.tipsLabel.text = @"请按照规则进行操作";
         
         self.tipsLabel;
         
@@ -334,7 +332,7 @@
     
     [self seeLabel];
     
-    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    self.tipsLabel.hidden = NO;
     
     [[timerTool tool] fireInTheHoll:self.timeTimer];
 }
@@ -350,13 +348,14 @@
     self.currentCount = 0;
     
     [self seeLabel];
+    self.tipsLabel.hidden = NO;
     
     [self addGestureRecognizer:self.clickScreen];
     
-    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    //    [[timerTool tool] fireInTheHoll:self.actionTimer];
     
     [[timerTool tool] fireInTheHoll:self.timeTimer];
-
+    
 }
 
 -(void)showColorInContrast{
@@ -364,6 +363,7 @@
     
     
     [self settingUi];
+    self.tipsLabel.hidden = NO;
     
     self.currentCount = 0;
     
@@ -371,10 +371,10 @@
     
     [self addGestureRecognizer:self.clickScreen];
     
-    [[timerTool tool] fireInTheHoll:self.actionTimer];
+    //    [[timerTool tool] fireInTheHoll:self.actionTimer];
     
     [[timerTool tool] fireInTheHoll:self.timeTimer];
-
+    
 }
 
 
@@ -383,7 +383,7 @@
  *  暂时未定用来干什么
  */
 -(void)doSomeThing{
-
+    
     
     
 }
@@ -407,6 +407,9 @@
             [self.timeTimer invalidate];
             
             [self.actionTimer invalidate];
+            
+            
+            self.tipsLabel.hidden = YES;
             
             self.timeTimer = nil;
             self.actionTimer = nil;
@@ -444,7 +447,7 @@
 -(void)seeLabel{
     StroopModel *model;
     if (self.StroopTestType == StroopTestsTypeSimplify) {
-       model = self.SimplifyModelArray[self.currentCount];
+        model = self.SimplifyModelArray[self.currentCount];
     }else if(self.StroopTestType == StroopTestsTypeComplication){
         model = self.ComplicationModelArray[self.currentCount];
     }else{

@@ -31,7 +31,7 @@
     
     [self.view addSubview:test];
     
-    [test showComplication];
+//    [test showComplication];
     
 }
 

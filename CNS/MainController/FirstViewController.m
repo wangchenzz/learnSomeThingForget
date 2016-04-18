@@ -86,6 +86,9 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 
 @property (nonatomic,strong) JSTestsList *testsList;
 
+/**
+ *  lastOne 应为默认是为零.在测试的过程中带来了各种意想不到的问题.
+ */
 @property (nonatomic,assign) NSInteger lastOne;
 
 @end
@@ -503,7 +506,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentClickTestLeft];
     
-    self.lastOne = 0;
+    self.lastOne = 1000;
 }
 
 
@@ -615,6 +618,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     if (self.JSTestCurrentState == JSTestCurrentSimplifyStroopTests) {
         if (self.lastOne!=count) {
             [self.testsList.SimplifyTime addObject:@(currentTime)];
+            JSLog(@"%f",currentTime);
         }
     }
     if (self.JSTestCurrentState == JSTestCurrentComplicationStroopTests) {
@@ -631,6 +635,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
         }
         
     }
+    self.lastOne = count;
 }
 
 -(void)StroopTestsDidFinsihSimplifyTest:(StroopTests *)test{
@@ -667,28 +672,43 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 #pragma mark - ShiftingAttentionTestsDelegate
 
 -(void)ShiftingAttentionTests:(ShiftingAttentionTests *)test clickInCount:(NSInteger)count clickIsRight:(BOOL)isRight andClickPTime:(float)timetravel{
+    if (self.lastOne != count && isRight) {
+        self.testsList.trueReatctiionTime+=timetravel;
+        self.testsList.trueCount++;
+        JSLog(@"yes");
+    }else if (self.lastOne != count &&!isRight) {
+        self.testsList.wrongCount ++;
+        JSLog(@"no");
+    }
     
 }
 
 -(void)ShiftingAttentionTestsDidFinsih:(ShiftingAttentionTests *)test{
+    
     NSString *title = @"持续性操作测验";
     NSString *message = @"您将马上开始持续性操作测验.本测验的目的是仅对字母表中的特定字母做出反应.字母表中的不同字母将在屏幕上闪烁.当您看到字母'b'时,请尽快点击屏幕,如果您看到'b'意外的其他字母,请不要做任何操作.";
     NSString *end = @"双击屏幕继续";
-    
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentContinuousPerformanceTests];
-    
-    
     
 }
 
 #pragma mark - jiekaimaneijiudeyaohai
 
 -(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didClickWithCount:(NSInteger)count andWords:(NSString *)word andTimeTravel:(float)time{
-    
-    
+    if (([word isEqualToString:@"b"]||[word isEqualToString:@"B"]) && self.lastOne!= count) {
+        self.testsList.CPTTime += time;
+        self.testsList.CPTTrueCount++;
+    }else if (self.lastOne != count ){
+        self.testsList.CPTWrongCount++;
+    }
 }
 
 -(void)ContinuousPerformanceTests:(ContinuousPerformanceTests *)test didFinishWithTime:(float)time{
+    
+    
+    /**
+     *  所有测试都已经完成后的回调;
+     */
     
     
 }

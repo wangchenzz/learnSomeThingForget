@@ -127,12 +127,12 @@
     if (self.currentTime >= 2) {
         self.currentTime = 0;
         self.currentCount +=1;
-        [self seeLabel];
+        [self performSelectorOnMainThread:@selector(seeLabel) withObject:nil waitUntilDone:YES];
     }
 }
 
 -(void)seeLabel{
-    if (self.currentCount == self.selectArray.count) {
+    if (self.currentCount >= self.selectArray.count) {
         
         /**
          *  这里结束所有测试.
@@ -140,15 +140,19 @@
         
         [self.worsLabel removeFromSuperview];
         self.worsLabel = nil;
+        [self.actionTimer invalidate];
         if ([self.delegate respondsToSelector:@selector(ContinuousPerformanceTests:didFinishWithTime:)]) {
             [self.delegate ContinuousPerformanceTests:self didFinishWithTime:self.timeTraval];
         }
+        
         return;
     }
 
+//    JSLog(@"%f",self.currentCount);
+    
     NSString *showWord = self.selectArray[self.currentCount];
     
-    [self.worsLabel JSLabel_StarAnimationWithDirection:JSFakeAnimationLeft toText:showWord];
+    [self.worsLabel JSLabel_StarAnimationWithDirection:JSFakeAnimationRight toText:showWord];
 }
 
 -(NSMutableArray *)wordsContainArray{

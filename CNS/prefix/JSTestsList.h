@@ -98,7 +98,7 @@
 /**
  *  正确错色反应时间
  */
-@property (nonatomic,assign) NSMutableArray* InContrastTime;
+@property (nonatomic,retain) NSMutableArray* InContrastTime;
 
 
 /**
