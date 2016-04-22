@@ -29,10 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    testViewController *test = [[testViewController alloc] init];
-    
-    [self addJSChildViewController:test withNormalImage:nil selectImage:nil title:nil];
-    
     FirstViewController *fvc = [[FirstViewController alloc] init];
     
     [self addJSChildViewController:fvc withNormalImage:nil selectImage:nil title:@"语言测试"];

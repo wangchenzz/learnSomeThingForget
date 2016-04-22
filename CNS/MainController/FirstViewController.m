@@ -32,6 +32,9 @@
 
 #import "JSTestsList.h"
 
+
+#import "showLevelController.h"
+
 typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     JSTestCurrentLanguageShow  =  1,                        //展示语言注意力测试
@@ -91,6 +94,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
  */
 @property (nonatomic,assign) NSInteger lastOne;
 
+
+
 @end
 
 @implementation FirstViewController
@@ -126,10 +131,14 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     [beginButton addTarget:self action:@selector(clickIn) forControlEvents:UIControlEventTouchUpInside];
     
     self.beginButton = beginButton;
-    
-    
+
     self.testsList = [[JSTestsList alloc] init];
     
+    [[INetworking shareNet]GET:@"http://115.159.29.108:8080/SSM/user/getLogin?mobile=15957145947" withParmers:nil do:^(id returnObject, BOOL isSuccess) {
+        JSLog(@"%@",returnObject);
+    }];
+    
+
 }
 -(void)clickIn{
     
@@ -172,7 +181,50 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     self.titleLabel.willShowText = @"语言注意力测试";
                     
                     [self.titleLabel showAnimation:3 completion:nil];
-                    
+                    /**
+                     硬盘里的女神下了又删
+                     去年夏天后就没聊过天
+                     一盏一盏街灯烘焙了夜
+                     只有手中烟在寂寞地渲染
+                     人太多大 部分是漫无目的的走
+                     听着歌想 念一个人心痛也不说
+                     悄悄看 外边的情侣暖昧牵着手
+                     你也牵过手
+                     是左手牵右手
+                     叮当当 QQ响起会是谁呢NaYo
+                     会是她吗 NaYo
+                     什么事呢Ayo
+                     假装正经帮她把问题都摆平NaYo
+                     不多聊了NaYo
+                     去吃饭了Ayo
+                     明明心里很喜欢却保持着距离
+                     怕被伤害就伪装出高冷的表情
+                     以为这样总有一天她会接近你
+                     直到有天看见她和别人在一起
+                     一盏一盏街灯烘焙了夜
+                     只有手中烟在寂寞渲染
+                     硬盘里的女神下了又删
+                     去年夏天后就再没聊过天
+                     人太多大 部分是漫无目的的走
+                     听着歌想 念一个人心痛也不说
+                     悄悄看 外边的情侣暖昧牵着手
+                     你也牵过手
+                     是左手牵右手
+                     叮当当 QQ响起会是谁呢NaYo
+                     会是她吗NaYo
+                     什么事呢Ayo
+                     假装正经帮她把问题都摆平NaYo
+                     不多聊了NaYo
+                     去吃饭了Ayo
+                     明明心里很喜欢却保持着距离
+                     怕被伤害就伪装出高冷的表情
+                     以为这样总有一天她会接近你
+                     直到有天看见她和别人在一起
+                     优雅的转身
+                     熟悉的音乐
+                     是东京热的那一段
+                     你已经淡出
+                     */
                     
                     
                     self.messageLabel = [[animationFlashLabel alloc] init];
@@ -191,8 +243,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     [self.messageLabel showAnimation:3 completion:^(BOOL finished) {
                         
 //                    self.JSTestCurrentState = JSTestCurrentLanguageShow;
+//                        self.JSTestCurrentState = JSTestCurrentShiftingAttentionTests;
                         self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
-                        //                         self.JSTestCurrentState = JSTestCurrentSimplifyStroopTests;
                         [self.view addGestureRecognizer:self.tapContinue];
                     }];
                     
@@ -466,7 +518,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 -(void)JSLanguageAttentionTests:(JSLanguageAttentionTests *)test didFinsihTests:(JSLanguageAttentionModel *)model{
     
     NSString *title = @"图像注意测验";
-    NSString *message = @"您将马上开始视觉记忆测验.\n\n本测验的目的是记忆图像.\n\n将向你展示一系列图像,但一次只能看到一副.尽最大努力记住这些图像,因为不久后您将被要求挑选出您刚见过的图像.\n\n您将看到所需记忆的15幅图像.\n\n每一幅图像都将显示两秒钟";
+    NSString *message = @"您将马上开始视觉记忆测验.\n\n本测验的目的是记忆图像.\n\n将向你展示一系列图像,但一次只能看到一副.\n\n尽最大努力记住这些图像,因为不久后您将被要求挑选出您刚见过的图像.\n\n您将看到所需记忆的15幅图像.\n\n每一幅图像都将显示两秒钟";
     NSString *end = @"双击屏幕继续";
     
     
@@ -597,7 +649,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
     
     [self.symbolTest removeFromSuperview];
     NSString *title = @"斯特鲁普测试";
-    NSString *message = @"您将马上开始斯特鲁普测验\n\n本测验的目的是对词语和颜色做出反应\n\n本测验有三部分组成\n\n这是斯特鲁普测验的第一部分.\n\n一看到屏幕上显示一个词语,您就立即点击屏幕.\n\n所有词语都将是颜色的名称.\n\n现在,您将进行斯特鲁普测验的第一部分.\n\n一看到屏幕上显示一个词语,您就立即点击屏幕.\n\n本测验将测验您的反应速度";
+    NSString *message = @"您将马上开始斯特鲁普测验\n\n本测验的目的是对词语和颜色做出反应\n\n本测验有三部分组成,这是斯特鲁普测验的第一部分.\n\n一看到屏幕上显示一个词语,您就立即点击屏幕.\n\n所有词语都将是颜色的名称.\n\n本测验将测验您的反应速度";
     NSString *end = @"双击屏幕以继续";
     
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentSimplifyStroopTests];
@@ -685,8 +737,10 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
 
 -(void)ShiftingAttentionTestsDidFinsih:(ShiftingAttentionTests *)test{
     
+    [test removeFromSuperview];
+    
     NSString *title = @"持续性操作测验";
-    NSString *message = @"您将马上开始持续性操作测验.本测验的目的是仅对字母表中的特定字母做出反应.字母表中的不同字母将在屏幕上闪烁.当您看到字母'b'时,请尽快点击屏幕,如果您看到'b'意外的其他字母,请不要做任何操作.";
+    NSString *message = @"您将马上开始持续性操作测验.\n\n本测验的目的是仅对字母表中的特定字母做出反应.\n\n字母表中的不同字母将在屏幕上闪烁.\n\n当您看到字母'b'时,请尽快点击屏幕.\n\n如果您看到'b'以外的其他字母,请不要做任何操作.";
     NSString *end = @"双击屏幕继续";
     [self viewWithTheTitle:title withMessage:message withEnd:end andJSTestCurrentState:JSTestCurrentContinuousPerformanceTests];
     
@@ -710,6 +764,10 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
      *  所有测试都已经完成后的回调;
      */
     
+    showLevelController *lev = [[showLevelController alloc] init];
+    lev.testsList = self.testsList;
+    
+    [self.navigationController pushViewController:lev animated:YES];
     
 }
 @end

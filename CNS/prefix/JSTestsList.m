@@ -16,16 +16,19 @@
     }
     return _SimplifyTime;
 }
+
 -(NSMutableArray *)ComplicationTime{
     if (!_ComplicationTime) {
         self.ComplicationTime = [NSMutableArray array];
     }
     return _ComplicationTime;
 }
+
 -(NSMutableArray *)InContrastTime{
     if (!_InContrastTime) {
         self.InContrastTime = [NSMutableArray array];
     }
     return _InContrastTime;
 }
+
 @end

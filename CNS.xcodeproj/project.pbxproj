@@ -12,9 +12,12 @@
 		040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F2C4D1C99588D00C5A929 /* StroopModel.m */; };
 		041DA7971CBF710500626349 /* JSTestsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 041DA7961CBF710500626349 /* JSTestsList.m */; };
 		041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */; };
+		0425DC901CC8A63300D022E3 /* showLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC8F1CC8A63300D022E3 /* showLevelController.m */; };
+		0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC921CC8C2FF00D022E3 /* showLevelCell.m */; };
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
 		0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */; };
 		043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */; };
+		0475605E1CC7504F00CFD065 /* INetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0475605D1CC7504F00CFD065 /* INetworking.m */; };
 		047D08A01C8D69DA0092EAE4 /* JSFgClickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */; };
 		0485BAE11CA50B620012CECD /* ShiftingAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */; };
 		0485BAE41CA50B740012CECD /* ShiftingAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */; };
@@ -80,11 +83,17 @@
 		041DA7961CBF710500626349 /* JSTestsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTestsList.m; sourceTree = "<group>"; };
 		041FB9791C86825A00F35659 /* JSLanguageAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionTests.h; sourceTree = "<group>"; };
 		041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLanguageAttentionTests.m; sourceTree = "<group>"; };
+		0425DC8E1CC8A63300D022E3 /* showLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showLevelController.h; sourceTree = "<group>"; };
+		0425DC8F1CC8A63300D022E3 /* showLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showLevelController.m; sourceTree = "<group>"; };
+		0425DC911CC8C2FF00D022E3 /* showLevelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showLevelCell.h; sourceTree = "<group>"; };
+		0425DC921CC8C2FF00D022E3 /* showLevelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showLevelCell.m; sourceTree = "<group>"; };
 		0438855A1C90237300E1A3E9 /* diamondsXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = diamondsXib.xib; sourceTree = "<group>"; };
 		0438855C1C90251E00E1A3E9 /* SymbolAndDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolAndDigit.h; sourceTree = "<group>"; };
 		0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolAndDigit.m; sourceTree = "<group>"; };
 		0438855F1C9027E200E1A3E9 /* SymbolDigitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolDigitsModel.h; sourceTree = "<group>"; };
 		043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolDigitsModel.m; sourceTree = "<group>"; };
+		0475605C1CC7504F00CFD065 /* INetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INetworking.h; sourceTree = "<group>"; };
+		0475605D1CC7504F00CFD065 /* INetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INetworking.m; sourceTree = "<group>"; };
 		047D089E1C8D69DA0092EAE4 /* JSFgClickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSFgClickTests.h; sourceTree = "<group>"; };
 		047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSFgClickTests.m; sourceTree = "<group>"; };
 		0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftingAttentionTests.h; path = "../../CPT-持续注意力测试/view/ShiftingAttentionTests.h"; sourceTree = "<group>"; };
@@ -481,6 +490,10 @@
 				04B0FF271C841DEE0020D1A5 /* FirstViewController.m */,
 				04F7C4091C9A84AB000C3A16 /* testViewController.h */,
 				04F7C40A1C9A84AB000C3A16 /* testViewController.m */,
+				0425DC8E1CC8A63300D022E3 /* showLevelController.h */,
+				0425DC8F1CC8A63300D022E3 /* showLevelController.m */,
+				0425DC911CC8C2FF00D022E3 /* showLevelCell.h */,
+				0425DC921CC8C2FF00D022E3 /* showLevelCell.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -508,6 +521,8 @@
 		04E6C30A1C89552800A92300 /* prefix */ = {
 			isa = PBXGroup;
 			children = (
+				0475605C1CC7504F00CFD065 /* INetworking.h */,
+				0475605D1CC7504F00CFD065 /* INetworking.m */,
 				04E6C30B1C89552800A92300 /* AppDelegate.h */,
 				04E6C30C1C89552800A92300 /* AppDelegate.m */,
 				04E6C30D1C89552800A92300 /* JSTabBarController.h */,
@@ -728,6 +743,7 @@
 				04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */,
 				041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */,
 				040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */,
+				0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */,
 				04B0FF171C841C720020D1A5 /* UIBarButtonItem+Extension.m in Sources */,
 				04B0FF3D1C8420610020D1A5 /* JSPresentBut.m in Sources */,
 				04864B7A1C96B8D00035DAB1 /* StroopTests.m in Sources */,
@@ -740,7 +756,9 @@
 				04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */,
 				0485BAE41CA50B740012CECD /* ShiftingAttentionModel.m in Sources */,
 				04B0FF151C841C720020D1A5 /* NSDate+Extension.m in Sources */,
+				0475605E1CC7504F00CFD065 /* INetworking.m in Sources */,
 				041DA7971CBF710500626349 /* JSTestsList.m in Sources */,
+				0425DC901CC8A63300D022E3 /* showLevelController.m in Sources */,
 				04A5DD051C8FF64800D31DB9 /* JSFgClickModel.m in Sources */,
 				04B0FF3E1C8420610020D1A5 /* JSWriteAnimationView.m in Sources */,
 				040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */,

@@ -60,6 +60,8 @@
 
 #import "JSLoading.h"
 
+#import "INetworking.h"
+
 #import <UIKit/UIKit.h>
 
 
