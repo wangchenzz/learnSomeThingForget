@@ -10,17 +10,9 @@
 
 @interface JSLoading : UIView
 
-/**
- *  成功的 load;
- */
-+ (void)loadSuccessCompletion:(void (^ __nullable)(BOOL finished))completion;
 
 
-/**
- *  失败的 load;
- */
++ (void)loadSuccessCompletion:(void (^)(BOOL))completion;
 
-+ (void)loadFailCompletion:(void (^ __nullable)(BOOL finished))completion;
-
-
++ (void)loadFailCompletion:(void (^)(BOOL))completion;
 @end

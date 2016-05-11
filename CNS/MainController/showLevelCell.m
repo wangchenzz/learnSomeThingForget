@@ -47,9 +47,6 @@
     if (!cell) {
         cell = [[showLevelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
     }
-    
-    
-    
     return cell;
 }
 

@@ -48,30 +48,36 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 @property (nonatomic) UIColor *likeGreenColor;
 @property (nonatomic) UIColor *likeRedColor;
 
+@property (nonatomic,strong) CAAnimationGroup *importStep;
+
 @property (nonatomic,copy)void(^conpletion)(BOOL finsih) ;
 
 @end
 
 @implementation JSLoading
 
-#pragma mark - public
 + (void)loadSuccessCompletion:(void (^)(BOOL))completion {
     
     JSLoading *lei = [[JSLoading alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+    
     [[UIApplication sharedApplication].keyWindow addSubview:lei];
     
     lei.alpha = 0;
     
-    [lei addEffectView];
+    [lei addEffectView]; 
     
     [lei reset];
+    
     lei.isSuccess = YES;
+    
     [lei doStep1];
 
     lei.conpletion = completion;
     
     [UIView animateWithDuration:0.5 animations:^{
+    
         lei.alpha = 1;
+   
     }];
 }
 
@@ -88,6 +94,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
         lei.alpha = 1;
     }];
 }
+
 
 #pragma mark - reset
 - (void)reset {
@@ -127,7 +134,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     self.JSLoadLayer = [CAShapeLayer layer];
     self.JSLoadLayer.strokeColor = self.likeBlackColor.CGColor;
     self.JSLoadLayer.lineWidth = kLineWidth;
-    self.JSLoadLayer.bounds = CGRectMake(0,00, kRadius * 2 + kLineWidth, kRadius * 2 + kLineWidth);
+    self.JSLoadLayer.bounds = CGRectMake(0,0, kRadius * 2 + kLineWidth, kRadius * 2 + kLineWidth);
     self.JSLoadLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     
     
@@ -175,6 +182,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     
     CAAnimationGroup *step1 = [CAAnimationGroup animation];
     step1.animations = @[startAnimation, endAnimation,rotain];
+    step1.repeatCount = MAXFLOAT;
     step1.duration = kStep1Duration * 2;
     step1.delegate = self;
     
@@ -183,7 +191,8 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     step1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
     [self.JSLoadLayer addAnimation:step1 forKey:nil];
-
+    
+    self.importStep = step1;
 }
 
 #pragma mark - step2

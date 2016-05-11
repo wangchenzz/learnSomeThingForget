@@ -164,8 +164,8 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                 
             } completion:^(BOOL finished) {
                 
-                [JSLoading loadSuccessCompletion:^(BOOL finished) {
-                    
+//                [JSLoading loadSuccessCompletion:^(BOOL finished) {
+                
                     
                     self.titleLabel = [[animationFlashLabel alloc] init];
                     
@@ -181,51 +181,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                     self.titleLabel.willShowText = @"语言注意力测试";
                     
                     [self.titleLabel showAnimation:3 completion:nil];
-                    /**
-                     硬盘里的女神下了又删
-                     去年夏天后就没聊过天
-                     一盏一盏街灯烘焙了夜
-                     只有手中烟在寂寞地渲染
-                     人太多大 部分是漫无目的的走
-                     听着歌想 念一个人心痛也不说
-                     悄悄看 外边的情侣暖昧牵着手
-                     你也牵过手
-                     是左手牵右手
-                     叮当当 QQ响起会是谁呢NaYo
-                     会是她吗 NaYo
-                     什么事呢Ayo
-                     假装正经帮她把问题都摆平NaYo
-                     不多聊了NaYo
-                     去吃饭了Ayo
-                     明明心里很喜欢却保持着距离
-                     怕被伤害就伪装出高冷的表情
-                     以为这样总有一天她会接近你
-                     直到有天看见她和别人在一起
-                     一盏一盏街灯烘焙了夜
-                     只有手中烟在寂寞渲染
-                     硬盘里的女神下了又删
-                     去年夏天后就再没聊过天
-                     人太多大 部分是漫无目的的走
-                     听着歌想 念一个人心痛也不说
-                     悄悄看 外边的情侣暖昧牵着手
-                     你也牵过手
-                     是左手牵右手
-                     叮当当 QQ响起会是谁呢NaYo
-                     会是她吗NaYo
-                     什么事呢Ayo
-                     假装正经帮她把问题都摆平NaYo
-                     不多聊了NaYo
-                     去吃饭了Ayo
-                     明明心里很喜欢却保持着距离
-                     怕被伤害就伪装出高冷的表情
-                     以为这样总有一天她会接近你
-                     直到有天看见她和别人在一起
-                     优雅的转身
-                     熟悉的音乐
-                     是东京热的那一段
-                     你已经淡出
-                     */
-                    
+              
                     
                     self.messageLabel = [[animationFlashLabel alloc] init];
                     
@@ -267,7 +223,7 @@ typedef NS_ENUM(NSInteger,JSTestCurrentState) {
                 }];
             }];
         }];
-    }];
+//    }];
 }
 
 -(UITapGestureRecognizer *)tapContinue{

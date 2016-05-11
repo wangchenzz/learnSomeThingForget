@@ -17,7 +17,7 @@
 
 #define JSColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define JSCOLOR JSColor(57, 104, 55)
+#define JSCOLOR JSColor(170, 60, 99)
 //定义UIimage对象
 #define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
 
@@ -61,6 +61,8 @@
 #import "JSLoading.h"
 
 #import "INetworking.h"
+
+#import "MBProgressHUD+MJ.h"
 
 #import <UIKit/UIKit.h>
 

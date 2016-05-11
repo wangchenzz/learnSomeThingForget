@@ -10,7 +10,9 @@
 
 #import "FirstViewController.h"
 
-#import "testViewController.h"
+#import "loginViewController.h"
+
+#import "MainPageViewController.h"
 
 /**
  *  测试的控制器
@@ -29,11 +31,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
+//    loginViewController *view = [[loginViewController alloc] init];
+//    
+//    
+//    [self addJSChildViewController:view withNormalImage:nil selectImage:nil title:@"登陆界面"];
+    
+    MainPageViewController*v = [[MainPageViewController alloc] init];
+    
+    [self addJSChildViewController:v withNormalImage:nil selectImage:nil title:@"首页"];
+    
+    
     FirstViewController *fvc = [[FirstViewController alloc] init];
     
     [self addJSChildViewController:fvc withNormalImage:nil selectImage:nil title:@"语言测试"];
     
-  
 }
 
 /**

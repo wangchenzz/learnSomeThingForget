@@ -18,6 +18,10 @@
  */
 
 +(instancetype)imageWithRenderNamed:(NSString*)string;
+
+
+
+
 /**
  *  返回固定颜色的图片
  *
@@ -28,6 +32,10 @@
 
 +(UIImage *)imageWithBgColor:(UIColor *)color;
 
+
+
+
+
 /**
  *  返回图片的颜色
  *
@@ -35,6 +43,10 @@
  */
 
 -(UIColor*)imageToColor;
+
+
+
+
 
 /**
  *  将图片进行缩放 改变图片的 size; 可是好像没卵用
@@ -44,6 +56,9 @@
  *  @return 图片
  */
 - (UIImage *)scaleSize:(CGSize)size;
+
+
+
 
 
 @end
