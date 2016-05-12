@@ -27,4 +27,6 @@
 @property (nonatomic,copy) NSString *ctr;
 
 @property (nonatomic,copy) NSString *num;
+
+
 @end

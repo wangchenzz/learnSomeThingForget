@@ -12,7 +12,9 @@
 
 #import "JSNewsModel.h"
 
-#define newsUrl @"http://xxlccw.cn/SSM/news/getNewsByType"
+#import "newsDetailController.h"
+
+#define newsUrl @"http://www.xxlccw.cn/SSM/news/getNewsByType"
 
 @interface MainPageViewController ()
 
@@ -34,11 +36,29 @@
     [self loadInfo];
     
     [self setUpScrollView];
+    
+
+    [self setUpTablevewBackColor];
 
     self.tabBarController.tabBar.hidden = NO;
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadInfo)];
     
+}
+
+/**
+ *  使用 kvc 使 tableview 拥有背景图片;
+ */
+
+
+-(void)setUpTablevewBackColor{
+    UIImageView *backrounView = [[UIImageView alloc] init];
+    
+    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
+    
+    backrounView.image = [UIImage imageNamed:@"底色"];
+    
+    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
 }
 
 -(void)loadInfo{
@@ -52,7 +72,10 @@
     dic[@"token"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
     
     [[INetworking shareNet] GET:newsUrl withParmers:dic do:^(id returnObject, BOOL isSuccess) {
-        NSArray *infoAry = returnObject[@"list"];
+        NSArray *infoAry;
+        if (isSuccess) {
+            infoAry = returnObject[@"list"];
+        }
         if (isSuccess && infoAry.count != 0) {
             
             for (NSDictionary *dic in infoAry) {
@@ -78,7 +101,7 @@
     
     animationScroll *imaegView = [animationScroll getScroll];
     
-    [imaegView setFrame:CGRectMake(0, 0, self.view.width,self.view.height * .33)];
+    [imaegView setFrame:CGRectMake(0, 0, self.view.width,self.view.height * .4)];
     
     imaegView.delegate = self;
     
@@ -98,21 +121,12 @@
 
 -(UIImage *)animationScroll:(animationScroll *)scroll imageForIndex:(NSInteger)index{
 
-    if (index / 2 == 1) {
-        return [UIImage imageNamed:@"visualImage1"];
-    }else{
-        return [UIImage imageNamed:@"visualImage2"];
-    }
-    
+    return [UIImage imageNamed:@"banner"];
 }
 
 -(NSString *)animationScroll:(animationScroll *)scroll textForIndex:(NSInteger)index{
 
-    if (index == 1) {
-        return @"123";
-    }else{
-        return @"志宰";
-    }
+        return @"全球注意力训练,学习能力专家.";
 
 }
 
@@ -140,6 +154,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NewsCell *cel  =  (NewsCell *)cell;
     cel.model = self.newsInfoArray[indexPath.row];
 }
@@ -149,5 +164,58 @@
     return 100;
 }
 
+/**
+ *  跳转页面展示新闻
+ */
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    JSNewsModel *currentModel = self.newsInfoArray[indexPath.row];
+    
+    newsDetailController *newVC = [[newsDetailController alloc] init];
+    
+   newVC.hidesBottomBarWhenPushed = YES;
+    
+    newVC.currentModel = currentModel;
+    
+    [self.navigationController pushViewController:newVC animated:YES];
+
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    UIView *view =[[UIView alloc] init];
+    
+    [view setBackgroundColor:[UIColor clearColor]];
+    
+    UIView *backView =[[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.width, 38)];
+    
+    backView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.3];
+    [view addSubview:backView];
+    
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(7, 7, 24, 24)];
+    imageview.image = [UIImage imageNamed:@"new"];
+    
+    UILabel *titleLbale =[[UILabel alloc] init];
+    
+    titleLbale.frame = CGRectMake(38, 3, 140, 32);
+    
+    titleLbale.font = [UIFont boldSystemFontOfSize:20];
+    
+    titleLbale.textColor = [UIColor whiteColor];
+    
+    titleLbale.text = @"竞思新闻";
+    
+    [backView addSubview:imageview];
+    
+    [backView addSubview:titleLbale];
+    
+    return view;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 50;
+}
 
 @end

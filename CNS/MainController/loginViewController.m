@@ -8,7 +8,7 @@
 
 #import "loginViewController.h"
 
-#define loginUrl @"http://xxlccw.cn/SSM/user/getLogin"
+#define loginUrl @"http://www.xxlccw.cn/SSM/user/getLogin"
 
 @interface loginViewController ()<UITextFieldDelegate>
 
@@ -30,13 +30,75 @@
     
     self.navigationController.navigationBar.hidden = YES;
     
-    UIImageView *backRound = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backRound.image = [UIImage imageNamed:@"faceImage2"];
-    [self.view addSubview:backRound];
+    [self setUpLogo];
+    
+    
     
     [self setUpTextF];
     
     [self setTips];
+    
+}
+
+-(void)setUpLogo{
+
+    UIImageView *backRound = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    backRound.image = [UIImage imageNamed:@"底色"];
+    [self.view addSubview:backRound];
+    
+    
+    UIImageView *logoView = [[UIImageView alloc] init];
+    
+    UIImage *logo = [UIImage imageNamed:@"l"];
+    
+    logoView.image = logo;
+    logoView.width = logo.size.width;
+    
+    logoView.height = logo.size.height;
+    
+    logoView.centerX = self.view.centerX;
+    
+    logoView.centerY =  self.view.height * .25;
+    
+    [self.view addSubview:logoView];
+    
+    
+    UILabel *logoName = [[UILabel alloc] init];
+    
+    logoName.width = JSFrame.size.width;
+    
+    logoName.height = 30;
+    
+    logoName.text = @"杭州竞思教育科技有限公司";
+    
+    logoName.textAlignment = NSTextAlignmentCenter;
+    
+    logoName.textColor = [UIColor whiteColor];
+    
+    logoName.font = [UIFont boldSystemFontOfSize:13];
+    
+    logoName.centerX = self.view.centerX;
+    
+    logoName.centerY = self.view.height * .9;
+    
+    [self.view addSubview:logoName];
+
+    
+    
+    UIView *lineView = [[UIView alloc] init];
+    
+    lineView.height = 1;
+    
+    lineView.width = 50;
+    
+    lineView.centerX = self.view.centerX;
+    
+    lineView.centerY = CGRectGetMaxY(logoName.frame);
+    
+    [lineView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
+    
+    [self.view addSubview:lineView];
+
     
 }
 
@@ -70,7 +132,7 @@
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(name.x, CGRectGetMaxY(name.frame), name.width, 1)];
     
-    [lineView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+    [lineView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
     
     [self.view addSubview:lineView];
     
@@ -112,7 +174,7 @@
     
     UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(pwd.x, CGRectGetMaxY(pwd.frame)-1, pwd.width, 1)];
     
-    [lineView2 setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+    [lineView2 setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
     
     [self.view addSubview:lineView2];
     
@@ -148,9 +210,10 @@
     
     [button setTitle:@"登录" forState: UIControlStateNormal];
     
-    button.titleLabel.textColor = [UIColor whiteColor];
+    [button setTitleColor:JSColor(50, 50, 50) forState:UIControlStateNormal];
     
-    button.backgroundColor = JSColor(246, 133, 69);
+    
+    button.backgroundColor = JSColor(249, 208, 169);
     
     [self.view addSubview:button];
     
@@ -222,6 +285,7 @@
         }else{
             
             [MBProgressHUD hideHUD];
+            self.passCodeText.text = @"";
             [self.tipsLabel setText:@"登陆失败"];
             
         }

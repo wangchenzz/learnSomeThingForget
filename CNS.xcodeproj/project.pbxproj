@@ -28,6 +28,7 @@
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
 		0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */; };
 		043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */; };
+		045D9AD61CE4242800AE46E9 /* JSNewsFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 045D9AD51CE4242800AE46E9 /* JSNewsFrameModel.m */; };
 		0475605E1CC7504F00CFD065 /* INetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0475605D1CC7504F00CFD065 /* INetworking.m */; };
 		047D08A01C8D69DA0092EAE4 /* JSFgClickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */; };
 		0485BAE11CA50B620012CECD /* ShiftingAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */; };
@@ -47,7 +48,6 @@
 		04B0FF161C841C720020D1A5 /* timerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF0A1C841C720020D1A5 /* timerTool.m */; };
 		04B0FF171C841C720020D1A5 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF0C1C841C720020D1A5 /* UIBarButtonItem+Extension.m */; };
 		04B0FF181C841C720020D1A5 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF0E1C841C720020D1A5 /* UIButton+Extension.m */; };
-		04B0FF191C841C720020D1A5 /* UIImage+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF101C841C720020D1A5 /* UIImage+Render.m */; };
 		04B0FF1A1C841C720020D1A5 /* UIView+Animated.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF121C841C720020D1A5 /* UIView+Animated.m */; };
 		04B0FF1B1C841C720020D1A5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF141C841C720020D1A5 /* UIView+Frame.m */; };
 		04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF271C841DEE0020D1A5 /* FirstViewController.m */; };
@@ -58,6 +58,9 @@
 		04B0FF3D1C8420610020D1A5 /* JSPresentBut.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF361C8420610020D1A5 /* JSPresentBut.m */; };
 		04B0FF3E1C8420610020D1A5 /* JSWriteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FF381C8420610020D1A5 /* JSWriteAnimationView.m */; };
 		04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CC90C81CAD02E2003D095C /* ContinuousPerformanceTests.m */; };
+		04D095971CE4131200DD4011 /* newsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D095961CE4131200DD4011 /* newsDetailController.m */; };
+		04D0959A1CE418AE00DD4011 /* newsDtailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D095991CE418AE00DD4011 /* newsDtailCell.m */; };
+		04D0959D1CE4194400DD4011 /* commentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0959C1CE4194400DD4011 /* commentCell.m */; };
 		04E3291E1C86D60600843D08 /* JSLanguageAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3291D1C86D60600843D08 /* JSLanguageAttentionModel.m */; };
 		04E6C3101C89552800A92300 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C30C1C89552800A92300 /* AppDelegate.m */; };
 		04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C30E1C89552800A92300 /* JSTabBarController.m */; };
@@ -122,6 +125,8 @@
 		0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolAndDigit.m; sourceTree = "<group>"; };
 		0438855F1C9027E200E1A3E9 /* SymbolDigitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolDigitsModel.h; sourceTree = "<group>"; };
 		043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolDigitsModel.m; sourceTree = "<group>"; };
+		045D9AD41CE4242800AE46E9 /* JSNewsFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNewsFrameModel.h; sourceTree = "<group>"; };
+		045D9AD51CE4242800AE46E9 /* JSNewsFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNewsFrameModel.m; sourceTree = "<group>"; };
 		0475605C1CC7504F00CFD065 /* INetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INetworking.h; sourceTree = "<group>"; };
 		0475605D1CC7504F00CFD065 /* INetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INetworking.m; sourceTree = "<group>"; };
 		047D089E1C8D69DA0092EAE4 /* JSFgClickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSFgClickTests.h; sourceTree = "<group>"; };
@@ -182,6 +187,12 @@
 		04B0FF381C8420610020D1A5 /* JSWriteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSWriteAnimationView.m; sourceTree = "<group>"; };
 		04CC90C71CAD02E2003D095C /* ContinuousPerformanceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinuousPerformanceTests.h; sourceTree = "<group>"; };
 		04CC90C81CAD02E2003D095C /* ContinuousPerformanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinuousPerformanceTests.m; sourceTree = "<group>"; };
+		04D095951CE4131200DD4011 /* newsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsDetailController.h; sourceTree = "<group>"; };
+		04D095961CE4131200DD4011 /* newsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsDetailController.m; sourceTree = "<group>"; };
+		04D095981CE418AE00DD4011 /* newsDtailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsDtailCell.h; sourceTree = "<group>"; };
+		04D095991CE418AE00DD4011 /* newsDtailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsDtailCell.m; sourceTree = "<group>"; };
+		04D0959B1CE4194400DD4011 /* commentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentCell.h; sourceTree = "<group>"; };
+		04D0959C1CE4194400DD4011 /* commentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentCell.m; sourceTree = "<group>"; };
 		04E3291C1C86D60600843D08 /* JSLanguageAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionModel.h; sourceTree = "<group>"; };
 		04E3291D1C86D60600843D08 /* JSLanguageAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLanguageAttentionModel.m; sourceTree = "<group>"; };
 		04E6C30B1C89552800A92300 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -238,6 +249,8 @@
 			children = (
 				04011D6A1CCDF13A00C4F6D4 /* MainPageViewController.h */,
 				04011D6B1CCDF13A00C4F6D4 /* MainPageViewController.m */,
+				04D095951CE4131200DD4011 /* newsDetailController.h */,
+				04D095961CE4131200DD4011 /* newsDetailController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -247,6 +260,8 @@
 			children = (
 				0423B6A81CE30E8E0018E753 /* JSNewsModel.h */,
 				0423B6A91CE30E8E0018E753 /* JSNewsModel.m */,
+				045D9AD41CE4242800AE46E9 /* JSNewsFrameModel.h */,
+				045D9AD51CE4242800AE46E9 /* JSNewsFrameModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -258,6 +273,10 @@
 				04011D6E1CCDF59200C4F6D4 /* animationScroll.m */,
 				0423B6AB1CE31AF10018E753 /* NewsCell.h */,
 				0423B6AC1CE31AF10018E753 /* NewsCell.m */,
+				04D095981CE418AE00DD4011 /* newsDtailCell.h */,
+				04D095991CE418AE00DD4011 /* newsDtailCell.m */,
+				04D0959B1CE4194400DD4011 /* commentCell.h */,
+				04D0959C1CE4194400DD4011 /* commentCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -798,7 +817,7 @@
 		04B0FEC11C8419540020D1A5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "竞思教育";
 				TargetAttributes = {
 					04B0FEC81C8419540020D1A5 = {
@@ -927,6 +946,7 @@
 				04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */,
 				041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */,
 				040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */,
+				04D0959A1CE418AE00DD4011 /* newsDtailCell.m in Sources */,
 				0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */,
 				04011D4B1CCDB03B00C4F6D4 /* loginViewController.m in Sources */,
 				04B0FF171C841C720020D1A5 /* UIBarButtonItem+Extension.m in Sources */,
@@ -945,10 +965,12 @@
 				04B0FF151C841C720020D1A5 /* NSDate+Extension.m in Sources */,
 				04011D6C1CCDF13A00C4F6D4 /* MainPageViewController.m in Sources */,
 				0475605E1CC7504F00CFD065 /* INetworking.m in Sources */,
+				04D095971CE4131200DD4011 /* newsDetailController.m in Sources */,
 				041DA7971CBF710500626349 /* JSTestsList.m in Sources */,
 				0425DC901CC8A63300D022E3 /* showLevelController.m in Sources */,
 				04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */,
 				04A5DD051C8FF64800D31DB9 /* JSFgClickModel.m in Sources */,
+				04D0959D1CE4194400DD4011 /* commentCell.m in Sources */,
 				04B0FF3E1C8420610020D1A5 /* JSWriteAnimationView.m in Sources */,
 				0423B6AA1CE30E8E0018E753 /* JSNewsModel.m in Sources */,
 				040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */,
@@ -958,13 +980,13 @@
 				04E3291E1C86D60600843D08 /* JSLanguageAttentionModel.m in Sources */,
 				04B0FF181C841C720020D1A5 /* UIButton+Extension.m in Sources */,
 				04B0FF161C841C720020D1A5 /* timerTool.m in Sources */,
+				045D9AD61CE4242800AE46E9 /* JSNewsFrameModel.m in Sources */,
 				047D08A01C8D69DA0092EAE4 /* JSFgClickTests.m in Sources */,
 				0485BAE11CA50B620012CECD /* ShiftingAttentionTests.m in Sources */,
 				04B0FECE1C8419540020D1A5 /* main.m in Sources */,
 				04B0FF1A1C841C720020D1A5 /* UIView+Animated.m in Sources */,
 				04B0FF1B1C841C720020D1A5 /* UIView+Frame.m in Sources */,
 				0423B6A71CE309510018E753 /* ZYQAssetPickerController.m in Sources */,
-				04B0FF191C841C720020D1A5 /* UIImage+Render.m in Sources */,
 				04B0FF3A1C8420610020D1A5 /* eyeView.m in Sources */,
 				0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */,
 				04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */,
@@ -1101,6 +1123,8 @@
 			baseConfigurationReference = AB0FA04B649CDDFFBFEE87B6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
@@ -1108,6 +1132,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1116,6 +1141,8 @@
 			baseConfigurationReference = 71E70B531ECE1EECF5159E97 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
@@ -1123,6 +1150,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

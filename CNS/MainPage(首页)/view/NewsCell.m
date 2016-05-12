@@ -35,13 +35,12 @@
         
         UIView *backround = [[UIView alloc] init];
         
-        [backround setBackgroundColor:JSColor(213, 94, 42) ];
+        [backround setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:0.3]];
 
-        backround.frame = CGRectMake(0, 0, 414, 100);
+        backround.frame = CGRectMake(0, 0, JSFrame.size.width, 100);
         
         [self.contentView addSubview:backround];
-        
-        
+
         UIImageView *imageview  = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
         
         [self.contentView addSubview:imageview];
@@ -50,17 +49,17 @@
         
         
         
-        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, self.width-50, 30)];
+        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, self.width-50, 30)];
         
         [tit setTextColor:[UIColor whiteColor]];
         
-        [tit setFont:[UIFont boldSystemFontOfSize:17]];
+        [tit setFont:[UIFont boldSystemFontOfSize:15]];
         
         self.newsTitleLabel = tit;
         
         
         
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 50, self.width-50, 50)];
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, self.width-50, 50)];
         
         [infoLabel setNumberOfLines:0];
         
@@ -74,6 +73,9 @@
         
         [self.contentView addSubview:infoLabel];
         
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         
     }
     return self;
@@ -104,13 +106,14 @@
         
         NSArray *imageArray = [imageString componentsSeparatedByString:@","];
         
-        NSString *imastr = [NSString stringWithFormat:@"http://xxlccw.cn/SSM%@",imageArray[0]];
+        NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",imageArray[0]];
         
         
         [self.photoInfoImage sd_setImageWithURL:[NSURL URLWithString:imastr]];
         
     }
 }
+
 
 
 
