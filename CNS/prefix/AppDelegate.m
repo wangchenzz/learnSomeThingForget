@@ -10,6 +10,8 @@
 
 #import "JSTabBarController.h"
 
+#import "loginViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -22,11 +24,31 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    JSTabBarController *jstc = [[JSTabBarController alloc]init];
     
-    self.window.rootViewController = jstc;
     
-    [self.window makeKeyAndVisible];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"loginName"] = [[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"];
+    
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+    
+    [[INetworking shareNet] GET:loginUrl withParmers:dic do:^(id returnObject, BOOL isSuccess) {
+        NSDictionary *dic = (NSDictionary *)returnObject;
+        if (isSuccess && [dic[@"msg"]isEqualToString:@"1"]) {
+            
+            JSTabBarController *jstc = [[JSTabBarController alloc]init];
+            self.window.rootViewController = jstc;
+            
+            [self.window makeKeyAndVisible];
+        }else{
+            loginViewController *lc = [[loginViewController alloc] init];
+            self.window.rootViewController = lc;
+            
+            [self.window makeKeyAndVisible];
+        }
+    }];
+    
+    
 
     return YES;
 }

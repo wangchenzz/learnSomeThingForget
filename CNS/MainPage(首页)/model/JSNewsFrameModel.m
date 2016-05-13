@@ -16,16 +16,8 @@
         
         self.imageRectArray = [NSMutableArray array];
         self.imageArray = [NSMutableArray array];
-        
-        self.title = model.title;
-        
-        self.images = model.images;
-        
-        self.author = model.author;
-        
-        self.createtime = model.createtime;
-
-        self.content = model.content;
+        self.commentArray = [NSMutableArray array];
+        self.lmodel = model;
         
         
     }
@@ -34,20 +26,29 @@
 
 
 
--(void)setContent:(NSString *)content{
-    if (_content!=content) {
-        _content = content;
+-(void)setLmodel:(JSNewsModel *)lmodel{
+    if (_lmodel!=lmodel) {
+        _lmodel = lmodel;
         
         CGFloat keplinth = 10;
-        self.titleRect = CGRectMake(keplinth, keplinth, JSFrame.size.width - 2*keplinth, 50);
+        
+        NSMutableDictionary *titleDic = [NSMutableDictionary dictionary];
+        titleDic[NSFontAttributeName] = titleFont;
+        
+        CGRect titleR = [self.lmodel.title boundingRectWithSize:CGSizeMake(JSFrame.size.width-keplinth-8*keplinth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:titleDic context:nil];
+        
+        self.titleRect = CGRectMake(keplinth, keplinth, JSFrame.size.width - 9*keplinth, titleR.size.height);
+        
+        
+        
         
         NSMutableDictionary *diction = [NSMutableDictionary dictionary];
         diction[NSFontAttributeName] = contentFont;
         
         
-        self.creatTimeRect = [self.createtime boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:diction context:nil];
+        self.creatTimeRect = [self.lmodel.createtime boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:diction context:nil];
         
-        self.creatTimeRect = CGRectMake(keplinth,(CGRectGetMaxY(_titleRect)+keplinth), self.creatTimeRect.size.width, self.creatTimeRect.size.height);
+        self.creatTimeRect = CGRectMake(keplinth,(CGRectGetMaxY(_titleRect)), self.creatTimeRect.size.width, self.creatTimeRect.size.height);
         
         
 //        JSLog(@"%@",NSStringFromCGRect(self.creatTimeRect));
@@ -62,10 +63,10 @@
          *  图片:
          */
         
-     __block CGRect bImage = CGRectMake(0, CGRectGetMaxY(self.creatTimeRect)+3*keplinth,0,0);
+     __block CGRect bImage = CGRectMake(0, CGRectGetMaxY(self.creatTimeRect)+1*keplinth,0,0);
         
         
-        NSArray *imageArray = [self.images componentsSeparatedByString:@","];
+        NSArray *imageArray = [self.lmodel.images componentsSeparatedByString:@","];
         
         for (int i = 0  ; i < imageArray.count; i ++) {
             NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",imageArray[i]];
@@ -86,21 +87,56 @@
         /**
          *  正文 rect
          */
-        CGPoint Bcontent = CGPointMake(0, CGRectGetMaxY(bImage)+3*keplinth);
+        CGPoint Bcontent = CGPointMake(0, CGRectGetMaxY(bImage)+2*keplinth);
         
         NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
         dic2[NSFontAttributeName] = TruecontentFont;
         
         JSLog(@"%f",JSFrame.size.width - 2 * keplinth);
         
-        CGRect textRect = [self.content boundingRectWithSize:CGSizeMake(JSFrame.size.width - 2 * keplinth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic2 context:nil];
+        CGRect textRect = [self.lmodel.content boundingRectWithSize:CGSizeMake(JSFrame.size.width - 4 * keplinth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic2 context:nil];
         
-        self.contentRect = CGRectMake(keplinth, Bcontent.y, JSFrame.size.width - 2 * keplinth, textRect.size.height);
+        self.contentRect = CGRectMake(2*keplinth, Bcontent.y, JSFrame.size.width - 4 * keplinth, textRect.size.height);
         
-        self.totalHeight = CGRectGetMaxY(self.contentRect)+keplinth*3;
+        
+
+        
         
     }
 }
+
+-(void)setLikeNum:(NSString *)likeNum{
+    
+    /**
+     *  功能按钮
+     */
+    _likeNum = likeNum;
+    
+    NSMutableDictionary *diccomment = [NSMutableDictionary dictionary];
+    diccomment[NSFontAttributeName] = contentFont;
+    
+    CGRect commentrect = [self.commentNum boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:diccomment context:nil];
+    
+    
+    self.commentButRect = CGRectMake(10, CGRectGetMaxY(self.contentRect)+40, commentrect.size.width, commentrect.size.height);
+    
+    
+    
+    
+    CGRect likeRect = [self.likeNum boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:diccomment context:nil];
+    
+    
+    self.likeTooButRect = CGRectMake(CGRectGetMaxX(self.commentButRect)+10, self.commentButRect.origin.y, likeRect.size.width, likeRect.size.height);
+    
+    
+    /**
+     *  总高度
+     */
+    
+    self.totalHeight = CGRectGetMaxY(self.likeTooButRect)+10*3;
+
+}
+
 
 
 @end

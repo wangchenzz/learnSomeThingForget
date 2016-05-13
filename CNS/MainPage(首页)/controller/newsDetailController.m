@@ -10,7 +10,7 @@
 
 #import "newsDtailCell.h"
 
-#define CommentUrl @"http://www.xxlccw.cn/SSM/news/selectNewById"
+
 
 @interface newsDetailController ()
 
@@ -26,11 +26,61 @@
     [super viewDidLoad];
     self.currentPage = 1;
     
+    //?loginName=yxj&token=e3592eb60392ce73d6247e9aab02e93e&id=1
+    
+    
+    self.title = @"新闻";
+    
+    [self setUpTablevewBackColor];
+}
+
+
+-(void)setCurrentModel:(JSNewsModel *)currentModel{
+    
+    if (_currentModel != currentModel) {
+    
+    _currentModel = currentModel;
+
     JSNewsFrameModel *model = [[JSNewsFrameModel alloc] initWithModel:self.currentModel];
     
     self.model = model;
+    
+    NSMutableDictionary *infoDic =[NSMutableDictionary dictionary];
+    
+    infoDic[@"loginName"] = [[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"];
+    
+    
+    infoDic[@"token"] = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+    
+    infoDic[@"id"] = self.currentModel.num;
+    
+    
+    [[INetworking shareNet] GET:DetailNews withParmers:infoDic do:^(id returnObject, BOOL isSuccess) {
+        
+        if (isSuccess) {
+            self.model.commentNum = [NSString stringWithFormat:@"评论 %@",returnObject[@"countPage"]];
+            self.model.likeNum = [NSString stringWithFormat:@"赞 %@",returnObject[@"zanCount"]];
+            self.model.commentArray = returnObject[@"list"];
+            self.model.isLike = [returnObject[@"msg"]isEqualToString:@"您已经点过赞"];
+            
+            
+            
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:nil];
+            
+        }
+    }];
+    }
 }
 
+-(void)setUpTablevewBackColor{
+    UIImageView *backrounView = [[UIImageView alloc] init];
+    
+    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
+    
+    backrounView.image = [UIImage imageNamed:@"底色"];
+    
+    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
+}
 
 
 -(void)loadSomeComment{
@@ -57,6 +107,7 @@
     newsDtailCell *cell = [newsDtailCell cellForTableview:tableView];
     
     return cell;
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -74,7 +125,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return self.model.totalHeight;
+
 }
 
 

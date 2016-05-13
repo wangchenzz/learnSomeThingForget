@@ -8,7 +8,8 @@
 
 #import "loginViewController.h"
 
-#define loginUrl @"http://www.xxlccw.cn/SSM/user/getLogin"
+#import "JSTabBarController.h"
+
 
 @interface loginViewController ()<UITextFieldDelegate>
 
@@ -280,7 +281,11 @@
              */
             
             
-            [self.tabBarController setSelectedIndex:1];
+//            [self.tabBarController setSelectedIndex:1];
+            JSTabBarController *jstc = [[JSTabBarController alloc]init];
+            [UIApplication sharedApplication].keyWindow.rootViewController = jstc;
+            
+            [[UIApplication sharedApplication].keyWindow makeKeyAndVisible];
             
         }else{
             

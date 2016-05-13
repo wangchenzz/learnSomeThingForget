@@ -20,6 +20,15 @@
 @property (nonatomic,retain) UILabel *contentLabel;
 
 
+@property (nonatomic,retain) UIButton *likeButton;
+
+
+@property (nonatomic,retain) UIButton *commentButton;
+
+
+@property (nonatomic,retain) UIButton *likeButtonToo;
+
+
 @end
 
 @implementation newsDtailCell
@@ -40,9 +49,10 @@
         
         label.font = titleFont;
         
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         
-        label.textAlignment = NSTextAlignmentCenter;
+//        label.textAlignment = NSTextAlignmentCenter;
+        [label setNumberOfLines:0];
         
         self.titleLabel = label;
         
@@ -51,7 +61,7 @@
         
         label1.font = contentFont;
         
-        label1.textColor = [UIColor colorWithWhite:0.3 alpha:0.8];
+        label1.textColor = [UIColor colorWithWhite:1 alpha:0.8];
         
         self.timeLabel = label1;
         
@@ -59,7 +69,7 @@
         
         label2.font = contentFont;
         
-        label2.textColor = [UIColor colorWithWhite:0.3 alpha:0.8];
+        label2.textColor = [UIColor colorWithWhite:1 alpha:0.8];
         
         self.authorLabel = label2;
         
@@ -69,10 +79,43 @@
         
         [label3 setNumberOfLines:0];
         
-        label3.textColor = [UIColor blackColor];
+        label3.textColor = [UIColor whiteColor];
         
         self.contentLabel = label3;
         
+        
+        
+        UIButton *buton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+//        buton.backgroundColor = [UIColor clearColor];
+        
+        self.likeButton = buton;
+        
+        
+        UIButton *buton1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        //        buton.backgroundColor = [UIColor clearColor];
+        
+        [buton1.titleLabel setFont:contentFont];
+        
+        [buton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        self.commentButton = buton1;
+        
+        UIButton *buton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [buton2.titleLabel setFont:contentFont];
+        
+        [buton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
+        
+        //        buton.backgroundColor = [UIColor clearColor];
+        
+        self.likeButtonToo = buton2;
+        
+        [self.contentView addSubview:buton2];
+        [self.contentView addSubview:buton1];
+        [self.contentView addSubview:buton];
         [self.contentView addSubview:label3];
         [self.contentView addSubview:label2];
         [self.contentView addSubview:label1];
@@ -87,6 +130,9 @@
 //        [self.timeLabel setBackgroundColor:[UIColor redColor]];
 //        
 //        [self.authorLabel setBackgroundColor:[UIColor redColor]];
+        
+        
+        self.backgroundColor = [UIColor clearColor];
         
     }
     return self;
@@ -106,17 +152,17 @@
 }
 
 -(void)setModel:(JSNewsFrameModel *)model{
-    if (_model != model) {
+//    if (_model != model||_model.isLike!=model.isLike||![model.likeNum isEqualToString:_model.likeNum]) {
+    
         _model = model;
         
+        self.titleLabel.text = _model.lmodel.title;
         
-        self.titleLabel.text = _model.title;
+        self.authorLabel.text = _model.lmodel.author;
         
-        self.authorLabel.text = _model.author;
+        self.contentLabel.text = _model.lmodel.content;
         
-        self.contentLabel.text = _model.content;
-        
-        self.timeLabel.text = _model.createtime;
+        self.timeLabel.text = _model.lmodel.createtime;
         
         self.titleLabel.frame = _model.titleRect;
         
@@ -126,10 +172,6 @@
         
         self.timeLabel.frame = _model.creatTimeRect;
         
-        
-        
-        
-        
         for (int i = 0 ;i < _model.imageRectArray.count;i++) {
             NSString *rec = _model.imageRectArray[i];
             CGRect re = CGRectFromString(rec);
@@ -138,7 +180,7 @@
             
             vie.frame = re;
             
-            vie.contentMode = UIViewContentModeScaleAspectFill;
+            vie.contentMode = UIViewContentModeScaleAspectFit;;
             
             vie.clipsToBounds = YES;
             
@@ -148,7 +190,97 @@
             
         }
         
+        /**
+         *  添加点赞按钮;
+         */
+        [self.likeButton setBackgroundImage:[UIImage imageNamed:@"aixin2"] forState:UIControlStateSelected];
         
+        
+        [self.likeButton setBackgroundImage:[UIImage imageNamed:@"aixin"] forState:UIControlStateNormal];
+        
+        
+        self.likeButton.height = self.likeButton.width = self.likeButton.currentBackgroundImage.size.height*2;
+        
+        self.likeButton.selected = self.model.isLike;
+        
+        self.likeButton.centerX = JSFrame.size.width - 1*self.likeButton.height;
+        
+        self.likeButton.centerY = (CGRectGetMaxY(self.authorLabel.frame) - self.titleLabel.y)/2+ self.titleLabel.y;
+        
+        
+        
+        [self.likeButton addTarget:self action:@selector(isisIlIke) forControlEvents:UIControlEventTouchUpInside];
+        
+//        首先通过读取验证码得到 cookie, 肉眼识别验证码,手动输入验证码后将得到新的 cookie.
+        
+        /**
+         *  添加评论按钮和点赞按钮
+         *
+         */
+        
+        [self.commentButton setTitle:model.commentNum forState:UIControlStateNormal];
+        
+//        [self.commentButton setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+        
+        [self.commentButton setFrame:model.commentButRect];
+        
+         [self.likeButtonToo setTitle:model.likeNum forState:UIControlStateNormal];
+        
+        [self.likeButtonToo setFrame:model.likeTooButRect];
+//        [self.likeButtonToo setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+
+
+        
+
+//    }
+
+}
+
+-(void)isisIlIke{
+    
+    if (!self.likeButton.isSelected) {
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.likeButton.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                self.likeButton.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                self.likeButton.selected = YES;
+                
+                self.model.isLike = YES;
+                
+                NSInteger tureNum = [[self.model.likeNum substringFromIndex:2]  integerValue ]+1;
+                
+                self.model.likeNum = [NSString stringWithFormat:@"赞 %ld",tureNum];
+                //?loginName=yxj&token=e3592eb60392ce73d6247e9aab02e93e&id=1
+                
+                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+                
+                dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginName"];
+                
+                dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"token"];
+                
+                dic[@"id"] = self.model.lmodel.num;
+                
+                [[INetworking shareNet] GET:LikeAddUrl withParmers:dic do:^(id returnObject, BOOL isSuccess) {
+                   
+                    if (!isSuccess) {
+                        
+                        [MBProgressHUD showError:@"点赞失败"];
+                        
+                    }else{
+                        
+                        [self.likeButtonToo setTitle:self.model.likeNum forState:UIControlStateNormal];
+                    
+                    }
+                    
+                }];
+                
+            }];
+            
+        }];
     }
 
 }

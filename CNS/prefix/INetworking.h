@@ -10,6 +10,16 @@
 
 @interface INetworking : NSObject
 
+#define loginUrl @"http://www.xxlccw.cn/SSM/user/getLogin"
+
+
+#define newsUrl @"http://www.xxlccw.cn/SSM/news/getNewsByType"
+
+
+#define DetailNews @"http://www.xxlccw.cn/SSM/news/selectNewById"
+
+#define LikeAddUrl @"http://www.xxlccw.cn/SSM/news/addZan"
+
 @property (nonatomic,copy) NSString *ipstr;
 
 

@@ -12,7 +12,7 @@
 
 #define titleFont [UIFont boldSystemFontOfSize:24]
 
-#define contentFont JSFont(18)
+#define contentFont JSFont(13)
 
 
 #define TruecontentFont JSFont(16)
@@ -20,36 +20,76 @@
 @interface JSNewsFrameModel : NSObject
 
 
-@property (nonatomic,copy) NSString *title;
+/**
+ *  是否点过赞
+ */
+@property (nonatomic,assign) BOOL isLike;
 
-@property (nonatomic,copy) NSString *author;
 
-@property (nonatomic,copy) NSString *content;
+/**
+ *  评论次数
+ */
+@property (nonatomic,copy) NSString *commentNum;
 
-@property (nonatomic,copy) NSString *createtime;
+/**
+ *  点赞次数
+ */
+@property (nonatomic,copy) NSString *likeNum;
 
-@property (nonatomic,copy) NSString *loginName;
 
-@property (nonatomic,copy) NSString *images;
+/**
+ *  内容模型
+ */
+@property (nonatomic,strong) JSNewsModel *lmodel;
 
-@property (nonatomic,copy) NSString *type;
-
-@property (nonatomic,copy) NSString *ctr;
-
-@property (nonatomic,copy) NSString *num;
-
+/**
+ *  标题位置
+ */
 @property (nonatomic,assign) CGRect titleRect;
 
+/**
+ *  作者位置
+ */
 @property (nonatomic,assign) CGRect authorRect;
 
+/**
+ *  时间位置
+ */
 @property (nonatomic,assign) CGRect creatTimeRect;
 
+/**
+ *  正文位置
+ */
 @property (nonatomic,assign) CGRect contentRect;
 
+/**
+ *  图片位置数组
+ */
 @property (nonatomic,retain) NSMutableArray *imageRectArray;
 
+/**
+ *  图片数组
+ */
 @property (nonatomic,retain) NSMutableArray *imageArray;
 
+/**
+ *  评论内容数组
+ */
+@property (nonatomic,retain) NSMutableArray *commentArray;
+
+/**
+ *  评论按钮位置
+ */
+@property (nonatomic,assign) CGRect commentButRect;
+
+/**
+ *  喜欢按钮位置
+ */
+@property (nonatomic,assign) CGRect likeTooButRect;
+
+/**
+ *  cell 总高度
+ */
 @property (nonatomic,assign) CGFloat totalHeight;
 
 

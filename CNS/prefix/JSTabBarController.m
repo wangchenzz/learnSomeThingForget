@@ -33,10 +33,10 @@
     
     
 //    
-    loginViewController *view = [[loginViewController alloc] init];
-    
-    
-    [self addJSChildViewController:view withNormalImage:nil selectImage:nil title:@"登陆界面"];
+//    loginViewController *view = [[loginViewController alloc] init];
+//    
+//    
+//    [self addJSChildViewController:view withNormalImage:nil selectImage:nil title:@"登陆界面"];
     
     MainPageViewController*v = [[MainPageViewController alloc] init];
     

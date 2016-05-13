@@ -14,11 +14,13 @@
 
 #import "newsDetailController.h"
 
-#define newsUrl @"http://www.xxlccw.cn/SSM/news/getNewsByType"
 
 @interface MainPageViewController ()
 
 @property (nonatomic,strong) NSMutableArray *newsInfoArray;
+
+
+@property (nonatomic,strong) NSMutableArray *ary;
 
 @property (nonatomic,assign) NSInteger currentPage;
 
@@ -30,6 +32,8 @@
     [super viewDidLoad];
     
     self.newsInfoArray = [NSMutableArray array];
+    
+    self.ary = [NSMutableArray array];
     
     self.currentPage = 1;
     
@@ -157,6 +161,34 @@
     
     NewsCell *cel  =  (NewsCell *)cell;
     cel.model = self.newsInfoArray[indexPath.row];
+    
+    if (![_ary containsObject:@(indexPath.row)]) {
+        CATransform3D rotation;//3D旋转
+        
+        rotation = CATransform3DMakeTranslation(0 ,50 ,20);
+        //    rotation = CATransform3DMakeRotation( M_PI_4 , 0.0, 0.7, 0.4);
+        //逆时针旋转
+        
+        rotation = CATransform3DScale(rotation, 0.9, .9, 1);
+        
+        rotation.m34 = 1.0/ -800;
+        
+        cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+        cell.layer.shadowOffset = CGSizeMake(10, 10);
+        //        cell.alpha = 0;
+        
+        cell.layer.transform = rotation;
+        
+        [UIView beginAnimations:@"rotation" context:NULL];
+        //旋转时间
+        [UIView setAnimationDuration:1];
+        cell.layer.transform = CATransform3DIdentity;
+        cell.alpha = 1;
+        cell.layer.shadowOffset = CGSizeMake(0.5, 0.5);
+        [UIView commitAnimations];
+    }
+    
+    [_ary addObject:@(indexPath.row)];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

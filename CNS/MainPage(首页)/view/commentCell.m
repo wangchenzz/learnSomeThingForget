@@ -8,6 +8,16 @@
 
 #import "commentCell.h"
 
+@interface commentCell ()
+
+@property (nonatomic,retain) UIImageView *headImageView;
+
+@property (nonatomic,retain) UILabel *userNameLabel;
+
+@property (nonatomic,retain) UILabel *userCommentLabel;
+
+@end
+
 @implementation commentCell
 
 - (void)awakeFromNib {
@@ -26,7 +36,15 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        _headImageView = [[UIImageView alloc] init];
         
+        _userNameLabel = [[UILabel alloc] init];
+        
+        _userCommentLabel = [[UILabel alloc] init];
+
+        /**
+         *  设置各种属性
+         */
     }
     return self;
 }
