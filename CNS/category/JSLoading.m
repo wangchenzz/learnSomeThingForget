@@ -182,7 +182,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     
     CAAnimationGroup *step1 = [CAAnimationGroup animation];
     step1.animations = @[startAnimation, endAnimation,rotain];
-    step1.repeatCount = MAXFLOAT;
+    step1.repeatCount = 1;
     step1.duration = kStep1Duration * 2;
     step1.delegate = self;
     

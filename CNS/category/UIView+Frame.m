@@ -78,10 +78,6 @@
     
 }
 
-+(instancetype)test{
 
-    return 0;
-
-}
 
 @end

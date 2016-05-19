@@ -262,6 +262,8 @@
         
         self.showWordsLabel.font = [UIFont boldSystemFontOfSize:39];
         
+        self.showWordsLabel.adjustsFontSizeToFitWidth = YES;
+        
         self.showWordsLabel.height = self.showWordsLabel.width = self.width * .1;
         
         self.showWordsLabel.centerX = self.centerX;

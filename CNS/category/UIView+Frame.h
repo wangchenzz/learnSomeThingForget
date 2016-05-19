@@ -18,6 +18,4 @@
 @property (nonatomic,assign)CGFloat centerY;
 
 
-+(instancetype)test;
-
 @end

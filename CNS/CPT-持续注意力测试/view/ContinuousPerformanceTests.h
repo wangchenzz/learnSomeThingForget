@@ -23,7 +23,7 @@
 @interface ContinuousPerformanceTests : UIView
 
 @property (nonatomic,weak) id <ContinuousPerformanceTestsDelegate> delegate;
-
++(instancetype)test;
 -(void)showMeTheTest;
 
 @end

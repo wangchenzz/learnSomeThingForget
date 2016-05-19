@@ -12,13 +12,19 @@
 
 #define loginUrl @"http://www.xxlccw.cn/SSM/user/getLogin"
 
-
 #define newsUrl @"http://www.xxlccw.cn/SSM/news/getNewsByType"
-
 
 #define DetailNews @"http://www.xxlccw.cn/SSM/news/selectNewById"
 
 #define LikeAddUrl @"http://www.xxlccw.cn/SSM/news/addZan"
+
+#define addComment @"http://www.xxlccw.cn/SSM/comment/addComment"
+
+#define getQustType @"http://www.xxlccw.cn/SSM/suject/getSubjectByType"
+
+#define addRecord @"http://www.xxlccw.cn/SSM/record/addRecord"
+
+#define getRecord @"http://www.xxlccw.cn/SSM/record/getRecordByloginName"
 
 @property (nonatomic,copy) NSString *ipstr;
 

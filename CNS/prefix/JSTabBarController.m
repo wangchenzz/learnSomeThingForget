@@ -8,11 +8,9 @@
 
 #import "JSTabBarController.h"
 
-#import "FirstViewController.h"
-
-#import "loginViewController.h"
-
 #import "MainPageViewController.h"
+
+#import "testPViewController.h"
 
 /**
  *  测试的控制器
@@ -40,12 +38,18 @@
     
     MainPageViewController*v = [[MainPageViewController alloc] init];
     
-    [self addJSChildViewController:v withNormalImage:nil selectImage:nil title:@"首页"];
+    [self addJSChildViewController:v withNormalImage:@"tiezi" selectImage:@"tiezi" title:@"首页"];
+    
+    testPViewController *t = [[testPViewController alloc] init];
+    
+    [self addJSChildViewController:t withNormalImage:@"" selectImage:@"" title:@"测评"];
     
     
-    FirstViewController *fvc = [[FirstViewController alloc] init];
     
-    [self addJSChildViewController:fvc withNormalImage:nil selectImage:nil title:@"语言测试"];
+//    FirstViewController *fvc = [[FirstViewController alloc] init];
+//    
+//    [self addJSChildViewController:fvc withNormalImage:nil selectImage:nil title:@"语言测试"];
+
     
 }
 
@@ -62,12 +66,12 @@
     //tabbar 主题；
     
     //设置tabbar item 的颜色；
-    self.tabBar.barTintColor = JSCOLOR;
+    self.tabBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
 
     
     //设置普通状态下的tabbaritem字体；
            //tintcolor 即是字体选中颜色；未设置情况下。
-   self.tabBar.tintColor = [UIColor whiteColor];
+   self.tabBar.tintColor = [UIColor orangeColor];
     
     NSMutableDictionary *normalAttri = [NSMutableDictionary dictionary];
     
@@ -80,7 +84,7 @@
     
     selectAttri[NSFontAttributeName] = JSFont(11);
     
-    selectAttri[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    selectAttri[NSForegroundColorAttributeName] = [UIColor orangeColor];
 
     
     //此处预留的设置选中和普通状态的图片

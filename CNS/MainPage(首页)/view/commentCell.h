@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+#import "JSComentModel.h"
+
+
 @interface commentCell : UITableViewCell
+
+
+@property (nonatomic,strong) JSComentModel *model;
+
++(commentCell*)cellForTableview:(UITableView*)tableview;
 
 @end

@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger,StroopTestType){
 
 @property (nonatomic,weak) id <StroopTestsDelegate> delegate;
 
++(instancetype)test;
 
 /**
  *  简单测试

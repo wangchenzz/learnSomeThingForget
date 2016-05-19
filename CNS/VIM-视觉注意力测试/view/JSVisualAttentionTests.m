@@ -51,15 +51,18 @@
  */
 @property (nonatomic,retain) JSVisualAttentionModel *model;
 
+
+@property (nonatomic,assign) BOOL isModule;
+
 @end
 
 @implementation JSVisualAttentionTests
 
--(instancetype)init{
+-(instancetype)initWithModelArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
     
     if (self = [super init]) {
         
-        [self setUpModel];
+        [self setUpModelWithQarray:array andWithDiffLevel:cultNum];
         
         self.currentImageCount = 0;
     }
@@ -67,9 +70,9 @@
 }
 
 
-+(instancetype)test{
++(instancetype)testWithModelArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
 
-    return [[self alloc]init];
+    return [[self alloc]initWithModelArray:array withDifficult:cultNum];
     
 }
 
@@ -108,43 +111,81 @@
 /**
  *  第一次展示的正确图片
  */
--(void)showImage{
+-(void)showImage{                 
     
-    [self.showImageView startImageViewAnimationImage:[UIImage imageNamed:self.model.theRightImageArray[self.currentImageCount]]] ;
-    
-    self.currentImageCount++;
-    
-    if (self.currentImageCount >= self.model.theRightImageArray.count) {
-        [self.calculatTimer invalidate];
-        self.currentImageCount = 0;
-        [self.showImageView removeFromSuperview];
-        [self.tipsLabel removeFromSuperview];
-        [self removeGestureRecognizer:self.tapScreen];
+
+   
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *showImage;
         
-        if ([self.delegate respondsToSelector:@selector(JSVisualAttentionTests:didFinishShowRightImage:)]) {
-            [self.delegate JSVisualAttentionTests:self didFinishShowRightImage:self.model];
+        if (_isModule) {
+            showImage = self.model.theRightImageArray[self.currentImageCount];
+        }else{
+            showImage = [UIImage imageNamed:self.model.theRightImageArray[self.currentImageCount]];
         }
-        return;
-    }
+        [self.showImageView startImageViewAnimationImage:showImage] ;
+        
+        self.currentImageCount++;
+        
+        if (self.currentImageCount >= self.model.theRightImageArray.count) {
+            static BOOL isOver = NO;
+            self.currentImageCount--;
+            
+            if (isOver) {
+                [self.calculatTimer invalidate];
+                self.currentImageCount = 0;
+                [self.showImageView removeFromSuperview];
+                [self.tipsLabel removeFromSuperview];
+                [self removeGestureRecognizer:self.tapScreen];
+                
+                if ([self.delegate respondsToSelector:@selector(JSVisualAttentionTests:didFinishShowRightImage:)]) {
+                    
+                    
+                    [self.delegate JSVisualAttentionTests:self didFinishShowRightImage:self.model];
+                    
+                }
+                return;
+            }
+             isOver = YES;
+            
+        }
+        
+        
+        
+        
+    });
 }
 
 -(void)showTestsImage{
-    [self.showImageView startImageViewAnimationImage:[UIImage imageNamed:self.model.theTestsAllImageArray[self.currentImageCount]]];
     
-    self.currentImageCount++;
+    UIImage *showImage;
     
-    if (self.currentImageCount >= self.model.theTestsAllImageArray.count) {
-        [self.calculatTimer invalidate];
-        self.currentImageCount = 0;
-        [self.showImageView removeFromSuperview];
-        [self.tipsLabel removeFromSuperview];
-        [self removeGestureRecognizer:self.tapScreen];
-        
-        if ([self.delegate respondsToSelector:@selector(JSVisualAttentionTests:didFinishShowRightImage:)]) {
-            [self.delegate JSVisualAttentionTests:self didFinsihTests:self.model];
-        }
-        return;
+    if (_isModule) {
+        showImage = self.model.theTestsAllImageArray[self.currentImageCount];
+    }else{
+        showImage = [UIImage imageNamed:self.model.theTestsAllImageArray[self.currentImageCount]];
     }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.showImageView startImageViewAnimationImage:showImage];
+        
+        self.currentImageCount++;
+        
+        if (self.currentImageCount >= self.model.theTestsAllImageArray.count) {
+            [self.calculatTimer invalidate];
+            self.currentImageCount = 0;
+            [self.showImageView removeFromSuperview];
+            [self.tipsLabel removeFromSuperview];
+            [self removeGestureRecognizer:self.tapScreen];
+            
+            if ([self.delegate respondsToSelector:@selector(JSVisualAttentionTests:didFinishShowRightImage:)]) {
+                [self.delegate JSVisualAttentionTests:self didFinsihTests:self.model];
+            }
+            return;
+        }
+ 
+    });
+
 }
 
 
@@ -161,13 +202,58 @@
     return _containAllImageNameArray;
 }
 
--(void)setUpModel{
+-(void)setUpModelWithQarray:(NSArray *)array andWithDiffLevel:(NSInteger)level{
     
     JSVisualAttentionModel *model = [[JSVisualAttentionModel alloc] init];
     
-    model.theTestsAllImageArray = [self getSomeImageFromArray:self.containAllImageNameArray withCount:30];
     
-    model.theRightImageArray = [self getSomeImageFromArray:model.theTestsAllImageArray withCount:15];
+    if (array) {
+        
+        _isModule = YES;
+        
+        NSMutableArray *ar = [NSMutableArray array];
+        
+        int selectNum = 0;
+        if (level < 2) {
+            selectNum = 5;
+        }else if(level < 4){
+            selectNum = 8;
+        }else{
+            selectNum = 10;
+        }
+        
+        for (NSString *urlString in array) {
+            
+            NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",urlString];
+            
+            
+            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imastr] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                JSLog(@"%@",[NSThread currentThread]);
+                if (image) {
+                    [ar addObject:image];
+                }
+                
+                if ([urlString isEqualToString:array.lastObject]) {
+                    model.theTestsAllImageArray = [self getSomeImageFromArray:ar withCount:(int)ar.count];
+                    
+                    model.theRightImageArray = [self getSomeImageFromArray:model.theTestsAllImageArray withCount:selectNum];
+                }
+                
+            }];
+        }
+        
+        
+        
+
+        
+    }else{
+        
+        model.theTestsAllImageArray = [self getSomeImageFromArray:self.containAllImageNameArray withCount:30];
+        
+        model.theRightImageArray = [self getSomeImageFromArray:model.theTestsAllImageArray withCount:15];
+    }
+
+    
     
     self.model = model;
     
@@ -239,7 +325,7 @@
     }
     for (int i = (int)count ;i > 0 ;i -- ) {
         
-        int a = arc4random()%i;
+        int a = arc4random()%copyArray.count;
         
         [cotainArray addObject:copyArray[a]];
         

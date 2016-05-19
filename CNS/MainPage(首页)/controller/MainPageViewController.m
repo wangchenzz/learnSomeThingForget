@@ -48,22 +48,25 @@
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadInfo)];
     
+    
+
+    
 }
 
-/**
- *  使用 kvc 使 tableview 拥有背景图片;
- */
-
-
--(void)setUpTablevewBackColor{
-    UIImageView *backrounView = [[UIImageView alloc] init];
-    
-    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
-    
-    backrounView.image = [UIImage imageNamed:@"底色"];
-    
-    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
-}
+///**
+// *  使用 kvc 使 tableview 拥有背景图片;
+// */
+//
+//
+//-(void)setUpTablevewBackColor{
+//    UIImageView *backrounView = [[UIImageView alloc] init];
+//    
+//    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
+//    
+//    backrounView.image = [UIImage imageNamed:@"底色"];
+//    
+//    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
+//}
 
 -(void)loadInfo{
 

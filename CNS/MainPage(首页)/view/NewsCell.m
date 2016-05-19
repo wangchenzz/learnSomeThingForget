@@ -26,6 +26,8 @@
     // Initialization code
 }
 
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
@@ -49,7 +51,7 @@
         
         
         
-        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, self.width-120, 30)];
+        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, JSFrame.size.width - 120, 30)];
         
         [tit setTextColor:[UIColor whiteColor]];
         
@@ -59,7 +61,7 @@
         
         
         
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, self.width-120, 50)];
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, JSFrame.size.width - 120, 50)];
         
         [infoLabel setNumberOfLines:0];
         

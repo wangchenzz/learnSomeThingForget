@@ -12,6 +12,9 @@
 
 #import "JSNewsFrameModel.h"
 
+
+
+
 @interface newsDetailController : UITableViewController
 
 @property (nonatomic,strong) JSNewsModel *currentModel;

@@ -49,6 +49,8 @@
 
 @property (nonatomic,weak) id<JSVisualAttentionTestsDelegate> delegate;
 
++(instancetype)testWithModelArray:(NSArray *)array withDifficult:(NSInteger)cultNum;
+
 -(void)show;
 
 -(void)showTests;

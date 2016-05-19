@@ -23,7 +23,7 @@
 @interface ShiftingAttentionTests : UIView
 
 @property (nonatomic,weak) id <ShiftingAttentionTestsDelegate> delegate;
-
++(instancetype)test;
 -(void)beginOneTest;
 
 @end

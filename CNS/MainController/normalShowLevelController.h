@@ -10,7 +10,7 @@
 
 #import "JSTestsList.h"
 
-@interface showLevelController : UITableViewController
+@interface normalShowLevelController : UITableViewController
 
 
 @property (nonatomic,strong) JSTestsList *testsList;

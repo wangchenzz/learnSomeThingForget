@@ -46,11 +46,11 @@
 @implementation JSLanguageAttentionTests
 
 
--(instancetype)init{
+-(instancetype)initWithModelArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
 
     if (self = [super init]) {
         
-        [self setUpModel];
+        [self setUpModelWithArray:array withDifficult:cultNum];
         
         self.currentWordsCount = 0;
     }
@@ -61,16 +61,30 @@
 
 
 
-/*
- */
 
--(void)setUpModel{
+-(void)setUpModelWithArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
     JSLanguageAttentionModel *model = [[JSLanguageAttentionModel alloc] init];
     
-    model.theTestsAllWordsArray = [self getWordsFormArray:self.allWordsArray withCount:30];
-    
-    model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:15];
-    
+    if (array) {
+        NSMutableArray *ar = [NSMutableArray arrayWithArray:array];
+        
+        int selectNum = 0;
+        
+        model.theTestsAllWordsArray = [self getWordsFormArray:ar withCount:(int)ar.count];
+        if (cultNum < 2) {
+            selectNum = 5;
+        }else if(cultNum < 4){
+            selectNum = 8;
+        }else{
+            selectNum = 10;
+        }
+        model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:selectNum];
+        
+    }else{
+        model.theTestsAllWordsArray = [self getWordsFormArray:self.allWordsArray withCount:30];
+        
+        model.theRightWordsArray = [self getWordsFormArray:model.theTestsAllWordsArray withCount:15];
+    }
     self.model = model;
 }
 
@@ -94,7 +108,7 @@
         
         self.showWordsLabel = label;
         
-        self.showWordsLabel.height = self.showWordsLabel.width = self.width * .2;
+        self.showWordsLabel.height = self.showWordsLabel.width = self.width * .3;
         
         self.showWordsLabel.centerX = self.centerX;
         
@@ -139,9 +153,9 @@
  *  @return 实例
  */
 
-+(instancetype)test{
++(instancetype)testWithArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
     
-    return [[self alloc]init];
+    return [[self alloc]initWithModelArray:array withDifficult:cultNum];
 }
 
 /**
@@ -256,7 +270,7 @@
     }
     for (int i = count ;i > 0 ;i -- ) {
         
-        int a = arc4random()%i;
+        int a = arc4random()%copyArray.count;
         
         [cotainArray addObject:copyArray[a]];
         

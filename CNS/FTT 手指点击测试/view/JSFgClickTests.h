@@ -66,7 +66,7 @@
 
 @property (nonatomic,weak) id <JSFgClickTestsDelegate> delegate;
 
-
++(instancetype)test;
 -(void)show;
 
 

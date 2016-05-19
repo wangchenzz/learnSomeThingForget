@@ -11,6 +11,9 @@
 
 #import "JSNewsFrameModel.h"
 
+
+
+
 @interface newsDtailCell : UITableViewCell
 
 @property (nonatomic,strong) JSNewsFrameModel *model;

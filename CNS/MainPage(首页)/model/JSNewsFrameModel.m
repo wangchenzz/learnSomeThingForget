@@ -73,13 +73,15 @@
             
             [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imastr] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                 
-                if (image.size.width <= JSFrame.size.width) {
+                if (image.size.width * image.scale <= JSFrame.size.width) {
                   bImage = CGRectMake(0, bImage.origin.y + 1*keplinth + bImage.size.height, JSFrame.size.width, image.size.height * image.scale);
                     
                 }else{
                   bImage = CGRectMake(0, bImage.origin.y+ 1* keplinth + bImage.size.height, JSFrame.size.width, image.size.height * JSFrame.size.width/image.size.width);
                 }
             [self.imageArray addObject:image];
+                
+                
                 
             }];
             [self.imageRectArray addObject:NSStringFromCGRect(bImage)];
@@ -92,7 +94,6 @@
         NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
         dic2[NSFontAttributeName] = TruecontentFont;
         
-        JSLog(@"%f",JSFrame.size.width - 2 * keplinth);
         
         CGRect textRect = [self.lmodel.content boundingRectWithSize:CGSizeMake(JSFrame.size.width - 4 * keplinth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic2 context:nil];
         

@@ -53,6 +53,8 @@
  */
 -(void)show;
 
++(instancetype)testWithArray:(NSArray *)array withDifficult:(NSInteger)cultNum;
+
 -(void)showTestWords;
 
 @end

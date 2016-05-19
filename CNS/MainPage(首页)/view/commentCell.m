@@ -14,6 +14,8 @@
 
 @property (nonatomic,retain) UILabel *userNameLabel;
 
+@property (nonatomic,retain) UILabel *creatTimeLabel;
+
 @property (nonatomic,retain) UILabel *userCommentLabel;
 
 @end
@@ -22,6 +24,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+
     // Initialization code
 }
 
@@ -40,13 +44,61 @@
         
         _userNameLabel = [[UILabel alloc] init];
         
+        _creatTimeLabel = [[UILabel alloc] init];
+        
         _userCommentLabel = [[UILabel alloc] init];
 
         /**
-         *  设置各种属性
+         *  设置各种属性的
+                这里暂时还没有设置头像的各种属性
          */
+        
+        _userNameLabel.font = titleCommentFont;
+        
+        _userNameLabel.textColor = JSColor(110, 110, 110);
+        
+        _creatTimeLabel.font = timeFont;
+        
+        _creatTimeLabel.textColor = JSColor(203, 203, 203);
+        
+        _userCommentLabel.font = contentCommentFont;
+        
+        _userCommentLabel.numberOfLines =0;
+        
+        _userCommentLabel.textColor = [UIColor whiteColor];
+        
+        
+        [self.contentView addSubview:_userCommentLabel];
+        
+        [self.contentView addSubview:_creatTimeLabel];
+    
+        [self.contentView addSubview:_userNameLabel];
+        
+        
+        /**
+         *  头像,
+         */
+        
+        _headImageView = [[UIImageView alloc] init];
+        
+        _headImageView.width = _headImageView.height = 45;
+        
+        _headImageView.layer.cornerRadius = 22.5;
+        
+        _headImageView.layer.masksToBounds = YES;
+        
+        
+        [self.contentView addSubview:_headImageView];
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
     }
     return self;
+}
+
+-(void)gongxiwe{
+    
 }
 
 +(commentCell*)cellForTableview:(UITableView*)tableview{
@@ -60,6 +112,30 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
+    
+}
+
+-(void)setModel:(JSComentModel *)model{
+    if (model !=_model) {
+        _model = model;
+        
+        self.userNameLabel.text = _model.loginName;
+        self.userNameLabel.frame = _model.nameLabelRect;
+        
+        
+        self.creatTimeLabel.text = _model.creatTime;
+        self.creatTimeLabel.frame = _model.timeLabelRect;
+        
+        
+        self.userCommentLabel.text = _model.contentMent;
+        self.userCommentLabel.frame = _model.contentLabelRect;
+        
+        self.headImageView.frame = _model.headImageRect;
+        
+        NSString *imageStr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",_model.HeadImageUrlStr];
+        
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:[UIImage imageNamed:@"touxiang"]];
+    }
 }
 
 
