@@ -20,7 +20,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -32,24 +31,37 @@
     
     dic[@"token"] = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
     
+    
+    if ([dic[@"token"] isEqualToString:@"null"]) {
+        [[NSUserDefaults standardUserDefaults]setValue:@"null" forKey:@"token"];
+        
+        loginViewController *lc = [[loginViewController alloc] init];
+        self.window.rootViewController = lc;
+        
+        [self.window makeKeyAndVisible];
+        
+        return YES;
+    }
+    
+    
     [[INetworking shareNet] GET:loginUrl withParmers:dic do:^(id returnObject, BOOL isSuccess) {
         NSDictionary *dic = (NSDictionary *)returnObject;
         if (isSuccess && [dic[@"msg"]isEqualToString:@"1"]) {
-            
+    
             JSTabBarController *jstc = [[JSTabBarController alloc]init];
             self.window.rootViewController = jstc;
             
             [self.window makeKeyAndVisible];
         }else{
+            
+            [[NSUserDefaults standardUserDefaults]setValue:@"null" forKey:@"token"];
+            
             loginViewController *lc = [[loginViewController alloc] init];
             self.window.rootViewController = lc;
             
             [self.window makeKeyAndVisible];
         }
     }];
-    
-    
-
     return YES;
 }
 

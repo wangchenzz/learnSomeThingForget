@@ -11,9 +11,14 @@
 		04011D4E1CCDEC9000C4F6D4 /* UIImage+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 04011D4D1CCDEC9000C4F6D4 /* UIImage+Render.m */; };
 		04011D6C1CCDF13A00C4F6D4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04011D6B1CCDF13A00C4F6D4 /* MainPageViewController.m */; };
 		04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 04011D6E1CCDF59200C4F6D4 /* animationScroll.m */; };
+		0404E3241CF424D3003DE794 /* DetailBBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404E3231CF424D3003DE794 /* DetailBBSController.m */; };
 		040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040730E61C9118D300534773 /* JSKeyBoardView.m */; };
 		040730E91C91376C00534773 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 040730E81C91376B00534773 /* Podfile.lock */; };
+		040849181CF2EE41009C2BCA /* pageViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040849171CF2EE41009C2BCA /* pageViewsController.m */; };
 		040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F2C4D1C99588D00C5A929 /* StroopModel.m */; };
+		0413BCBD1CEEA9550071A105 /* tableHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCBC1CEEA9550071A105 /* tableHeaderButtonView.m */; };
+		0413BCC01CEEED200071A105 /* JSBbsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCBF1CEEED200071A105 /* JSBbsInfoModel.m */; };
+		0413BCC31CEEF3760071A105 /* BBSInfoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */; };
 		041DA7971CBF710500626349 /* JSTestsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 041DA7961CBF710500626349 /* JSTestsList.m */; };
 		041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */; };
 		0423B6A31CE309510018E753 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423B69C1CE309510018E753 /* MBProgressHUD+MJ.m */; };
@@ -42,6 +47,8 @@
 		04A5DD051C8FF64800D31DB9 /* JSFgClickModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5DD041C8FF64800D31DB9 /* JSFgClickModel.m */; };
 		04A5DD081C8FF85800D31DB9 /* SymbolDigitCodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5DD071C8FF85800D31DB9 /* SymbolDigitCodingTests.m */; };
 		04A5DD0D1C90075E00D31DB9 /* DiamandsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5DD0C1C90075E00D31DB9 /* DiamandsView.m */; };
+		04A70C631CEDAB5500B077D7 /* BBSControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A70C621CEDAB5500B077D7 /* BBSControllerView.m */; };
+		04A70C661CEDAB6900B077D7 /* profileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A70C651CEDAB6900B077D7 /* profileViewController.m */; };
 		04B0FECE1C8419540020D1A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B0FECD1C8419540020D1A5 /* main.m */; };
 		04B0FED91C8419540020D1A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B0FED81C8419540020D1A5 /* Assets.xcassets */; };
 		04B0FEDC1C8419540020D1A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B0FEDA1C8419540020D1A5 /* LaunchScreen.storyboard */; };
@@ -109,11 +116,21 @@
 		04011D6B1CCDF13A00C4F6D4 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		04011D6D1CCDF59200C4F6D4 /* animationScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animationScroll.h; sourceTree = "<group>"; };
 		04011D6E1CCDF59200C4F6D4 /* animationScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = animationScroll.m; sourceTree = "<group>"; };
+		0404E3221CF424D3003DE794 /* DetailBBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBBSController.h; sourceTree = "<group>"; };
+		0404E3231CF424D3003DE794 /* DetailBBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBBSController.m; sourceTree = "<group>"; };
 		040730E51C9118D300534773 /* JSKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSKeyBoardView.h; sourceTree = "<group>"; };
 		040730E61C9118D300534773 /* JSKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSKeyBoardView.m; sourceTree = "<group>"; };
 		040730E81C91376B00534773 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		040849161CF2EE41009C2BCA /* pageViewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pageViewsController.h; sourceTree = "<group>"; };
+		040849171CF2EE41009C2BCA /* pageViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pageViewsController.m; sourceTree = "<group>"; };
 		040F2C4C1C99588D00C5A929 /* StroopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StroopModel.h; sourceTree = "<group>"; };
 		040F2C4D1C99588D00C5A929 /* StroopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StroopModel.m; sourceTree = "<group>"; };
+		0413BCBB1CEEA9550071A105 /* tableHeaderButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableHeaderButtonView.h; sourceTree = "<group>"; };
+		0413BCBC1CEEA9550071A105 /* tableHeaderButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tableHeaderButtonView.m; sourceTree = "<group>"; };
+		0413BCBE1CEEED200071A105 /* JSBbsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBbsInfoModel.h; sourceTree = "<group>"; };
+		0413BCBF1CEEED200071A105 /* JSBbsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBbsInfoModel.m; sourceTree = "<group>"; };
+		0413BCC11CEEF3760071A105 /* BBSInfoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSInfoListCell.h; sourceTree = "<group>"; };
+		0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSInfoListCell.m; sourceTree = "<group>"; };
 		041DA7951CBF710500626349 /* JSTestsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTestsList.h; sourceTree = "<group>"; };
 		041DA7961CBF710500626349 /* JSTestsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTestsList.m; sourceTree = "<group>"; };
 		041FB9791C86825A00F35659 /* JSLanguageAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionTests.h; sourceTree = "<group>"; };
@@ -130,8 +147,8 @@
 		0423B6A91CE30E8E0018E753 /* JSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNewsModel.m; sourceTree = "<group>"; };
 		0423B6AB1CE31AF10018E753 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		0423B6AC1CE31AF10018E753 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
-		0425DC8E1CC8A63300D022E3 /* normalShowLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = normalShowLevelController.h; sourceTree = "<group>"; };
-		0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = normalShowLevelController.m; sourceTree = "<group>"; };
+		0425DC8E1CC8A63300D022E3 /* normalShowLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = normalShowLevelController.h; path = ../../MainController/normalShowLevelController.h; sourceTree = "<group>"; };
+		0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = normalShowLevelController.m; path = ../../MainController/normalShowLevelController.m; sourceTree = "<group>"; };
 		0425DC911CC8C2FF00D022E3 /* showLevelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = showLevelCell.h; path = ../../MainController/showLevelCell.h; sourceTree = "<group>"; };
 		0425DC921CC8C2FF00D022E3 /* showLevelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = showLevelCell.m; path = ../../MainController/showLevelCell.m; sourceTree = "<group>"; };
 		0438855A1C90237300E1A3E9 /* diamondsXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = diamondsXib.xib; sourceTree = "<group>"; };
@@ -167,6 +184,10 @@
 		04A5DD071C8FF85800D31DB9 /* SymbolDigitCodingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolDigitCodingTests.m; sourceTree = "<group>"; };
 		04A5DD0B1C90075E00D31DB9 /* DiamandsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiamandsView.h; sourceTree = "<group>"; };
 		04A5DD0C1C90075E00D31DB9 /* DiamandsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiamandsView.m; sourceTree = "<group>"; };
+		04A70C611CEDAB5500B077D7 /* BBSControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSControllerView.h; sourceTree = "<group>"; };
+		04A70C621CEDAB5500B077D7 /* BBSControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSControllerView.m; sourceTree = "<group>"; };
+		04A70C641CEDAB6900B077D7 /* profileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profileViewController.h; sourceTree = "<group>"; };
+		04A70C651CEDAB6900B077D7 /* profileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profileViewController.m; sourceTree = "<group>"; };
 		04B0FEC91C8419540020D1A5 /* CNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B0FECD1C8419540020D1A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04B0FED81C8419540020D1A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -339,6 +360,8 @@
 		04011D5C1CCDEF5700C4F6D4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				04A70C641CEDAB6900B077D7 /* profileViewController.h */,
+				04A70C651CEDAB6900B077D7 /* profileViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -370,6 +393,12 @@
 		04011D601CCDEF5700C4F6D4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				040849161CF2EE41009C2BCA /* pageViewsController.h */,
+				040849171CF2EE41009C2BCA /* pageViewsController.m */,
+				04A70C611CEDAB5500B077D7 /* BBSControllerView.h */,
+				04A70C621CEDAB5500B077D7 /* BBSControllerView.m */,
+				0404E3221CF424D3003DE794 /* DetailBBSController.h */,
+				0404E3231CF424D3003DE794 /* DetailBBSController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -377,6 +406,8 @@
 		04011D611CCDEF5700C4F6D4 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				0413BCBE1CEEED200071A105 /* JSBbsInfoModel.h */,
+				0413BCBF1CEEED200071A105 /* JSBbsInfoModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -384,6 +415,10 @@
 		04011D621CCDEF5700C4F6D4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0413BCBB1CEEA9550071A105 /* tableHeaderButtonView.h */,
+				0413BCBC1CEEA9550071A105 /* tableHeaderButtonView.m */,
+				0413BCC11CEEF3760071A105 /* BBSInfoListCell.h */,
+				0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -407,6 +442,8 @@
 				04CE680F1CEAAEA300D922A5 /* testPViewController.m */,
 				04CE681C1CEAC76900D922A5 /* ModuleChooseController.h */,
 				04CE681D1CEAC76900D922A5 /* ModuleChooseController.m */,
+				0425DC8E1CC8A63300D022E3 /* normalShowLevelController.h */,
+				0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */,
 				04CE68251CEAE71A00D922A5 /* TestRoomController.h */,
 				04CE68261CEAE71A00D922A5 /* TestRoomController.m */,
 				047041F41CEC545900B37331 /* showLevelController.h */,
@@ -759,8 +796,6 @@
 			children = (
 				04011D491CCDB03B00C4F6D4 /* loginViewController.h */,
 				04011D4A1CCDB03B00C4F6D4 /* loginViewController.m */,
-				0425DC8E1CC8A63300D022E3 /* normalShowLevelController.h */,
-				0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -1015,17 +1050,20 @@
 				04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */,
 				041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */,
 				040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */,
+				0404E3241CF424D3003DE794 /* DetailBBSController.m in Sources */,
 				04CE681B1CEAC6B000D922A5 /* ModuleCell.m in Sources */,
 				04D0959A1CE418AE00DD4011 /* newsDtailCell.m in Sources */,
 				0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */,
 				04011D4B1CCDB03B00C4F6D4 /* loginViewController.m in Sources */,
 				04B0FF171C841C720020D1A5 /* UIBarButtonItem+Extension.m in Sources */,
 				04B0FF3D1C8420610020D1A5 /* JSPresentBut.m in Sources */,
+				0413BCC31CEEF3760071A105 /* BBSInfoListCell.m in Sources */,
 				04864B7A1C96B8D00035DAB1 /* StroopTests.m in Sources */,
 				04011D4E1CCDEC9000C4F6D4 /* UIImage+Render.m in Sources */,
 				04B0FF391C8420610020D1A5 /* animationFlashLabel.m in Sources */,
 				043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */,
 				04CE682D1CEB020400D922A5 /* questionModel.m in Sources */,
+				0413BCC01CEEED200071A105 /* JSBbsInfoModel.m in Sources */,
 				04B0FF3B1C8420610020D1A5 /* JSLoading.m in Sources */,
 				04A5DD0D1C90075E00D31DB9 /* DiamandsView.m in Sources */,
 				0456BBF01CE9649D005A22AE /* JSComentModel.m in Sources */,
@@ -1039,11 +1077,13 @@
 				04011D6C1CCDF13A00C4F6D4 /* MainPageViewController.m in Sources */,
 				0475605E1CC7504F00CFD065 /* INetworking.m in Sources */,
 				04D095971CE4131200DD4011 /* newsDetailController.m in Sources */,
+				040849181CF2EE41009C2BCA /* pageViewsController.m in Sources */,
 				041DA7971CBF710500626349 /* JSTestsList.m in Sources */,
 				04CE68161CEAB04300D922A5 /* buttonView.m in Sources */,
 				0425DC901CC8A63300D022E3 /* normalShowLevelController.m in Sources */,
 				04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */,
 				047041F61CEC545900B37331 /* showLevelController.m in Sources */,
+				04A70C661CEDAB6900B077D7 /* profileViewController.m in Sources */,
 				04A5DD051C8FF64800D31DB9 /* JSFgClickModel.m in Sources */,
 				04CE68331CEB0F4700D922A5 /* starView.m in Sources */,
 				04D0959D1CE4194400DD4011 /* commentCell.m in Sources */,
@@ -1064,8 +1104,10 @@
 				0485BAE11CA50B620012CECD /* ShiftingAttentionTests.m in Sources */,
 				04B0FECE1C8419540020D1A5 /* main.m in Sources */,
 				04B0FF1A1C841C720020D1A5 /* UIView+Animated.m in Sources */,
+				04A70C631CEDAB5500B077D7 /* BBSControllerView.m in Sources */,
 				0456BBF51CE99056005A22AE /* inputCommentView.m in Sources */,
 				04B0FF1B1C841C720020D1A5 /* UIView+Frame.m in Sources */,
+				0413BCBD1CEEA9550071A105 /* tableHeaderButtonView.m in Sources */,
 				0423B6A71CE309510018E753 /* ZYQAssetPickerController.m in Sources */,
 				04B0FF3A1C8420610020D1A5 /* eyeView.m in Sources */,
 				0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */,

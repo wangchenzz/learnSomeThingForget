@@ -131,11 +131,7 @@
     
     name.placeholder = @"账号";
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(name.x, CGRectGetMaxY(name.frame), name.width, 1)];
-    
-    [lineView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
-    
-    [self.view addSubview:lineView];
+
     
     
 //    UIImageView *leftPic = [[UIImageView alloc] init];
@@ -173,7 +169,15 @@
     
     [self.view addSubview:pwd];
     
-    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(pwd.x, CGRectGetMaxY(pwd.frame)-1, pwd.width, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(name.x, CGRectGetMaxY(name.frame)+1, name.width, 1)];
+    
+    [lineView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
+    
+    [self.view addSubview:lineView];
+    
+    
+    
+    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(pwd.x, CGRectGetMaxY(pwd.frame)+1, pwd.width, 1.5)];
     
     [lineView2 setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
     
@@ -220,11 +224,21 @@
     
     [button addTarget:self action:@selector(loginIn) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    
+    
+    
+
+    
+    
+    
+    
 }
 
 -(void)setTips{
 
     UILabel *label = [[UILabel alloc] init];
+    
     
     label.textColor = [UIColor whiteColor];
     

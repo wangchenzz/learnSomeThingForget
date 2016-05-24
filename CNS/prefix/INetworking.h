@@ -26,6 +26,11 @@
 
 #define getRecord @"http://www.xxlccw.cn/SSM/record/getRecordByloginName"
 
+
+#define getCard @"http://www.xxlccw.cn/SSM/card/getCardByType"
+
+#define getCardById @"http://www.xxlccw.cn/SSM/card/selectCardById"
+
 @property (nonatomic,copy) NSString *ipstr;
 
 

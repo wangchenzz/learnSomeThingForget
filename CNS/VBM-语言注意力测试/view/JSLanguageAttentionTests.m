@@ -50,6 +50,7 @@
 
     if (self = [super init]) {
         
+        
         [self setUpModelWithArray:array withDifficult:cultNum];
         
         self.currentWordsCount = 0;

@@ -91,6 +91,8 @@
                 
                 FirstViewController *first = [[FirstViewController alloc]initWithIsModule:YES andWithState:stated andWithArray:nil andWithdifcultLevel:0];
                 
+                first.ModuleType = self.type;
+                
                 [self.navigationController pushViewController:first animated:YES];
             }
             

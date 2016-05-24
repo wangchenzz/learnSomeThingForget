@@ -15,4 +15,7 @@
 
 +(NSString*)dateToBirthSring:(NSDate*)date;
 
+
++(NSDate *)JSDateFromString:(NSString*)string;
+
 @end

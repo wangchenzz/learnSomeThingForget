@@ -79,7 +79,9 @@
         
         
         
-        [button setBackgroundImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"jiantou-y"] forState:UIControlStateNormal];
+        
+        button.contentMode = UIViewContentModeScaleAspectFit;
         
         [self addSubview:button];
         

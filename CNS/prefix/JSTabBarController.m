@@ -12,6 +12,12 @@
 
 #import "testPViewController.h"
 
+#import "BBSControllerView.h"
+
+#import "profileViewController.h"
+
+#import "pageViewsController.h"
+
 /**
  *  测试的控制器
  *
@@ -38,18 +44,23 @@
     
     MainPageViewController*v = [[MainPageViewController alloc] init];
     
-    [self addJSChildViewController:v withNormalImage:@"tiezi" selectImage:@"tiezi" title:@"首页"];
+    [self addJSChildViewController:v withNormalImage:@"home1" selectImage:@"home2" title:@"首页"];
     
     testPViewController *t = [[testPViewController alloc] init];
     
-    [self addJSChildViewController:t withNormalImage:@"" selectImage:@"" title:@"测评"];
+    [self addJSChildViewController:t withNormalImage:@"cp1" selectImage:@"cp2" title:@"测评"];
     
-    
-    
-//    FirstViewController *fvc = [[FirstViewController alloc] init];
+//    BBSControllerView *bbs = [[BBSControllerView alloc] init];
 //    
-//    [self addJSChildViewController:fvc withNormalImage:nil selectImage:nil title:@"语言测试"];
-
+//    [self addJSChildViewController:bbs withNormalImage:@"lt1" selectImage:@"lt2" title:@"论坛"];
+    
+    
+    pageViewsController *pgc = [[pageViewsController alloc] init];
+    
+    
+    profileViewController *pvc = [[profileViewController alloc] init];
+    
+    [self addJSChildViewController:pgc withNormalImage:@"wo1" selectImage:@"wo2" title:@"我"];
     
 }
 
@@ -75,14 +86,14 @@
     
     NSMutableDictionary *normalAttri = [NSMutableDictionary dictionary];
     
-    normalAttri[NSFontAttributeName] = JSFont(11);
+    normalAttri[NSFontAttributeName] = JSFont(12);
     
     normalAttri[NSForegroundColorAttributeName] = [UIColor grayColor];
     
     //设置选中状态下的tabbaritem的字体；
     NSMutableDictionary *selectAttri = [NSMutableDictionary dictionary];
     
-    selectAttri[NSFontAttributeName] = JSFont(11);
+    selectAttri[NSFontAttributeName] = JSFont(12);
     
     selectAttri[NSForegroundColorAttributeName] = [UIColor orangeColor];
 
@@ -92,7 +103,7 @@
     childController.tabBarItem.image = [UIImage imageNamed:nname];
     
     childController.tabBarItem.selectedImage = [UIImage imageWithRenderNamed:sname];
-  
+    
     //设置tabbar 的item的字体。
     
 

@@ -108,13 +108,9 @@
 -(instancetype)init{
     if (self = [super init]) {
         
-        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor whiteColor];
         
         [self setUpInfo];
-        
-        //        self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
-        //
-        //        self.timeTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(someThingForNothing) userInfo:nil repeats:YES];
         
         self.clickScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
         

@@ -67,19 +67,26 @@
         }
         
         
+        NSString *simTimeStr = (_testsList.SimplifyTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(simTime/_testsList.SimplifyTime.count)];
         
-        NSString *simTimeStr = [NSString stringWithFormat:@"%.3f s",(simTime/testsList.SimplifyTime.count)];
+        NSString *compTimeStr = (_testsList.ComplicationTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(Complic/_testsList.ComplicationTime.count)];
         
-        NSString *compTimeStr = [NSString stringWithFormat:@"%.3f s",(Complic/testsList.SimplifyTime.count)];
-        NSString *contrasTimeStr = [NSString stringWithFormat:@"%.3f s",(InContrast/testsList.SimplifyTime.count)];
+        NSString *contrasTimeStr = (_testsList.InContrastTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(InContrast/_testsList.InContrastTime.count)];
         
         
         NSString *trueCount = [NSString stringWithFormat:@"%ld",testsList.trueCount];
         
         NSString *wrongCount = [NSString stringWithFormat:@"%ld",testsList.wrongCount];
         
-        NSString *trueTime = [NSString stringWithFormat:@"%.3f s",testsList.trueReatctiionTime/testsList.trueCount];
+        NSString *trueTime ;
         
+        if (_testsList.trueCount == 0) {
+            trueTime = @"0";
+        }else{
+        
+        
+        trueTime = [NSString stringWithFormat:@"%.3f s",_testsList.trueReatctiionTime/_testsList.trueCount];
+        }
         
         NSString *CPTTrueCount = [NSString stringWithFormat:@"%ld",testsList.CPTTrueCount];
         
@@ -97,11 +104,47 @@
         /**
          *  反应时间
          */
-        NSString *CPTTime= [NSString stringWithFormat:@"%.3f s",testsList.CPTTime/testsList.CPTTrueCount];
         
+        NSString *CPTTime;
+        if (_testsList.CPTTrueCount == 0) {
+            CPTTime = @"";
+        }else{
+        
+            CPTTime= [NSString stringWithFormat:@"%.3f s",_testsList.CPTTime/_testsList.CPTTrueCount];
+        }
         self.valueArray = [NSMutableArray arrayWithObjects:VBMcrc,VBMcwc,cwc,VIMcwc,leftCount,rightCount,SDCr,SDCw,simTimeStr,compTimeStr,contrasTimeStr,trueCount,wrongCount,trueTime,CPTTrueCount,CPTMissCount,CPTWrongCount,CPTTime, nil];
         
+        
+        
+        [self upLoadData];
+        
+        
     }
+}
+-(void)upLoadData{
+
+    
+    NSString *sbStr = [self.valueArray componentsJoinedByString:@","];
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"difficulty"] = @"0";
+    dic[@"sub_Id"] = @"0";
+    dic[@"type"] = @"0";
+    dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginName"];
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"token"];
+    
+    
+    dic[@"correct"] = sbStr;
+    [[INetworking shareNet] GET:addRecord withParmers:dic do:^(id returnObject, BOOL isSuccess) {
+        
+        JSLog(@"%d",isSuccess);
+        
+        JSLog(@"%@",returnObject);
+        
+    }];
+
 }
 
 #pragma mark - Table view data source

@@ -41,15 +41,15 @@ static timerTool *timetool;
 
 -(void)fireInTheHoll:(NSTimer*)timer{
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-    [[NSRunLoop currentRunLoop] run];
-        
-    [timer fire];
-        
-    });
-    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+//    [[NSRunLoop currentRunLoop] run];
+//        
+//    [timer fire];
+//        
+//    });
+     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 
 }
 

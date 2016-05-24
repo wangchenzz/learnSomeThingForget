@@ -14,9 +14,9 @@
 
 @interface showLevelController ()
 
-@property (nonatomic,retain) NSArray *moduleModelArray;
+@property (nonatomic,retain) NSMutableArray *moduleModelArray;
 
-@property (nonatomic,retain) NSArray *normalModelArray;
+@property (nonatomic,retain) NSMutableArray *normalModelArray;
 
 @property (nonatomic,retain) UISegmentedControl *chooseSegment;
 
@@ -37,6 +37,11 @@
     self.navigationController.navigationBar.hidden = NO;
     self.tabBarController.tabBar.hidden = YES;
     
+    self.moduleModelArray = [NSMutableArray array];
+     self.normalModelArray = [NSMutableArray array];
+    if(!_isUpload){
+    self.modelArray = self.normalModelArray;
+    }
     [self decide];
 }
 
@@ -100,6 +105,7 @@
             
             NSArray *containArray = returnObject[@"list"];
             for (NSDictionary *dic in containArray) {
+                showLevelModel *model = [[showLevelModel alloc] init];
                 /**
                  *  判断是否是模块测试
                  */
@@ -107,12 +113,28 @@
                     /**
                      *  这里是标准测试;
                      */
+                    model.TestType = [dic[@"type"] integerValue];;
+                    
+                    model.testTime = @"createTime";
+                    
+                    NSString *valueString = dic[@"correct"];
+                    NSArray *valueAry = [valueString componentsSeparatedByString:@","];
+                    
+                    
+                    model.valueArray = valueAry;
+                    
+                    model.nameArray = @[@"-即时正确点击次数-",@"-即时错误点击次数-",@"-即时正确点击次数-",@"-即时错误点击次数-",@"-左手平均点击次数-",@"-右手平均点击次数-",@"-正确选择-",@"-错误选择-",@"-简单反应时间-",@"-正确复杂反应时间-",@"-错色反应时间-",@"-正确反应次数-",@"-失误次数-",@"-正确反应时间-",@"-正确次数-",@"-错过次数-",@"-失误次数-",@"-反应时间-"];
+                    model.testTitle = @"标准测试";
+                    
+                    [self.normalModelArray addObject:model];
+                    
+                    
                 }else{
                     /**
                      *  这里是模块测试;
                      */
 
-                    showLevelModel *model = [[showLevelModel alloc] init];
+
                     
                     model.diffLevel = @"difficulty";
                     
@@ -274,9 +296,16 @@
                         default:
                             break;
                     }
+                [self.moduleModelArray addObject:model];
                 }
+                
+                
+                
             }
+            [self.tableView reloadData];
         }
+        
+        
     }];
 }
 
@@ -286,11 +315,19 @@
         /**
          *  这里装在标准测试记录/
          */
+        
+        self.modelArray = self.normalModelArray;
+        
+        [self.tableView reloadData];
     
     }else{
         /**
          *  这里是模块测试记录
          */
+        
+        self.modelArray = self.moduleModelArray;
+        
+        [self.tableView reloadData];
         
     
     }
@@ -339,7 +376,7 @@
     
     NSString *dateStr = [NSString stringWithFormat:@"%@",[NSDate date]];
     
-    NSString *headTitle = [NSString stringWithFormat:@"%@ / %@",TestTitle,[dateStr substringToIndex:9]];
+    NSString *headTitle = [NSString stringWithFormat:@"%@ / %@",TestTitle,[dateStr substringToIndex:10]];
     
     return headTitle;
 }

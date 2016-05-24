@@ -24,7 +24,7 @@
 #import "showLevelController.h"
 
 
-
+#import "FirstViewController.h"
 
 @interface testPViewController ()
 
@@ -122,6 +122,11 @@
         /**
          *标准测试
          */
+        FirstViewController *fc = [[FirstViewController alloc] init];
+        
+        [self.navigationController pushViewController:fc animated:YES];
+        
+        
     }else if(tap == _tap2){
         /**
          *模块测试
@@ -148,6 +153,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    self.tabBarController.tabBar.hidden = NO;
+
 }
 
 /*

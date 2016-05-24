@@ -128,6 +128,8 @@
 
     self.testsList = [[JSTestsList alloc] init];
     
+//    self.JSTestCurrentState = JSTestCurrentContinuousPerformanceTests;
+    
 
 }
 
@@ -199,6 +201,24 @@
                     [self.view addSubview:self.messageLabel];
                     
                     self.messageLabel.font = [UIFont systemFontOfSize:18];
+                    
+                    
+                    
+                    self.endLabel = [[animationFlashLabel alloc] init];
+                    
+                    self.endLabel.frame = CGRectMake(0, self.view.height * .8, self.view.width, 50);
+                    
+                    self.endLabel.numberOfLines = 0;
+                    
+                    self.endLabel.textAlignment = NSTextAlignmentCenter;
+                    
+                    [self.view addSubview:self.endLabel];
+                    
+                    self.endLabel.font = [UIFont boldSystemFontOfSize:24];
+                    
+                    
+                    [self.endLabel showAnimation:3 completion:nil];
+
                     
                     
                     
@@ -326,23 +346,7 @@
                         
                         [self.view addGestureRecognizer:self.tapContinue];
                     }];
-                    
-                    
-                    self.endLabel = [[animationFlashLabel alloc] init];
-                    
-                    self.endLabel.frame = CGRectMake(0, self.view.height * .8, self.view.width, 50);
-                    
-                    self.endLabel.numberOfLines = 0;
-                    
-                    self.endLabel.textAlignment = NSTextAlignmentCenter;
-                    
-                    [self.view addSubview:self.endLabel];
-                    
-                    self.endLabel.font = [UIFont boldSystemFontOfSize:24];
-                    
-                    
-                    [self.endLabel showAnimation:3 completion:nil];
-                }];
+                                }];
             }];
         }];
     }];
@@ -365,11 +369,13 @@
     self.messageLabel.willShowText = message;
     self.endLabel.willShowText = end;
     
-    [self.view addSubview:self.titleLabel];
+    [self.titleLabel setHidden:NO];
     
-    [self.view addSubview:self.messageLabel];
+    [self.messageLabel setHidden:NO];
     
-    [self.view addSubview:self.endLabel];
+    [self.endLabel setHidden:NO];
+    
+    [self.view insertSubview:self.messageLabel atIndex:0];
     
     [self.titleLabel showAnimation:1 completion:nil];
     
@@ -389,11 +395,11 @@
     self.titleLabel.text =@"";
     self.messageLabel.text =@"";
     
-    [self.titleLabel removeFromSuperview];
+    [self.titleLabel setHidden:YES];
     
-    [self.endLabel removeFromSuperview];
+    [self.endLabel setHidden:YES];
     
-    [self.messageLabel removeFromSuperview];
+    [self.messageLabel setHidden:YES];
     
     //    self.endLabel.text = @"";
     switch (self.JSTestCurrentState) {
@@ -1022,10 +1028,11 @@
             
             
             
-            NSString *simTimeStr = [NSString stringWithFormat:@"%.3f s",(simTime/_testsList.SimplifyTime.count)];
+            NSString *simTimeStr = (_testsList.SimplifyTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(simTime/_testsList.SimplifyTime.count)];
             
-            NSString *compTimeStr = [NSString stringWithFormat:@"%.3f s",(Complic/_testsList.SimplifyTime.count)];
-            NSString *contrasTimeStr = [NSString stringWithFormat:@"%.3f s",(InContrast/_testsList.SimplifyTime.count)];
+            NSString *compTimeStr = (_testsList.ComplicationTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(Complic/_testsList.ComplicationTime.count)];
+            
+            NSString *contrasTimeStr = (_testsList.InContrastTime.count == 0)? @"0":[NSString stringWithFormat:@"%.3f s",(InContrast/_testsList.InContrastTime.count)];
             
             model.valueArray = @[simTimeStr,compTimeStr,contrasTimeStr];
             
@@ -1045,9 +1052,15 @@
             NSString *trueCount = [NSString stringWithFormat:@"%ld",_testsList.trueCount];
             
             NSString *wrongCount = [NSString stringWithFormat:@"%ld",_testsList.wrongCount];
+            NSString *trueTime ;
             
-            NSString *trueTime = [NSString stringWithFormat:@"%.3f s",_testsList.trueReatctiionTime/_testsList.trueCount];
+            if (_testsList.trueCount == 0) {
+            trueTime = @"0";
+            }else{
             
+            
+            trueTime = [NSString stringWithFormat:@"%.3f s",_testsList.trueReatctiionTime/_testsList.trueCount];
+            }
             model.valueArray = @[trueCount,wrongCount,trueTime];
             
             model.nameArray = @[@"-正确反应次数-",@"-失误次数-",@"-正确反应时间-"];
@@ -1082,8 +1095,12 @@
             /**
              *  反应时间
              */
-            NSString *CPTTime= [NSString stringWithFormat:@"%.3f s",_testsList.CPTTime/_testsList.CPTTrueCount];
-            
+            NSString *CPTTime;
+            if (_testsList.CPTTrueCount == 0) {
+            CPTTime = @"";
+            }else{
+            CPTTime= [NSString stringWithFormat:@"%.3f s",_testsList.CPTTime/_testsList.CPTTrueCount];
+            }
             
             model.valueArray = @[CPTTrueCount,CPTMissCount,CPTWrongCount,CPTTime];
             
@@ -1114,13 +1131,5 @@
     [self.navigationController pushViewController:sc animated:YES];
     
 }
-
-
-
-
-
-
-
-
 
 @end
