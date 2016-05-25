@@ -45,7 +45,6 @@
         NSMutableDictionary *diction = [NSMutableDictionary dictionary];
         diction[NSFontAttributeName] = contentFont;
         
-        
         self.creatTimeRect = [self.lmodel.createtime boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:diction context:nil];
         
         self.creatTimeRect = CGRectMake(keplinth,(CGRectGetMaxY(_titleRect)), self.creatTimeRect.size.width, self.creatTimeRect.size.height);

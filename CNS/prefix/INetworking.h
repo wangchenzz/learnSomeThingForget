@@ -31,6 +31,8 @@
 
 #define getCardById @"http://www.xxlccw.cn/SSM/card/selectCardById"
 
+#define addPlunge @"http://www.xxlccw.cn/SSM/plunge/addPlunge"
+
 @property (nonatomic,copy) NSString *ipstr;
 
 

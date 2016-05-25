@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailBBSController : UITableViewController
+#import "JSBbsInfoModel.h"
+
+#import "answerModel.h"
+#import "detailInfoCell.h"
+
+#import "detailBBSmodel.h"
+
+#import "addCommentController.h"
+
+@interface DetailBBSController : UIViewController
+
+@property (nonatomic,retain) JSBbsInfoModel *basicModel;
+
+@property (nonatomic,retain) UITableView *tableView;
+
 
 @end

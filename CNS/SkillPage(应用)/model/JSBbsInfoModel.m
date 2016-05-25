@@ -65,9 +65,11 @@
     if (ms/60 == 0) {
         return  @"刚刚";
     }else if(ms/60/60 == 0){
-        return @"几分钟前";
+        return [NSString stringWithFormat:@"%d分钟前",-ms/60];
+//        return @"几分钟前";
     }else if(ms/60/60/24 ==0){
-        return @"几小时前";
+        return [NSString stringWithFormat:@"%d小时前",-ms/60/60];
+//        return @"几小时前";
     }else{
         return [_createtime substringWithRange:NSMakeRange(0, 10)];
     }

@@ -144,6 +144,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     DetailBBSController *dc = [[DetailBBSController alloc] init];
+    
+    dc.basicModel = self.dataSourceModelArray[indexPath.row];
+    
+    dc.hidesBottomBarWhenPushed = YES;
+
+    
     [self.navi pushViewController:dc animated:YES];
     
 
@@ -152,5 +158,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 116;
 }
+
+
 
 @end

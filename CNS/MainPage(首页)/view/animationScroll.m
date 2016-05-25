@@ -16,6 +16,11 @@
 
 @property (nonatomic,retain) UILabel *tipsLabel;
 
+@property (nonatomic,retain) UISwipeGestureRecognizer *swipRight;
+
+
+@property (nonatomic,retain) UISwipeGestureRecognizer *swipLeft;
+
 @end
 
 @implementation animationScroll
@@ -29,6 +34,18 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
         
         [self addGestureRecognizer:tap];
+        
+        self.swipRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipImage:)];
+        self.swipLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipImage:)];
+    
+        self.swipRight.direction = UISwipeGestureRecognizerDirectionRight;
+        
+        
+        self.swipLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+        
+        [self addGestureRecognizer:self.swipRight];
+        
+        [self addGestureRecognizer:self.swipLeft];
         
         self.userInteractionEnabled = YES;
         
@@ -88,6 +105,34 @@
     self.tipsLabel.text = [self.delegate animationScroll:self textForIndex:self.currentIndex];
 }
 
+-(void)animationOff{
+    CATransition *transition = [CATransition animation];
+    
+    transition.duration = 0.8f;
+    transition.type = @"cube";//rippleEffect cude suckEffect oglFlip pageCurl pageUnCurl cameraIrisHollowOpen cameraIrisHollowClose
+    transition.subtype = @"fromLeft";//type为fade的时候subtype无效
+    
+    [self.layer addAnimation:transition forKey:@"animation"];
+    
+    self.currentIndex --;
+    
+    if (self.currentIndex < 0) {
+        self.currentIndex = [self.delegate numberOfImageInScrollView:self] -1;
+    }
+    
+    self.image = [self.delegate animationScroll:self imageForIndex:self.currentIndex];
+    self.tipsLabel.text = [self.delegate animationScroll:self textForIndex:self.currentIndex];
+}
+
+-(void)swipImage:(UISwipeGestureRecognizer *)swip{
+    
+    
+    if (swip.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self animationOn];
+    }else if(swip.direction == UISwipeGestureRecognizerDirectionRight){
+        [self animationOff];
+    }
+}
 
 -(void)clickImage{
 
