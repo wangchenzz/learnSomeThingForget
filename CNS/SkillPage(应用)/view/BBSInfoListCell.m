@@ -205,6 +205,8 @@ const NSString *titlesTrsid = @"123123123131223";
         _anserCountLabel = anserCountLabel;
         _answerCountIcon = answerCountIcon;
         
+        
+        
         _backV = backRoundV;
     }
     return self;
@@ -213,7 +215,7 @@ const NSString *titlesTrsid = @"123123123131223";
 -(void)setModel:(JSBbsInfoModel *)model{
     if (_model!=model) {
         _model = model;
-        NSString *imageStr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",_model.headerImageUrlStr];
+        NSString *imageStr = [NSString stringWithFormat:@"%@%@",basicUrlStr,_model.headerImageUrlStr];
         
         [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:[UIImage imageNamed:@"touxiang"]];
         
@@ -227,7 +229,7 @@ const NSString *titlesTrsid = @"123123123131223";
         self.timeLabel.text = model.createtime;
         
         
-        [self.titleLabel sizeToFit];
+//        [self.titleLabel sizeToFit];
         /**
          *  评论次数;
          */

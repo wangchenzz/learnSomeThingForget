@@ -23,6 +23,12 @@
     return [ymdFormatter stringFromDate:date];
 }
 
++(NSString *)dateToDetailSring:(NSDate*)date{
+    NSDateFormatter *ymdFormatter = [[NSDateFormatter alloc] init];
+    [ymdFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [ymdFormatter stringFromDate:date];
+}
+
 +(NSDate *)JSDateFromString:(NSString*)string{
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone localTimeZone];

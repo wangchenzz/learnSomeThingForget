@@ -9,6 +9,12 @@
 
 #import "inputCommentView.h"
 
+@interface inputCommentView ()
+
+@property (nonatomic,retain) UILabel *placeholderLabel;
+
+@end
+
 @implementation inputCommentView
 
 -(instancetype)init{
@@ -54,6 +60,22 @@
         textV.delegate = self;
         
         self.inputTextView = textV;
+        
+        
+        self.placeholderLabel = [[UILabel alloc] init];
+        
+        self.placeholderLabel.height = textV.height;
+        
+        self.placeholderLabel.width = textV.width-8;
+        self.placeholderLabel.height = textV.height;
+        self.placeholderLabel.centerY = textV.centerY;
+        self.placeholderLabel.x = textV.x+8;
+        self.placeholderLabel.font = textV.font;
+        self.placeholderLabel.backgroundColor = textV.backgroundColor;
+        self.placeholderLabel.textColor = [UIColor lightGrayColor];
+        
+        [self addSubview:self.placeholderLabel];
+    
         
         
         
@@ -109,6 +131,14 @@
     return self;
 }
 
+-(void)setTipsSting:(NSString *)tipsSting{
+    _tipsSting = tipsSting;
+    
+    self.placeholderLabel.text = _tipsSting;
+    
+    
+}
+
 
 -(void)send{
     
@@ -116,12 +146,16 @@
     
     self.inputTextView.text = @"";
     
+    self.placeholderLabel.hidden = NO;
+    
     [self endEditing:YES];
 }
 
 
 -(void)showKeyBoard:(NSNotification *)notification{
-
+    if (!self.inputTextView.text.length) {
+        self.placeholderLabel.hidden = NO;
+    }
     
     CGRect keyboardEndFrameWindow;
     [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardEndFrameWindow];
@@ -139,21 +173,15 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
+    
+    self.placeholderLabel.hidden = YES;
 
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    
-//    dic[NSFontAttributeName] = self.inputTextView.font;
-//    
-//    CGRect commentrect = [textView.text boundingRectWithSize:CGSizeMake(textView.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
-//    
-//    CGFloat nowHeight = commentrect.size.height;
-//    
-//    self.inputTextView.height = nowHeight;
-//    
-//    self.height += nowHeight - self.inputTextView.height;
-//    
-//    
-//    JSLog(@"%f",self.height);
+}
+
+-(void)dealloc{
+    JSLog(@"这个输入栏 -dealloc");
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 }
 

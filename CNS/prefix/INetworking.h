@@ -9,30 +9,37 @@
 #import <Foundation/Foundation.h>
 
 @interface INetworking : NSObject
+#define basicUrlStr @"http://www.yueqiao.org/SSM"
 
-#define loginUrl @"http://www.xxlccw.cn/SSM/user/getLogin"
+#define loginUrl @"http://www.yueqiao.org/SSM/user/getLogin"
 
-#define newsUrl @"http://www.xxlccw.cn/SSM/news/getNewsByType"
+#define newsUrl @"http://www.yueqiao.org/SSM/news/getNewsByType"
 
-#define DetailNews @"http://www.xxlccw.cn/SSM/news/selectNewById"
+#define DetailNews @"http://www.yueqiao.org/SSM/news/selectNewById"
 
-#define LikeAddUrl @"http://www.xxlccw.cn/SSM/news/addZan"
+#define LikeAddUrl @"http://www.yueqiao.org/SSM/news/addZan"
 
-#define addComment @"http://www.xxlccw.cn/SSM/comment/addComment"
+#define addComment @"http://www.yueqiao.org/SSM/comment/addComment"
 
-#define getQustType @"http://www.xxlccw.cn/SSM/suject/getSubjectByType"
+#define getQustType @"http://www.yueqiao.org/SSM/suject/getSubjectByType"
 
-#define addRecord @"http://www.xxlccw.cn/SSM/record/addRecord"
+#define addRecord @"http://www.yueqiao.org/SSM/record/addRecord"
 
-#define getRecord @"http://www.xxlccw.cn/SSM/record/getRecordByloginName"
+#define getRecord @"http://www.yueqiao.org/SSM/record/getRecordByloginName"
 
 
-#define getCard @"http://www.xxlccw.cn/SSM/card/getCardByType"
+#define getCard @"http://www.yueqiao.org/SSM/card/getCardByType"
 
-#define getCardById @"http://www.xxlccw.cn/SSM/card/selectCardById"
+#define getCardById @"http://www.yueqiao.org/SSM/card/selectCardById"
 
-#define addPlunge @"http://www.xxlccw.cn/SSM/plunge/addPlunge"
+#define addPlunge @"http://www.yueqiao.org/SSM/plunge/addPlunge"
 
+
+#define addAnser @"http://www.yueqiao.org/SSM/plunge/insertPlungeHuifu"
+
+
+#define addCard @"http://www.yueqiao.org/SSM/card/addCard"
+      //
 @property (nonatomic,copy) NSString *ipstr;
 
 

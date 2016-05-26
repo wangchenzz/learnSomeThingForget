@@ -50,26 +50,31 @@
      */
     NSDate *date = [NSDate JSDateFromString:_createtime];
     
-    /**
-     *  获取当时间
-     */
-    NSTimeInterval travel = [date timeIntervalSinceNow];
+    NSDate *nowDate = [NSDate date];
     
+    NSTimeInterval travel = [date timeIntervalSince1970];
+    
+    NSTimeInterval newTravel = [nowDate timeIntervalSince1970] - 5 * 60 * 60 ;
+    
+    NSTimeInterval time = travel  -  newTravel;
     
     /**
      *  或得到目前需要的时间.
      */
     
-    int ms = (int)travel;
+    int ms = (int)time;
     
     if (ms/60 == 0) {
         return  @"刚刚";
     }else if(ms/60/60 == 0){
+        
+        NSLog(@"%@",[NSString stringWithFormat:@"%d分钟前",-ms/60]);
+        
         return [NSString stringWithFormat:@"%d分钟前",-ms/60];
-//        return @"几分钟前";
     }else if(ms/60/60/24 ==0){
+        
+        NSLog(@"%@",[NSString stringWithFormat:@"%d小时前",-ms/60/60]);
         return [NSString stringWithFormat:@"%d小时前",-ms/60/60];
-//        return @"几小时前";
     }else{
         return [_createtime substringWithRange:NSMakeRange(0, 10)];
     }

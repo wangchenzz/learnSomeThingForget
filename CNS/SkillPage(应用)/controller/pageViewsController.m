@@ -10,6 +10,7 @@
 
 #import "BBSControllerView.h"
 
+#import "sendBBSController.h"
 
 #import "tableHeaderButtonView.h"
 
@@ -32,16 +33,24 @@
     
     [self creatController];
     
+    [self setUpPageControll];
     self.title = @"最新帖子";
-//    
-//    self.navigationController.navigationBar.hidden = YES;
-//    self.navigationController.navigationBarHidden = YES;
+    
     self.view.backgroundColor = JSCOLOR;
     
+    [self setUpRightSendBar];
+    
+}
+
+-(void)setUpRightSendBar{
+    UIBarButtonItem *rightBar = [UIBarButtonItem itemWithTitle:@"发帖" andImage: nil targat:self action:@selector(sendBBS:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = rightBar;
+}
+
+-(void)setUpPageControll{
     NSDictionary *options =[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
                                                        forKey: UIPageViewControllerOptionSpineLocationKey];
-    
-    // 实例化UIPageViewController对象，根据给定的属性
     UIPageViewController *pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options: options];
     pageViewController.delegate = self;
     pageViewController.dataSource = self;
@@ -54,13 +63,13 @@
     [pageViewController setViewControllers:array direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
     
     
-    pageViewController.view.frame = CGRectMake(0, CGRectGetMaxY(JSNavigationBounds)+40, self.view.width, self.view.height - CGRectGetMaxY(JSNavigationBounds)-40) ;
+    pageViewController.view.frame = CGRectMake(0, CGRectGetMaxY(JSNavigationBounds)+40, self.view.width, self.view.height - CGRectGetMaxY(JSNavigationBounds)-40-40) ;
     
     [self.view addSubview: pageViewController.view];
     
     
     self.pvc = pageViewController;
-//    self.navigationItem.titleView = self.headerView;
+    
     [self.view addSubview:self.headerView];
 }
 
@@ -74,6 +83,14 @@
     }
 }
 
+-(void)sendBBS:(UIBarButtonItem *)item{
+    sendBBSController *vc = [[sendBBSController alloc] init];
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,14 +98,14 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-//    UINavigationController *bv = (UINavigationController *)viewController;
+    //    UINavigationController *bv = (UINavigationController *)viewController;
     
     BBSControllerView *gv = (BBSControllerView *)viewController;
     if (gv.BBSType == 1) {
         return nil;
     }else{
         
-//         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:_vcArray[gv.BBSType - 2]];
+        //         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:_vcArray[gv.BBSType - 2]];
         return _vcArray[gv.BBSType - 2];
     }
 }
@@ -96,7 +113,7 @@
 // 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
     
-//    UINavigationController *bv = (UINavigationController *)viewController;
+    //    UINavigationController *bv = (UINavigationController *)viewController;
     
     BBSControllerView *gv = (BBSControllerView *)viewController;
     
@@ -158,7 +175,7 @@
         [self.pvc setViewControllers:@[self.vcArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     }
     self.title = @[@"最新帖子",@"注意力",@"社交能力",@"记忆力",@"阿斯伯格",@"反应能力",@"睡眠",@"冥想"][index];
-
+    
 }
 
 

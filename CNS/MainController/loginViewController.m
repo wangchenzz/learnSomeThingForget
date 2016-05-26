@@ -111,6 +111,9 @@
     
 }
 
+
+
+
 -(void)setUpTextF{
 
     UITextField *name = [[UITextField alloc] init];

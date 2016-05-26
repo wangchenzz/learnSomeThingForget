@@ -231,6 +231,16 @@
                             self.titleLabel.willShowText = @"语言注意力测试";
                             self.messageLabel.willShowText =@"您将马上开始词语记忆测试.\n\n本测验的目的是记忆单词.\n\n将向你展示一系列单词,但每次您只能看到一个单词.\n\n尽最大努力记住这些单词,因为不久后您将被要求挑选出您刚才见过的单词.\n\n现在,您将看到需要记忆的单词.\n\n 每一个单词都将显示两秒钟.";
                             self.endLabel.willShowText = @"双击屏幕继续";
+                            
+                            JSLanguageAttentionTests *te = [JSLanguageAttentionTests testWithArray:self.questionArray withDifficult:self.difcultLevel];
+                            
+                            te.delegate = self;
+                            
+                            te.frame = self.view.frame;
+                            
+                            [self.view addSubview:te];
+                            
+                            self.languageTest = te;
                         }
                             break;
                         case JSTestCurrentVisualShow:
@@ -241,6 +251,16 @@
                             NSString *title = @"图像注意测验";
                             NSString *message = @"您将马上开始视觉记忆测验.\n\n本测验的目的是记忆图像.\n\n将向你展示一系列图像,但一次只能看到一副.\n\n尽最大努力记住这些图像,因为不久后您将被要求挑选出您刚见过的图像.\n\n您将看到所需记忆的图像.\n\n每一幅图像都将显示两秒钟";
                             NSString *end = @"双击屏幕继续";
+                            
+                            JSVisualAttentionTests *test = [JSVisualAttentionTests testWithModelArray:self.questionArray withDifficult:self.difcultLevel];
+                            
+                            [self.view addSubview:test];
+                            
+                            test.frame = self.view.bounds;
+                            
+                            test.delegate =self;
+                            
+                            self.visualTest = test;
                             
                             self.titleLabel.willShowText = title;
                             self.messageLabel.willShowText = message;
@@ -405,17 +425,11 @@
     switch (self.JSTestCurrentState) {
         case JSTestCurrentLanguageShow:
         {
-            JSLanguageAttentionTests *te = [JSLanguageAttentionTests testWithArray:self.questionArray withDifficult:self.difcultLevel];
+   
             
-            te.delegate = self;
+            [self.languageTest show];
             
-            te.frame = self.view.frame;
-            
-            [self.view addSubview:te];
-            
-            [te show];
-            
-            self.languageTest = te;
+           
         }
             break;
         case JSTestCurrentLanguageImmediate:
@@ -425,17 +439,11 @@
             break;
         case JSTestCurrentVisualShow:
         {
-            JSVisualAttentionTests *test = [JSVisualAttentionTests testWithModelArray:self.questionArray withDifficult:self.difcultLevel];
+
             
-            [self.view addSubview:test];
+            [self.visualTest show];
             
-            test.frame = self.view.bounds;
             
-            test.delegate =self;
-            
-            [test show];
-            
-            self.visualTest = test;
         }
             break;
             case JSTestCurrentVisualImmediate:

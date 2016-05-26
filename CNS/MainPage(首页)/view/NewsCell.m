@@ -108,7 +108,7 @@
         
         NSArray *imageArray = [imageString componentsSeparatedByString:@","];
         
-        NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",imageArray[0]];
+        NSString *imastr = [NSString stringWithFormat:@"%@%@",basicUrlStr,imageArray[0]];
         
         
         [self.photoInfoImage sd_setImageWithURL:[NSURL URLWithString:imastr]];

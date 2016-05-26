@@ -132,7 +132,7 @@
         
         self.headImageView.frame = _model.headImageRect;
         
-        NSString *imageStr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",_model.HeadImageUrlStr];
+        NSString *imageStr = [NSString stringWithFormat:@"%@%@",basicUrlStr,_model.HeadImageUrlStr];
         
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:[UIImage imageNamed:@"touxiang"]];
     }

@@ -8,20 +8,32 @@
 
 #import "DetailBBSController.h"
 
-@interface DetailBBSController ()<UITableViewDelegate,UITableViewDataSource,addCommentControllerDelegate>
+#import "inputCommentView.h"
+
+@interface DetailBBSController ()<UITableViewDelegate,UITableViewDataSource,addCommentControllerDelegate,inputCommentViewDelegate>
 
 @property (nonatomic,retain) NSMutableArray *answerArray;
 
+@property (nonatomic,assign) NSIndexPath *currentIndexPath;
+
+@property (nonatomic,retain) inputCommentView *inputView;
+
+/**
+ *  发送评论的按钮
+ */
 @property (nonatomic,retain) UIButton *commentButton;
 
+/**
+ *  是否在添加评论过程中
+ */
 @property (nonatomic,assign) BOOL isAdding;
 
 @property (nonatomic,retain) detailBBSmodel *impModel;
 
+/**
+ *  是否是发帖人--即 回复权限
+ */
 @property (nonatomic,assign,getter=isAdmin) BOOL admin;
-
-
-
 
 @end
 
@@ -32,17 +44,21 @@
     
     self.answerArray = [NSMutableArray array];
     
+    
+    self.impModel = [[detailBBSmodel alloc] init];
+    
+    self.impModel.basicModel = self.basicModel;
+    
     [self setUpTableView];
     
     [self setUpBBSInfo];
     
 //    [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
-    self.impModel = [[detailBBSmodel alloc] init];
-    
-    self.impModel.basicModel = self.basicModel;
     
     [self setComentButtonUp];
+    
+    [self setUpInputView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +129,10 @@
             model.answerLoginName = dic[@"r_loginName"];
             
             model.answerCreatTime = dic[@"r_creattime"];
+            
+            model.commentID = dic[@"id"];
+            
+            
             
             [model getFrame];
             
@@ -283,6 +303,26 @@
 
 }
 
+-(void)setUpInputView{
+
+    self.inputView = [inputCommentView put];
+    
+    self.inputView.hidden = YES;
+    
+    self.inputView.delegate = self;
+    
+    self.inputView.frame = CGRectMake(0, self.view.height-50, self.inputView.width, self.inputView.height);
+    
+    
+    [self.view addSubview:self.inputView];
+}
+
+
+-(void)tapHideKeyBoard:(UITapGestureRecognizer *)tap{
+
+    [self.inputView.inputTextView resignFirstResponder];
+
+}
 
 #pragma mark - delegate;
 
@@ -319,16 +359,26 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    if (indexPath.row == 0) {
+        return;
+    }
 
     answerModel *model = self.answerArray[indexPath.row - 1];
     
-    if (!_admin || model.isAnswer) {
+    if (!self.admin || model.isAnswer) {
         return;
     }
+    self.inputView.hidden = NO;
+    
+    _currentIndexPath = indexPath;
     
     
-
-
+    self.inputView.tipsSting = [NSString stringWithFormat:@"回复:%@",model.commentLoginName];
+    
+    
+    [self.inputView.inputTextView becomeFirstResponder];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -364,7 +414,7 @@
 }
 
 
-#pragma mark - vcdelegate
+#pragma mark - vcdelegate  点击发送了评论的回调
 
 -(void)addCommentController:(addCommentController *)comment didSendComment:(NSMutableDictionary *)dic{
 
@@ -390,6 +440,96 @@
     [self.tableView reloadData];
     
 }
+
+#pragma mark - inputCommentViewDelegate  回复栏的回调;
+
+-(void)inputCommentViewShowKeyBord:(inputCommentView *)view with:(CGFloat)heght{
+
+    [UIView animateWithDuration:0.4 animations:^{
+        
+        
+        self.inputView.transform = CGAffineTransformMakeTranslation(0, -heght);
+        
+    } completion:^(BOOL finished) {
+        
+        UIView *menb = [[UIView alloc] initWithFrame:self.view.bounds];
+        
+        [self.view addSubview:menb];
+        
+        menb.backgroundColor = [UIColor clearColor];
+        
+        menb.tag = 1;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHideKeyBoard:)];
+    
+        [menb addGestureRecognizer:tap];
+        
+        [self.view insertSubview:menb belowSubview:self.inputView];
+        
+    }];
+    
+    
+}
+
+-(void)inputCommentViewHideKeyBord:(inputCommentView *)view{
+
+    [UIView animateWithDuration:0.4 animations:^{
+        
+        
+        self.inputView.transform = CGAffineTransformIdentity;
+        
+    } completion:^(BOOL finished) {
+        
+        UIView *view = [self.view viewWithTag:1];
+        
+        [view removeFromSuperview];
+        
+        self.inputView.hidden = YES;
+        
+    }];
+    
+}
+
+-(void)clickSend:(inputCommentView *)view{
+    
+    answerModel *model = self.answerArray[_currentIndexPath.row - 1];
+    
+    model.answerContent = view.inputTextView.text;
+    
+    model.answerCreatTime = @"刚刚";
+    
+    model.answerLoginName = self.basicModel.loginName;
+    
+    [model getFrame];
+
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginName"];
+    
+    dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"token"];
+    
+    dic[@"id"] = model.commentID;
+    
+    dic[@"r_content"] = model.answerContent;
+    
+    #warning message''成功才显示. 但是要先获得数据.不然可能会发生变化.    碰到异步就要想清楚会发什么什么事情
+    [[INetworking shareNet] GET:addAnser withParmers:dic do:^(id returnObject, BOOL isSuccess) {
+       
+        if (isSuccess) {
+            
+            NSLog(@"%@",returnObject);
+            
+            
+
+            
+            [self.tableView reloadRowsAtIndexPaths:@[_currentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }
+        
+        
+    }];
+
+}
+
 
 
 @end

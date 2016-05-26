@@ -34,6 +34,11 @@
 
 @property (nonatomic,weak) UIButton *sendButton;
 
+/**
+ *  提示文字;
+ */
+@property (nonatomic,copy) NSString *tipsSting;
+
 
 +(instancetype)put;
 

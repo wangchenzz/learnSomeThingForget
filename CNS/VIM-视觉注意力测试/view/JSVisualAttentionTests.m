@@ -224,11 +224,10 @@
         
         for (NSString *urlString in array) {
             
-            NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",urlString];
+            NSString *imastr = [NSString stringWithFormat:@"%@%@",basicUrlStr,urlString];
             
             
             [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imastr] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                JSLog(@"%@",[NSThread currentThread]);
                 if (image) {
                     [ar addObject:image];
                 }
@@ -238,13 +237,8 @@
                     
                     model.theRightImageArray = [self getSomeImageFromArray:model.theTestsAllImageArray withCount:selectNum];
                 }
-                
             }];
         }
-        
-        
-        
-
         
     }else{
         

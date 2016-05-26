@@ -38,8 +38,10 @@
     
     [self loadBBSInfo];
     
-//    self.tableView.tableHeaderView = self.headerView;
+
+    [self setUpReFresh];
 }
+
 
 -(instancetype)initWithType:(NSInteger)typeNum{
 
@@ -52,6 +54,10 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+    if (!_isLoading) {
+        [self.tableView.mj_header beginRefreshing];
+    }
+    
     if (_dataSourceModelArray.count == 0&&!_isLoading) {
         [self loadBBSInfo];
     }
@@ -59,14 +65,37 @@
 }
 
 
+-(void)setUpReFresh{
+
+     MJRefreshStateHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadBBSInfo)];
+    
+    [header setTitle:@"拖拽以刷新" forState:MJRefreshStateIdle];
+    [header setTitle:@"放开我就刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"读取中..." forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    // 设置字体
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    
+    // 设置颜色
+    header.stateLabel.textColor = [UIColor whiteColor];
+    self.tableView.mj_header = header;
+
+}
+
 
 -(void)loadBBSInfo{
     
     self.isLoading = YES;
     
+    self.dataSourceModelArray = [@[] mutableCopy];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"curPage"] = [NSString stringWithFormat:@"%ld",self.currentPage];
-    dic[@"type"] = @"1";
+    if (self.BBSType != 1) {
+        dic[@"type"] = [NSString stringWithFormat:@"%ld",self.BBSType];
+    }
     dic[@"loginName"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"loginName"];
     
     dic[@"token"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
@@ -99,7 +128,7 @@
         }
         
         [self.tableView reloadData];
-        
+        [self.tableView.mj_header endRefreshing];
         self.isLoading = NO;
         
     }];
@@ -136,6 +165,8 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 
     BBSInfoListCell *cel = (BBSInfoListCell *)cell;
+    
+    NSLog(@"%ld",indexPath.row);
     
     cel.model = self.dataSourceModelArray[indexPath.row];
 

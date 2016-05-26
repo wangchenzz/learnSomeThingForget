@@ -19,6 +19,8 @@
 
 @property (nonatomic,copy) NSString *commentLoginName;
 
+@property (nonatomic,copy) NSString *commentID;
+
 /**
  *  
  */

@@ -171,12 +171,16 @@
 -(void)setObj:(NSObject *)obj{
     _obj = obj;
     
+    self.titleView.hidden = NO;
+    self.anserLabel.hidden = NO;
+    self.commentView.hidden = NO;
+    
     if ([obj isKindOfClass:[detailBBSmodel class]]) {
         
         detailBBSmodel *detailModel = (detailBBSmodel *)obj;
         
-        [self.anserLabel removeFromSuperview];
-        [self.commentView removeFromSuperview];
+        [self.anserLabel setHidden:YES];
+        [self.commentView setHidden:YES];
         
         self.headerImage.frame = detailModel.headerRect;
         
@@ -196,7 +200,7 @@
         
         self.headerImage.layer.masksToBounds = YES;
         
-        NSString *imageStr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",detailModel.basicModel.headerImageUrlStr];
+        NSString *imageStr = [NSString stringWithFormat:@"%@%@",basicUrlStr,detailModel.basicModel.headerImageUrlStr];
         
         [self.headerImage sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:nil];
         self.userNameLabel.text = detailModel.basicModel.loginName;
@@ -213,15 +217,15 @@
         
     }else if ([obj isKindOfClass:[answerModel class]]){
         answerModel *answermodel = (answerModel *)obj;
-        /**
-         *  移除不需要的模块先
-         */
+//        /**
+//         *  移除不需要的模块先
+//         */
         if (answermodel.isAnswer) {
-            [self.titleView removeFromSuperview];
+            [self.titleView setHidden:YES];
         }else{
             
-            [self.titleView removeFromSuperview];
-            [self.anserLabel removeFromSuperview];
+            [self.titleView setHidden:YES];
+            [self.anserLabel setHidden:YES];
         }
         
         /**
@@ -255,6 +259,8 @@
         self.commentContentLabel.text = answermodel.commentContent;
         
         self.commentCreatTimeLabel.text = answermodel.commentCreattime;
+        
+        [self.commentCreatTimeLabel setFont:JSFont(14)];
         
         self.commentView.frame = CGRectMake(0, 0, JSFrame.size.width, answermodel.commentTotalHeight);
         

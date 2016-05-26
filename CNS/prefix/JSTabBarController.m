@@ -50,17 +50,17 @@
     
     [self addJSChildViewController:t withNormalImage:@"cp1" selectImage:@"cp2" title:@"测评"];
     
-//    BBSControllerView *bbs = [[BBSControllerView alloc] init];
+  pageViewsController *pgc = [[pageViewsController alloc] init];
 //    
-//    [self addJSChildViewController:bbs withNormalImage:@"lt1" selectImage:@"lt2" title:@"论坛"];
+    [self addJSChildViewController:pgc withNormalImage:@"lt1" selectImage:@"lt2" title:@"论坛"];
     
     
-    pageViewsController *pgc = [[pageViewsController alloc] init];
+  
     
     
     profileViewController *pvc = [[profileViewController alloc] init];
     
-    [self addJSChildViewController:pgc withNormalImage:@"wo1" selectImage:@"wo2" title:@"我"];
+    [self addJSChildViewController:pvc withNormalImage:@"wo1" selectImage:@"wo2" title:@"我"];
     
 }
 

@@ -29,6 +29,12 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
+    self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
+    
+    self.navigationController.navigationBar.alpha = 1;
+    
     [self setUpBackColor];
     
     [self setUpTextView];
@@ -150,6 +156,13 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
         
     
     }
+}
+
+
+-(void)dealloc{
+    JSLog(@"addCommentController _ dealloc");
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

@@ -184,6 +184,8 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
     if (section == 1) {
         inputCommentView *viewT = [inputCommentView put];
         
+        viewT.tipsSting = @"添加评论";
+        
         viewT.delegate = self;
         return viewT;
     }else return nil;

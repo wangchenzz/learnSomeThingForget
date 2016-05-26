@@ -12,10 +12,10 @@
 
 +(NSString*)dateToYearString:(NSDate*)date;
 
-
 +(NSString*)dateToBirthSring:(NSDate*)date;
 
-
 +(NSDate *)JSDateFromString:(NSString*)string;
+
++(NSString *)dateToDetailSring:(NSDate*)date;
 
 @end

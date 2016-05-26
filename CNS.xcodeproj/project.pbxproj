@@ -395,13 +395,14 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		04011D5F1CCDEF5700C4F6D4 /* SkillPage(应用) */ = {
+		04011D5F1CCDEF5700C4F6D4 /* SkillPage(论坛) */ = {
 			isa = PBXGroup;
 			children = (
 				04011D601CCDEF5700C4F6D4 /* controller */,
 				04011D611CCDEF5700C4F6D4 /* model */,
 				04011D621CCDEF5700C4F6D4 /* view */,
 			);
+			name = "SkillPage(论坛)";
 			path = "SkillPage(应用)";
 			sourceTree = "<group>";
 		};
@@ -749,7 +750,7 @@
 				04B0FF251C841DC20020D1A5 /* MainController */,
 				04011D571CCDEF5700C4F6D4 /* MainPage(首页) */,
 				04011D631CCDEF5700C4F6D4 /* TestsPage(测评) */,
-				04011D5F1CCDEF5700C4F6D4 /* SkillPage(应用) */,
+				04011D5F1CCDEF5700C4F6D4 /* SkillPage(论坛) */,
 				04011D5B1CCDEF5700C4F6D4 /* profile(个人信息) */,
 				041FB9731C86817800F35659 /* VBM-语言注意力测试 */,
 				041FB9761C86817800F35659 /* VIM-视觉注意力测试 */,

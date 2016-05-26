@@ -68,7 +68,7 @@
         NSArray *imageArray = [self.lmodel.images componentsSeparatedByString:@","];
         
         for (int i = 0  ; i < imageArray.count; i ++) {
-            NSString *imastr = [NSString stringWithFormat:@"http://www.xxlccw.cn/SSM%@",imageArray[i]];
+            NSString *imastr = [NSString stringWithFormat:@"%@%@",basicUrlStr,imageArray[i]];
             
             [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imastr] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                 
