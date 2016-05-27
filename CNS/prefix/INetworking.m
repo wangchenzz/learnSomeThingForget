@@ -9,9 +9,6 @@
 #import "INetworking.h"
 #import "AFNetworking.h"
 
-#define IPADDRESS @"http://114.215.126.243/Lee/MyApache-PHP/"
-
-
 typedef void(^wrong)();
 
 static INetworking *network;
@@ -32,14 +29,13 @@ static BOOL isNetWorking = YES;
 
 +(INetworking*)shareNet{
 
-    if (!network) {
-     
+     static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
         network = [[self alloc]init];
         
-        network.ipstr = IPADDRESS;
-        
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-           
+            
             switch (status) {
                     
                 case AFNetworkReachabilityStatusNotReachable:{
@@ -77,7 +73,8 @@ static BOOL isNetWorking = YES;
         }];
         
         [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    }
+    });
+    
     return network;
 }
 

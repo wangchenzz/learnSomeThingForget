@@ -89,8 +89,6 @@
     
     self.isLoading = YES;
     
-    self.dataSourceModelArray = [@[] mutableCopy];
-    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"curPage"] = [NSString stringWithFormat:@"%ld",self.currentPage];
     if (self.BBSType != 1) {
@@ -108,14 +106,16 @@
             self.isLoading = NO;
             return ;
         }
+        
+        self.dataSourceModelArray = [@[] mutableCopy];
     
         NSArray *listArray = returnObject[@"list"];
         for (NSDictionary *dic in listArray) {
             
 //            NSLog(@"%@",dic);
             JSBbsInfoModel *model = [[JSBbsInfoModel alloc] init];
-            
-            model.loginName = dic[@"loginName"];
+            model.tureLoginName = dic[@"loginName"];
+            model.loginName = dic[@"nickName"];
             model.createtime = dic[@"createtime"];
             model.ctr = dic[@"ctr"];
             model.headerImageUrlStr = dic[@"img"];

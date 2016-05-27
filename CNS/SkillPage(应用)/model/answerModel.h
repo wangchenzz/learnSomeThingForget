@@ -15,6 +15,8 @@
 
 @property (nonatomic,copy) NSString *commentContent;
 
+@property (nonatomic,copy) NSString *commentHeaderImageSStr;
+
 @property (nonatomic,copy) NSString *commentCreattime;
 
 @property (nonatomic,copy) NSString *commentLoginName;
@@ -33,6 +35,9 @@
 
 
 
+
+
+@property (nonatomic,assign) CGRect commentHeaderImageRect;
 
 @property (nonatomic,assign) CGRect commentContentRect;
 

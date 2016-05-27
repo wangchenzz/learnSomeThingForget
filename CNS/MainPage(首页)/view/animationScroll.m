@@ -77,8 +77,9 @@
     
     [self addSubview:blackView];
     
-    NSTimer *actionTimer = [NSTimer timerWithTimeInterval:4 target:self selector:@selector(animationOn) userInfo:nil repeats:YES];
-    
+    NSTimer *actionTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(animationOn) userInfo:nil repeats:YES];
+
+    [actionTimer fire];
     [[NSRunLoop currentRunLoop]addTimer:actionTimer forMode:NSRunLoopCommonModes];
 }
 
@@ -87,6 +88,7 @@
 }
 
 -(void)animationOn{
+    
     CATransition *transition = [CATransition animation];
     
     transition.duration = 0.8f;

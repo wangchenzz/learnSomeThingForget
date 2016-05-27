@@ -50,19 +50,13 @@
      */
     NSDate *date = [NSDate JSDateFromString:_createtime];
     
-    NSDate *nowDate = [NSDate date];
-    
-    NSTimeInterval travel = [date timeIntervalSince1970];
-    
-    NSTimeInterval newTravel = [nowDate timeIntervalSince1970] - 5 * 60 * 60 ;
-    
-    NSTimeInterval time = travel  -  newTravel;
+    NSTimeInterval fromNow = [date timeIntervalSinceNow];
     
     /**
      *  或得到目前需要的时间.
      */
     
-    int ms = (int)time;
+    int ms = (int)fromNow;
     
     if (ms/60 == 0) {
         return  @"刚刚";
@@ -78,8 +72,6 @@
     }else{
         return [_createtime substringWithRange:NSMakeRange(0, 10)];
     }
-    
-    
 }
 
 

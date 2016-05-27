@@ -61,10 +61,14 @@
 @property (nonatomic,copy) NSString *num;
 
 /**
- *  发帖人 id
+ *  发帖人 name
  */
 @property (nonatomic,copy) NSString *loginName;
 
+/**
+ *  前面的作为了 nickName;
+ */
+@property (nonatomic,copy) NSString *tureLoginName;
 
 /**
  *  发帖人头像 url 的部分 string;

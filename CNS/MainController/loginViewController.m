@@ -42,7 +42,7 @@
 }
 
 -(void)setUpLogo{
-
+    
     UIImageView *backRound = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backRound.image = [UIImage imageNamed:@"底色"];
     [self.view addSubview:backRound];
@@ -83,7 +83,7 @@
     logoName.centerY = self.view.height * .9;
     
     [self.view addSubview:logoName];
-
+    
     
     
     UIView *lineView = [[UIView alloc] init];
@@ -99,12 +99,12 @@
     [lineView setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
     
     [self.view addSubview:lineView];
-
+    
     
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
+    
     [super touchesBegan: touches withEvent:event];
     
     [self.view endEditing:YES];
@@ -115,7 +115,7 @@
 
 
 -(void)setUpTextF{
-
+    
     UITextField *name = [[UITextField alloc] init];
     
     name.height = self.view.height * .08;
@@ -134,22 +134,22 @@
     
     name.placeholder = @"账号";
     
-
     
     
-//    UIImageView *leftPic = [[UIImageView alloc] init];
-//    
-//    leftPic.height = leftPic.width = name.height *.3;
+    
+    //    UIImageView *leftPic = [[UIImageView alloc] init];
+    //
+    //    leftPic.height = leftPic.width = name.height *.3;
     
     /**
      *  左侧图标
      */
-//    leftPic.image = [UIImage imageNamed:@"visualImage1"];
+    //    leftPic.image = [UIImage imageNamed:@"visualImage1"];
     
-//    leftPic.backgroundColor = [UIColor redColor];
-//    name.leftViewMode = UITextFieldViewModeAlways;
-//    name.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    name.leftView = leftPic;
+    //    leftPic.backgroundColor = [UIColor redColor];
+    //    name.leftViewMode = UITextFieldViewModeAlways;
+    //    name.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    //    name.leftView = leftPic;
     
     self.nameText = name;
     
@@ -187,23 +187,23 @@
     [self.view addSubview:lineView2];
     
     
-//    UIImageView *leftPic2 = [[UIImageView alloc] init];
-//    
-//    leftPic2.height = leftPic2.width = pwd.height *.3;
+    //    UIImageView *leftPic2 = [[UIImageView alloc] init];
+    //
+    //    leftPic2.height = leftPic2.width = pwd.height *.3;
     /**
      *  右侧图标
      */
-//    leftPic2.image = [UIImage imageNamed:@"visualImage1"];
+    //    leftPic2.image = [UIImage imageNamed:@"visualImage1"];
     
-//    leftPic2.backgroundColor = [UIColor redColor];
-//    
-//    pwd.leftViewMode = UITextFieldViewModeAlways;
-//    
+    //    leftPic2.backgroundColor = [UIColor redColor];
+    //
+    //    pwd.leftViewMode = UITextFieldViewModeAlways;
+    //
     pwd.secureTextEntry = YES;
-//
-//    pwd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    pwd.leftView = leftPic2;
-
+    //
+    //    pwd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    //    pwd.leftView = leftPic2;
+    
     self.passCodeText = pwd;
     
     self.passCodeText.delegate = self;
@@ -231,7 +231,7 @@
     
     
     
-
+    
     
     
     
@@ -239,7 +239,7 @@
 }
 
 -(void)setTips{
-
+    
     UILabel *label = [[UILabel alloc] init];
     
     
@@ -262,7 +262,7 @@
     
     
     
-//    self.tipsLabel.text = @"你的密码输入错误!";
+    //    self.tipsLabel.text = @"你的密码输入错误!";
 }
 
 -(void)loginIn{
@@ -281,14 +281,22 @@
             self.tipsLabel.text = returnObject[@"msg"];
             self.passCodeText.text = @"";
             [MBProgressHUD hideHUD];
-        }else if (isSuccess&&returnObject[@"token"]){
-            NSString *personToken = returnObject[@"token"];
-            NSString *loginName = returnObject[@"loginName"];
+        }else if (isSuccess&&returnObject[@"user"]){
             
+            NSDictionary *dic = returnObject[@"user"];
+            
+            NSString *personToken = dic[@"token"];
+            NSString *loginName = dic[@"loginName"];
+            NSString *mobile = dic[@"mobile"];
+            NSString *img = dic[@"img"];
+            NSString *nickName = dic[@"nickName"];
             
             
             [[NSUserDefaults standardUserDefaults] setObject:personToken forKey:@"token"];
             [[NSUserDefaults standardUserDefaults] setObject:loginName forKey:@"loginName"];
+            [[NSUserDefaults standardUserDefaults] setObject:mobile forKey:@"mobile"];
+            [[NSUserDefaults standardUserDefaults] setObject:img forKey:@"img"];
+            [[NSUserDefaults standardUserDefaults] setObject:nickName forKey:@"nickName"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [MBProgressHUD hideHUD];
@@ -298,7 +306,7 @@
              */
             
             
-//            [self.tabBarController setSelectedIndex:1];
+            //            [self.tabBarController setSelectedIndex:1];
             JSTabBarController *jstc = [[JSTabBarController alloc]init];
             [UIApplication sharedApplication].keyWindow.rootViewController = jstc;
             
@@ -323,7 +331,7 @@
         [self.passCodeText becomeFirstResponder];
     }else{
         [self.passCodeText resignFirstResponder];       }
-
+    
     return YES;
 }
 

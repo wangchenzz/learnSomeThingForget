@@ -14,10 +14,10 @@
 +(instancetype)modelForDic:(NSDictionary *)dic{
 
     JSComentModel * model = [[self alloc] init];
-    model.loginName = dic[@"loginName"];
+    model.loginName = dic[@"nickName"];
     model.contentMent = dic[@"content"];
     model.creatTime = dic[@"createtime"];
-    model.HeadImageUrlStr = dic[@"images"];
+    model.HeadImageUrlStr = dic[@"img"];
     
     [model getFrame];
     

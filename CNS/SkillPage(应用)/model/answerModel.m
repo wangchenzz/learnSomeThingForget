@@ -13,7 +13,10 @@
 -(void)getFrame{
     CGFloat BJ = 15;
     
-    _commentLoginNameRect = CGRectMake(BJ, BJ, JSFrame.size.width - 2 * BJ, 30);
+    _commentHeaderImageRect = CGRectMake(BJ, BJ, 30, 30);
+    
+    
+    _commentLoginNameRect = CGRectMake(30+ 2 *BJ, BJ, JSFrame.size.width - 3 * BJ - 30, 30);
     
     NSMutableDictionary *diction = [NSMutableDictionary dictionary];
     diction[NSFontAttributeName] = commentContentFont;

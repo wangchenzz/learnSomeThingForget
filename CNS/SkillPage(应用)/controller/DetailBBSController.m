@@ -53,8 +53,6 @@
     
     [self setUpBBSInfo];
     
-//    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    
     
     [self setComentButtonUp];
     
@@ -67,7 +65,7 @@
 
 -(BOOL)isAdmin{
 
-    return [[[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"] isEqualToString:self.basicModel.loginName];
+    return [[[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"] isEqualToString:self.basicModel.tureLoginName];
 
 }
 
@@ -122,13 +120,15 @@
             
             model.commentCreattime = dic[@"createtime"];
             
-            model.commentLoginName = dic[@"loginName"];
+            model.commentLoginName = dic[@"nickName"];
             
             model.answerContent = dic[@"r_content"];
             
-            model.answerLoginName = dic[@"r_loginName"];
+            model.answerLoginName = dic[@"r_nickName"];
             
             model.answerCreatTime = dic[@"r_creattime"];
+            
+            model.commentHeaderImageSStr = dic[@"img"];
             
             model.commentID = dic[@"id"];
             
@@ -422,11 +422,11 @@
     
     model.commentContent = dic[@"content"];
     
-    
-    model.commentLoginName = dic[@"loginName"];
-    
+    model.commentLoginName = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
     
     model.commentCreattime = @"刚刚";
+    
+    model.commentHeaderImageSStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"img"];
     
     model.answerLoginName = (NSString *)[NSNull null];
     
@@ -507,6 +507,8 @@
     dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginName"];
     
     dic[@"token"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"token"];
+    
+    dic[@"r_nickName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
     
     dic[@"id"] = model.commentID;
     

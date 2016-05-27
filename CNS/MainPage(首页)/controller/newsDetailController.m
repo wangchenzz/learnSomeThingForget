@@ -79,6 +79,9 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
     
     [[INetworking shareNet] GET:DetailNews withParmers:infoDic do:^(id returnObject, BOOL isSuccess) {
         
+        
+        JSLog(@"%@",returnObject);
+        
         if (isSuccess) {
             NSString *num = returnObject[@"countPage"];
             self.totalPage = num.integerValue;

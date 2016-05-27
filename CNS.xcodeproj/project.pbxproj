@@ -12,6 +12,7 @@
 		04011D6C1CCDF13A00C4F6D4 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04011D6B1CCDF13A00C4F6D4 /* MainPageViewController.m */; };
 		04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 04011D6E1CCDF59200C4F6D4 /* animationScroll.m */; };
 		0404E3241CF424D3003DE794 /* DetailBBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404E3231CF424D3003DE794 /* DetailBBSController.m */; };
+		04060D8B1CF80C9400760301 /* settingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04060D8A1CF80C9400760301 /* settingViewController.m */; };
 		040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040730E61C9118D300534773 /* JSKeyBoardView.m */; };
 		040730E91C91376C00534773 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 040730E81C91376B00534773 /* Podfile.lock */; };
 		040849181CF2EE41009C2BCA /* pageViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040849171CF2EE41009C2BCA /* pageViewsController.m */; };
@@ -123,6 +124,8 @@
 		04011D6E1CCDF59200C4F6D4 /* animationScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = animationScroll.m; sourceTree = "<group>"; };
 		0404E3221CF424D3003DE794 /* DetailBBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailBBSController.h; sourceTree = "<group>"; };
 		0404E3231CF424D3003DE794 /* DetailBBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailBBSController.m; sourceTree = "<group>"; };
+		04060D891CF80C9400760301 /* settingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingViewController.h; sourceTree = "<group>"; };
+		04060D8A1CF80C9400760301 /* settingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingViewController.m; sourceTree = "<group>"; };
 		040730E51C9118D300534773 /* JSKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSKeyBoardView.h; sourceTree = "<group>"; };
 		040730E61C9118D300534773 /* JSKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSKeyBoardView.m; sourceTree = "<group>"; };
 		040730E81C91376B00534773 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
@@ -377,6 +380,8 @@
 			children = (
 				04A70C641CEDAB6900B077D7 /* profileViewController.h */,
 				04A70C651CEDAB6900B077D7 /* profileViewController.m */,
+				04060D891CF80C9400760301 /* settingViewController.h */,
+				04060D8A1CF80C9400760301 /* settingViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1108,6 +1113,7 @@
 				04D095971CE4131200DD4011 /* newsDetailController.m in Sources */,
 				040849181CF2EE41009C2BCA /* pageViewsController.m in Sources */,
 				041DA7971CBF710500626349 /* JSTestsList.m in Sources */,
+				04060D8B1CF80C9400760301 /* settingViewController.m in Sources */,
 				04CE68161CEAB04300D922A5 /* buttonView.m in Sources */,
 				0425DC901CC8A63300D022E3 /* normalShowLevelController.m in Sources */,
 				04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */,
@@ -1283,7 +1289,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1301,7 +1307,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

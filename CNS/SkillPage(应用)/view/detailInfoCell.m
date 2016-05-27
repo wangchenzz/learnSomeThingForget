@@ -28,6 +28,9 @@
 /**
  *  评论 view;
  */
+
+@property (nonatomic,strong) UIImageView *commentHeaderImageView;
+
 @property (nonatomic,strong) UIView *commentView;
 
 @property (nonatomic,strong) UILabel *commentNameLabel;
@@ -63,6 +66,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
         
+        self.commentHeaderImageView = [[UIImageView alloc] init];
+        
         self.titleView = [[UIView alloc] init];
         
         self.headerImage = [[UIImageView alloc] init];
@@ -94,6 +99,8 @@
         [self.contentLabel setTextColor:[UIColor whiteColor]];
         
         [self.contentLabel setNumberOfLines:0];
+        
+        
         [self.titleView addSubview:self.headerImage];
         
         [self.titleView addSubview:self.userNameLabel];
@@ -122,11 +129,10 @@
         
         [self.commentCreatTimeLabel setTextColor:[UIColor lightGrayColor]];
         
-//        self.commentContentLabel.font = JSFont(14);
-        
         [self.commentContentLabel setNumberOfLines:0];
         
         
+        [self.commentView addSubview:self.commentHeaderImageView];
         
         [self.commentView addSubview:self.commentNameLabel];
         
@@ -194,6 +200,8 @@
         
         
         
+        
+        
 //        [self.creatTimeLabel setBackgroundColor:[UIColor blackColor]];
         
         self.headerImage.layer.cornerRadius = 20;
@@ -228,19 +236,7 @@
             [self.anserLabel setHidden:YES];
         }
         
-        /**
-         *  给评论模块赋值
-         */
-//        [self.commentView setBackgroundColor:[UIColor yellowColor]];
-//        
-//        [self.commentNameLabel setBackgroundColor:[UIColor redColor]];
-//        
-//        [self.commentCreatTimeLabel setBackgroundColor:[UIColor greenColor]];
-//        
-//        [self.commentContentLabel setBackgroundColor:[UIColor orangeColor]];
-//        
-//        
-//        [self.anserLabel setBackgroundColor:[UIColor blueColor]];
+    
         
         
         /**
@@ -252,8 +248,19 @@
 
         [self.commentCreatTimeLabel setFrame:answermodel.commentCreattimeRect];
         
+        [self.commentHeaderImageView setFrame:answermodel.commentHeaderImageRect];
+        
         [self.commentContentLabel setFont:commentContentFont];
         
+        self.commentHeaderImageView.layer.cornerRadius = self.commentHeaderImageView.width * .5;
+        
+        self.commentHeaderImageView.layer.masksToBounds = YES;
+        
+        NSString *imageStr = answermodel.commentHeaderImageSStr;
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@%@",basicUrlStr,imageStr];
+        
+        [self.commentHeaderImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
         self.commentNameLabel.text = answermodel.commentLoginName;
         
         self.commentContentLabel.text = answermodel.commentContent;

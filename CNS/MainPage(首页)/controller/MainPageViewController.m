@@ -47,11 +47,7 @@
     self.tabBarController.tabBar.hidden = NO;
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadInfo)];
-    
-    
     JSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES).lastObject);
-
-    
 }
 
 

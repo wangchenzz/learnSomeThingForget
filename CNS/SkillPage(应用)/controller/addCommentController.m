@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
     
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         
-        dic[@"loginName"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"loginName"];
+        dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginName"];
         
         dic[@"token"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
         
@@ -153,14 +153,13 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
                 [MBProgressHUD showError:@"发送失败"];
             }
         }];
-        
-    
     }
 }
 
 
 -(void)dealloc{
     JSLog(@"addCommentController _ dealloc");
+    
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }

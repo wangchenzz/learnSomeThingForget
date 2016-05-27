@@ -8,91 +8,336 @@
 
 #import "profileViewController.h"
 
-@interface profileViewController ()
+#import "settingViewController.h"
 
+@interface profileViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) UIView *backView;
+@property (nonatomic, strong) UIColor *backColor;
+@property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, assign) CGFloat contentImageBj;
+@property (nonatomic, strong) UIView *headerContentView;
+@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIVisualEffectView *visualView;
+@property (nonatomic, strong) UIImageView *icon;
+@property (nonatomic, strong) UILabel *label;
+
+@property (nonatomic, strong) UILabel *anotherLabel;
+@property (nonatomic, assign) CGFloat scale;
+
+@property (nonatomic, retain) NSMutableArray *ary;
 @end
 
 @implementation profileViewController
-
 - (void)viewDidLoad {
+    
+    
+    self.ary = [NSMutableArray array];
+    
     [super viewDidLoad];
+    self.headerHeight = 300;
+    [self.view addSubview:self.tableView];
+    [self setUpHeader];
+}
+
+
+-(void)setUpHeader{
+    //header
+    CGRect bounds = CGRectMake(0, 0, self.view.width, self.headerHeight);
+    UIView *contentView = [[UIView alloc] initWithFrame:bounds];
+    contentView.backgroundColor = [UIColor whiteColor];
+    //背景
+    UIImageView *headerImageView = [[UIImageView alloc] init];
+    headerImageView.bounds = bounds;
+    headerImageView.height = contentView.height * .44f;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.contentImageBj = contentView.height  - headerImageView.height;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    headerImageView.x = contentView.x;
     
-    // Configure the cell...
+    headerImageView.y = contentView.y;
+    
+    
+    //    [headerImageView setContentMode:UIViewContentModeScaleAspectFit];
+    contentView.layer.masksToBounds = YES;
+    
+    /**
+     *  添加模糊试图;
+     */
+    
+    
+    UIVisualEffectView *backVisual = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    //将模糊视图的大小等同于自身
+    backVisual.frame = headerImageView.bounds;
+    //设置模糊视图的透明度
+    backVisual.alpha = 0.98;
+    
+    [headerImageView addSubview:backVisual];
+    
+//    [headerImageView sendSubviewToBack:backVisual];
+    
+    self.visualView = backVisual;
+    
+    
+    
+    
+    self.headerImageView = headerImageView;
+    
+    self.headerContentView = contentView;
+    
+    [self.headerContentView addSubview:self.headerImageView];
+    self.headerContentView.layer.masksToBounds = YES;
+    
+    //信息内容
+    
+    UIImageView *icon = [[UIImageView alloc] init];
+    
+    icon.width = icon.height = 100;
+    
+    icon.centerX = self.view.centerX;
+    
+    icon.centerY = CGRectGetMaxY(self.headerImageView.frame);
+    
+    
+    icon.backgroundColor = [UIColor clearColor];
+    
+    
+    NSString *headerImageStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"img"];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",basicUrlStr,headerImageStr];
+    
+    [icon sd_setImageWithURL:[NSURL URLWithString:urlStr]];
+    
+    
+    [headerImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
+    
+    
+    
+    icon.layer.cornerRadius = 100/2.0f;
+    icon.layer.masksToBounds = YES;
+    icon.layer.borderWidth = 1.0f;
+    icon.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.headerContentView addSubview:icon];
+    self.icon = icon;
+    
+    UILabel *label = [[UILabel alloc] init];
+    
+    label.height = 50;
+    
+    label.width = self.view.width;
+    
+    label.centerX = self.view.centerX;
+    
+    label.centerY = CGRectGetMaxY(self.icon.frame) + 25;
+    
+    label.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
+    label.textColor = [UIColor grayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont boldSystemFontOfSize:17];
+    label.numberOfLines = 0;
+    self.label = label;
+    
+    
+    UILabel *another = [[UILabel alloc] init];
+    
+    another.height = 50;
+    
+    another.width = self.view.width;
+    
+    another.centerX = self.view.centerX;
+    
+    another.centerY = CGRectGetMaxY(self.label.frame) + 15;
+    
+    another.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"mobile"];
+    another.textColor = [UIColor grayColor];
+    another.textAlignment = NSTextAlignmentCenter;
+    another.font = [UIFont boldSystemFontOfSize:15];
+    another.numberOfLines = 0;
+    self.anotherLabel = another;
+    
+    
+    [self.headerContentView addSubview:self.anotherLabel];
+    
+    [self.headerContentView addSubview:self.label];
+    
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:bounds];
+    [headerView addSubview:self.headerContentView];
+    self.tableView.tableHeaderView = headerView;;
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat offset_Y = scrollView.contentOffset.y;
+    
+    CGFloat alpha = (offset_Y + 40)/300.0f;
+    UIColor *color = [UIColor colorWithRed:170/255.0 green:60/255.0 blue:99/255.0 alpha:alpha];
+    UIImage *image = [UIImage imageWithBgColor:color];
+    
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    //去掉底部线条
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
+    
+    /**
+     *  上面用来 完成导航条透明效果;
+     */
+    if (offset_Y < -64) {
+        
+        NSLog(@"%f",offset_Y);
+        
+        //放大比例
+        CGFloat add_topHeight = -(offset_Y+CGRectGetMaxY(JSNavigationBounds));
+        self.scale = (self.headerHeight+add_topHeight)/self.headerHeight;
+        //改变 frame
+        CGRect contentView_frame = CGRectMake(0, -add_topHeight, self.view.width, self.headerHeight+add_topHeight);
+        self.headerContentView.frame = contentView_frame;
+        CGRect imageView_frame = CGRectMake(-(self.view.width*self.scale-self.view.width)/2.0f,
+                                            0,
+                                            self.view.width*self.scale,
+                                            self.headerContentView.height-self.contentImageBj);
+        self.headerImageView.frame = imageView_frame;
+        
+        self.icon.centerY = CGRectGetMaxY(self.headerImageView.frame);
+        
+        self.label.centerY = CGRectGetMaxY(self.icon.frame) + 25;
+        
+        self.anotherLabel.centerY = CGRectGetMaxY(self.label.frame) + 15;
+        
+        self.visualView.frame = self.headerImageView.bounds;
+    }
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.3];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UIImageView *imageview = [[UIImageView alloc] init];
+        
+        imageview.width = imageview.height = 20;
+        
+        imageview.x = 10;
+        
+        imageview.y = 15;
+        
+        [cell.contentView addSubview:imageview];
+        
+        UILabel *contentLabel =[[UILabel alloc] init];
+        
+        contentLabel.height = 35;
+        contentLabel.width = self.view.width * .7;
+        contentLabel.x= CGRectGetMaxX(imageview.frame) + 12;
+        contentLabel.centerY = imageview.centerY;
+        contentLabel.font = JSFont(15);
+        contentLabel.textColor = [UIColor whiteColor];
+        contentLabel.textAlignment = NSTextAlignmentLeft;
+        
+        [cell.contentView addSubview:contentLabel];
+        
+        /**
+         *  右侧图标
+         */
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        imageview.tag = 1;
+        contentLabel.tag = 2;
+    }
+    
     
     return cell;
+    
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIImageView *im = [cell viewWithTag:1];
+    UILabel *la =[cell viewWithTag:2];
+    
+    switch (indexPath.row) {
+        case 0:
+            im.image = [UIImage imageNamed:@"say"];
+            la.text = @"我的帖子";
+            break;
+        case 1:
+            im.image = [UIImage imageNamed:@"tiezi"];
+            la.text = @"我的评论";
+            break;
+        case 2:
+            im.image = [UIImage imageNamed:@"setting"];
+            la.text = @"设置";
+            break;
+        default:
+            break;
+    }
+
+    
+    
+    
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 50;
+    
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(UITableView *)tableView{
+    if (_tableView == nil) {
+        
+        CGRect tableView_frame = CGRectMake(0, -64, self.view.width, self.view.height+CGRectGetMaxY(JSNavigationBounds));
+        _tableView = [[UITableView alloc] initWithFrame:tableView_frame style:UITableViewStylePlain];
+        
+        _tableView.delegate = self;
+        
+        _tableView.dataSource = self;
+        
+        UIImageView *backrounView = [[UIImageView alloc] init];
+        
+        [backrounView setFrame:CGRectMake(0, 0, self.view.width, self.tableView.height)];
+        
+        backrounView.image = [UIImage imageNamed:@"底色"];
+        
+        [_tableView setValue:backrounView forKeyPath:@"backgroundView"];
+        
+    }
+    
+    return _tableView;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    if (indexPath.row == 2) {
+        
+        settingViewController *svc = [[settingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        svc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:svc animated:YES];
+        
+    }
+    
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

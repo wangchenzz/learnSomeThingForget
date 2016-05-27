@@ -10,7 +10,7 @@
 
 @interface JSComentModel : NSObject
 
-#define titleCommentFont JSFont(18)
+#define titleCommentFont JSFont(16)
 
 #define timeFont JSFont(14)
 

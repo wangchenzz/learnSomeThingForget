@@ -18,4 +18,6 @@
 
 +(detailInfoCell*)cellForTableview:(UITableView*)tableview;
 
+
+
 @end

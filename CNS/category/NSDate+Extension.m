@@ -31,18 +31,18 @@
 
 +(NSDate *)JSDateFromString:(NSString*)string{
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-    NSTimeZone *timeZone = [NSTimeZone localTimeZone];
-    [inputFormatter setTimeZone:timeZone];
+//    NSTimeZone *timeZone = [NSTimeZone localTimeZone];
+//    [inputFormatter setTimeZone:timeZone];
     
     [inputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
     NSDate* inputDate = [inputFormatter dateFromString:string];
+//    
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    NSInteger interval = [zone secondsFromGMTForDate: inputDate];
+//    NSDate *localeDate = [inputDate  dateByAddingTimeInterval: interval];
     
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: inputDate];
-    NSDate *localeDate = [inputDate  dateByAddingTimeInterval: interval];
-    
-    return localeDate;
+    return inputDate;
 }
 
 

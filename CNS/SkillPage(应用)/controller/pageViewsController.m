@@ -71,6 +71,8 @@
     self.pvc = pageViewController;
     
     [self.view addSubview:self.headerView];
+    
+    
 }
 
 -(void)creatController{
