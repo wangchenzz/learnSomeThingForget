@@ -49,10 +49,11 @@
     
     self.impModel.basicModel = self.basicModel;
     
+    self.title = @"帖子详情";
+    
     [self setUpTableView];
     
     [self setUpBBSInfo];
-    
     
     [self setComentButtonUp];
     
@@ -93,6 +94,7 @@
 
 -(void)setUpBBSInfo{
 
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"loginName"] = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginName"];
     
@@ -109,7 +111,7 @@
             return ;
         }
         
-        NSLog(@"%@",returnObject);
+        self.answerArray = [@[] mutableCopy];
         
         NSArray *answers = returnObject[@"list"];
         
@@ -275,7 +277,7 @@
             
             b = nil;
             
-            NSLog(@"%@",v);
+//            NSLog(@"%@",v);
             
             
             _isAdding = NO;
@@ -360,6 +362,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0) {
         return;
@@ -387,25 +390,24 @@
     static BOOL isHidden;
     
     if (scrollView.contentOffset.y > 10&&!isAnimation&&!isHidden) {
-        
-        
-        NSLog(@"1");
-        
         isAnimation = YES;
         [UIView animateWithDuration:0.5 animations:^{
             self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, -CGRectGetMaxY(JSNavigationBounds));
             self.navigationController.navigationBar.alpha = 0.5;
+
+//            [self.navigationController setNavigationBarHidden:YES animated:YES];
         } completion:^(BOOL finished) {
             isAnimation = NO;
             isHidden = YES;
         }];
     }else if(scrollView.contentOffset.y < 10&&!isAnimation&&isHidden){
-        NSLog(@"2");
         isAnimation = YES;
         [UIView animateWithDuration:0.5 animations:^{
             self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
 
             self.navigationController.navigationBar.alpha = 1;
+            
+//            [self.navigationController setNavigationBarHidden:NO animated:YES];
         } completion:^(BOOL finished) {
             isAnimation = NO;
             isHidden = NO;
@@ -418,26 +420,26 @@
 
 -(void)addCommentController:(addCommentController *)comment didSendComment:(NSMutableDictionary *)dic{
 
-    answerModel *model = [[answerModel alloc] init];
+//    answerModel *model = [[answerModel alloc] init];
+//    
+//    model.commentContent = dic[@"content"];
+//    
+//    model.commentLoginName = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
+//    
+//    model.commentCreattime = @"刚刚";
+//    
+//    model.commentHeaderImageSStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"img"];
+//    
+//    model.answerLoginName = (NSString *)[NSNull null];
+//    
+//    
+//
+//    [model getFrame];
+//    
+//    [self.answerArray insertObject:model atIndex:0];
     
-    model.commentContent = dic[@"content"];
-    
-    model.commentLoginName = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
-    
-    model.commentCreattime = @"刚刚";
-    
-    model.commentHeaderImageSStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"img"];
-    
-    model.answerLoginName = (NSString *)[NSNull null];
-    
-    
+    [self setUpBBSInfo];
 
-    [model getFrame];
-    
-    [self.answerArray insertObject:model atIndex:0];
-    
-
-    [self.tableView reloadData];
     
 }
 

@@ -109,7 +109,7 @@
     
     if (!cell) {
         cell = [[commentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
     

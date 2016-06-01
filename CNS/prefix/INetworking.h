@@ -40,6 +40,9 @@
 
 #define addCard @"http://www.yueqiao.org/SSM/card/addCard"
       //
+
+#define getPersonBBs @"http://www.yueqiao.org/SSM/card/getCardByLoginName"
+
 @property (nonatomic,copy) NSString *ipstr;
 
 

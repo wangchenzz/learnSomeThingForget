@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
             
             
             }
-            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:nil];
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
             self.JSRefreshState = JSRefreshStateNormal;
         }
     }];

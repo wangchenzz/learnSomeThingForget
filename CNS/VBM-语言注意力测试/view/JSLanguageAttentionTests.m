@@ -27,6 +27,7 @@
  */
 @property (nonatomic,weak) UILabel *showWordsLabel;
 
+
 @property (nonatomic,weak) UILabel *tipsLabel;
 
 /**
@@ -59,9 +60,6 @@
 }
 
 //越是要无拘无束的，便越是要用万钧重压，越是年少无知的，便越是要让他痛苦害怕。
-
-
-
 
 -(void)setUpModelWithArray:(NSArray *)array withDifficult:(NSInteger)cultNum{
     JSLanguageAttentionModel *model = [[JSLanguageAttentionModel alloc] init];

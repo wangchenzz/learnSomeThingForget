@@ -53,17 +53,10 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    if (!_isLoading) {
-        [self.tableView.mj_header beginRefreshing];
-    }
-    
     if (_dataSourceModelArray.count == 0&&!_isLoading) {
         [self loadBBSInfo];
     }
-
 }
-
 
 -(void)setUpReFresh{
 
@@ -81,7 +74,6 @@
     // 设置颜色
     header.stateLabel.textColor = [UIColor whiteColor];
     self.tableView.mj_header = header;
-
 }
 
 
@@ -164,9 +156,8 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    BBSInfoListCell *cel = (BBSInfoListCell *)cell;
     
-    NSLog(@"%ld",indexPath.row);
+    BBSInfoListCell *cel = (BBSInfoListCell *)cell;
     
     cel.model = self.dataSourceModelArray[indexPath.row];
 
@@ -174,12 +165,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     DetailBBSController *dc = [[DetailBBSController alloc] init];
     
     dc.basicModel = self.dataSourceModelArray[indexPath.row];
     
     dc.hidesBottomBarWhenPushed = YES;
-
     
     [self.navi pushViewController:dc animated:YES];
     

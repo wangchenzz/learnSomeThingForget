@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
     self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
     
     self.navigationController.navigationBar.alpha = 1;
+
+//    self.navigationController.navigationBar.hidden = NO;
     
     [self setUpBackColor];
     
@@ -51,7 +53,7 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
 -(void)setUpBackColor{
     UIImageView *backrounView = [[UIImageView alloc] init];
     
-    [backrounView setFrame:CGRectMake(0, CGRectGetMaxY(JSNavigationBounds), self.view.width, self.view.height-CGRectGetMaxY(JSNavigationBounds))];
+    [backrounView setFrame:CGRectMake(0, 0, self.view.width, self.view.height+CGRectGetMaxY(JSNavigationBounds))];
     
     backrounView.image = [UIImage imageNamed:@"底色"];
     

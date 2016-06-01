@@ -146,7 +146,7 @@
     
     if (!cell) {
         cell = [[newsDtailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

@@ -167,7 +167,7 @@
     detailInfoCell *cell = [tableview dequeueReusableCellWithIdentifier:identif];
     if (!cell) {
         cell = [[detailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     return cell;

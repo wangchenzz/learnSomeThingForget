@@ -64,7 +64,7 @@
     
     if (!cell) {
         cell = [[ModuleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
     

@@ -103,6 +103,13 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSLog(@"viewDidAppearviewDidAppearviewDidAppearviewDidAppearviewDidAppearviewDidAppear");
+}
+
+
 #pragma mark - animationScrollDelegate
 
 -(void)animationScroll:(animationScroll *)scroll didClickInIndex:(NSInteger)index{
@@ -188,6 +195,9 @@
  */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     JSNewsModel *currentModel = self.newsInfoArray[indexPath.row];
     
     newsDetailController *newVC = [[newsDetailController alloc] init];

@@ -125,12 +125,12 @@
     [beginButton addTarget:self action:@selector(clickIn) forControlEvents:UIControlEventTouchUpInside];
     
     self.beginButton = beginButton;
-
+    
     self.testsList = [[JSTestsList alloc] init];
     
-//    self.JSTestCurrentState = JSTestCurrentContinuousPerformanceTests;
+    //    self.JSTestCurrentState = JSTestCurrentContinuousPerformanceTests;
     
-
+    
 }
 
 -(instancetype)initWithIsModule:(BOOL)mo andWithState:(JSTestCurrentState )state andWithArray:(NSArray *)array andWithdifcultLevel:(NSInteger)level{
@@ -189,7 +189,7 @@
                     
                     
                     [self.titleLabel showAnimation:3 completion:nil];
-              
+                    
                     
                     self.messageLabel = [[animationFlashLabel alloc] init];
                     
@@ -218,7 +218,7 @@
                     
                     
                     [self.endLabel showAnimation:3 completion:nil];
-
+                    
                     
                     
                     
@@ -265,7 +265,7 @@
                             self.titleLabel.willShowText = title;
                             self.messageLabel.willShowText = message;
                             self.endLabel.willShowText = end;
-
+                            
                         }
                             break;
                             
@@ -309,7 +309,7 @@
                             self.titleLabel.willShowText = title;
                             self.messageLabel.willShowText = message;
                             self.endLabel.willShowText = end;
-
+                            
                         }
                             break;
                             
@@ -329,7 +329,7 @@
                             
                         case JSTestCurrentContinuousPerformanceTests:
                         {
-
+                            
                             /**
                              *  7
                              */
@@ -339,7 +339,7 @@
                             self.titleLabel.willShowText = title;
                             self.messageLabel.willShowText = message;
                             self.endLabel.willShowText = end;
-
+                            
                         }
                             break;
                             
@@ -350,7 +350,7 @@
                         default:
                             break;
                     }
-
+                    
                     
                     
                     
@@ -366,7 +366,7 @@
                         
                         [self.view addGestureRecognizer:self.tapContinue];
                     }];
-                                }];
+                }];
             }];
         }];
     }];
@@ -425,11 +425,11 @@
     switch (self.JSTestCurrentState) {
         case JSTestCurrentLanguageShow:
         {
-   
+            
             
             [self.languageTest show];
             
-           
+            
         }
             break;
         case JSTestCurrentLanguageImmediate:
@@ -439,14 +439,14 @@
             break;
         case JSTestCurrentVisualShow:
         {
-
+            
             
             [self.visualTest show];
             
             
         }
             break;
-            case JSTestCurrentVisualImmediate:
+        case JSTestCurrentVisualImmediate:
         {
             
             [self.visualTest showTests];
@@ -845,7 +845,7 @@
 }
 
 -(void)StroopTestsDidFinsihInContrastTest:(StroopTests *)test{
-
+    
     
     [self.stroopTest removeFromSuperview];
     
@@ -891,7 +891,7 @@
         /**
          *  这里是模块测试完结的地方 -----------------------------------------------------------------------------
          */
-         [self endModulTest];
+        [self endModulTest];
         return;
     }
     
@@ -921,7 +921,7 @@
         /**
          *  这里是模块测试完结的地方 -----------------------------------------------------------------------------
          */
-         [self endModulTest];
+        [self endModulTest];
         return;
     }
     
@@ -969,7 +969,7 @@
             /**
              *  2
              */
-           model.testTitle = @"图像注意测验";
+            model.testTitle = @"图像注意测验";
             NSString *cwc = [NSString stringWithFormat:@"%ld",_testsList.VBMimmediateRightReaction];
             NSString *VIMcwc = [NSString stringWithFormat:@"%ld",_testsList.VBMimmediateWrongReaction];
             
@@ -986,7 +986,7 @@
             /**
              *  3
              */
-           model.testTitle = @"手指敲击测试";
+            model.testTitle = @"手指敲击测试";
             
             NSString *leftCount = [NSString stringWithFormat:@"%ld",(_testsList.left1ClickCount + _testsList.left2ClickCount+_testsList.left3ClickCount)/3];
             NSString *rightCount = [NSString stringWithFormat:@"%ld",(_testsList.right1ClickCount + _testsList.right2ClickCount+_testsList.right3ClickCount)/3];
@@ -1004,7 +1004,7 @@
             /**
              *  4
              */
-          model.testTitle = @"符号数字编码";
+            model.testTitle = @"符号数字编码";
             NSString *SDCr = [NSString stringWithFormat:@"%ld",_testsList.SDCRightSelect];
             NSString *SDCw = [NSString stringWithFormat:@"%ld",_testsList.SDCWrongSelect];
             model.valueArray = @[SDCr,SDCw];
@@ -1055,7 +1055,7 @@
             /**
              *  6
              */
-           model.testTitle = @"注意力转移测试";
+            model.testTitle = @"注意力转移测试";
             
             NSString *trueCount = [NSString stringWithFormat:@"%ld",_testsList.trueCount];
             
@@ -1063,11 +1063,11 @@
             NSString *trueTime ;
             
             if (_testsList.trueCount == 0) {
-            trueTime = @"0";
+                trueTime = @"0";
             }else{
-            
-            
-            trueTime = [NSString stringWithFormat:@"%.3f s",_testsList.trueReatctiionTime/_testsList.trueCount];
+                
+                
+                trueTime = [NSString stringWithFormat:@"%.3f s",_testsList.trueReatctiionTime/_testsList.trueCount];
             }
             model.valueArray = @[trueCount,wrongCount,trueTime];
             
@@ -1085,7 +1085,7 @@
             /**
              *  7
              */
-         model.testTitle = @"持续性操作测验";
+            model.testTitle = @"持续性操作测验";
             
             NSString *CPTTrueCount = [NSString stringWithFormat:@"%ld",_testsList.CPTTrueCount];
             
@@ -1105,9 +1105,9 @@
              */
             NSString *CPTTime;
             if (_testsList.CPTTrueCount == 0) {
-            CPTTime = @"";
+                CPTTime = @"";
             }else{
-            CPTTime= [NSString stringWithFormat:@"%.3f s",_testsList.CPTTime/_testsList.CPTTrueCount];
+                CPTTime= [NSString stringWithFormat:@"%.3f s",_testsList.CPTTime/_testsList.CPTTrueCount];
             }
             
             model.valueArray = @[CPTTrueCount,CPTMissCount,CPTWrongCount,CPTTime];

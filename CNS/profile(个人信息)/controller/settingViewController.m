@@ -13,7 +13,6 @@
 
 @interface settingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-//@property (nonatomic,strong) UITableView *tableView;
 
 @end
 
@@ -25,18 +24,42 @@
     
     [self setUpTablevewBackColor];
     
-//    UIColor *color = [UIColor colorWithRed:170/255.0 green:60/255.0 blue:99/255.0 alpha:1];
-//    UIImage *image = [UIImage imageWithBgColor:color];
-//    
-//    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-
-    
+    self.title =  @"设置";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
+
+
+// 计算沙盒内文件的大小
+- (CGFloat)sizeWithFile:(NSString *)filePath
+{
+    CGFloat totalSize = 0;
+    NSFileManager *mgr = [NSFileManager defaultManager];
+    BOOL isDirectory;
+    BOOL isExists = [mgr fileExistsAtPath:filePath isDirectory:&isDirectory];
+    if (isExists) {
+        if (isDirectory) {
+            NSArray *subPaths =  [mgr subpathsAtPath:filePath];
+            for (NSString *subPath in subPaths) {
+                NSString *fullPath = [filePath stringByAppendingPathComponent:subPath];
+                BOOL isDirectory;
+                [mgr fileExistsAtPath:fullPath isDirectory:&isDirectory];
+                if (!isDirectory) { // 计算文件尺寸
+                    NSDictionary *dict =  [mgr attributesOfItemAtPath:fullPath error:nil];
+                    totalSize += [dict[NSFileSize] floatValue];;
+                }
+            }
+        }else{
+            NSDictionary *dict =  [mgr attributesOfItemAtPath:filePath error:nil];
+            totalSize =  [dict[NSFileSize] floatValue];
+        }
+    }
+    return totalSize;
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
@@ -72,7 +95,7 @@
         
         [cell.contentView addSubview:quieLabel];
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         quieLabel.tag = 1;
     }
@@ -87,6 +110,9 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     UIAlertController *quitControl = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:@"请注意,一旦退出登录,你将无法再进行任何操作" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -108,7 +134,6 @@
     
     [quitControl addAction:action2];
     
-//    quitControl.preferredAction = action1;
     
     [self presentViewController:quitControl animated:YES completion:nil];
     
@@ -117,10 +142,16 @@
 
 -(void)ntmgtc{
 
+    /**
+     *  清空沙盒
+     */
     NSString*appDomain = [[NSBundle mainBundle]bundleIdentifier];
     
     [[NSUserDefaults standardUserDefaults]removePersistentDomainForName:appDomain];
     
+    /**
+     *  返回登录界面
+     */
     loginViewController *lc = [[loginViewController alloc] init];
     
     self.view.window.rootViewController = lc;

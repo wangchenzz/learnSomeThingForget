@@ -10,6 +10,10 @@
 
 @interface UITableViewController (Extension)
 
+/**
+ *  给 tableviewController 附上独有的背景色
+ */
+
 -(void)setUpTablevewBackColor;
 
 @end

@@ -50,13 +50,9 @@
     
     [self addJSChildViewController:t withNormalImage:@"cp1" selectImage:@"cp2" title:@"测评"];
     
-  pageViewsController *pgc = [[pageViewsController alloc] init];
+    pageViewsController *pgc = [[pageViewsController alloc] init];
 //    
     [self addJSChildViewController:pgc withNormalImage:@"lt1" selectImage:@"lt2" title:@"论坛"];
-    
-    
-  
-    
     
     profileViewController *pvc = [[profileViewController alloc] init];
     

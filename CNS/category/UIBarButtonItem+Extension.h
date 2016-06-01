@@ -10,6 +10,17 @@
 
 @interface UIBarButtonItem (Extension)
 
+/**
+ *  生成 barbuttonItem
+ *
+ *  @param title         <#title description#>
+ *  @param imageStr      <#imageStr description#>
+ *  @param targat        <#targat description#>
+ *  @param action        <#action description#>
+ *  @param controlEvents <#controlEvents description#>
+ *
+ *  @return <#return value description#>
+ */
 +(instancetype)itemWithTitle:(NSString *)title andImage:(NSString *)imageStr targat:(id)targat action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
 @end

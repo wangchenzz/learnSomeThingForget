@@ -13,11 +13,9 @@
 
 @property (nonatomic,retain) UILabel *titleTipsLabel;
 
-
 @property (nonatomic,retain) UIButton *typeButton;
 
 @property (nonatomic,assign) CGFloat kbHeight;
-
 
 @property (nonatomic,assign) NSInteger selectType;
 
@@ -72,7 +70,7 @@
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     //去掉底部线条
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-
+    
 }
 -(void)setUpRightSendBar{
     UIBarButtonItem *rightBar = [UIBarButtonItem itemWithTitle:@"发布" andImage: nil targat:self action:@selector(sendBBS:) forControlEvents:UIControlEventTouchUpInside];
@@ -81,7 +79,7 @@
 }
 
 -(void)setUpView{
-
+    
     CGFloat yBJ = 8;
     CGFloat xBJ = 13;
     CGFloat labelHeigt = 44;
@@ -167,7 +165,7 @@
         
         self.typeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 100, 0 , 0);
         
-         self.typeButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0 , 20);
+        self.typeButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0 , 20);
         
         [self.typeButton addTarget:self action:@selector(chooseTypeAnimation:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -206,7 +204,7 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideKeyBoard:) name:UIKeyboardWillHideNotification object:nil];
-
+    
     
     /**
      *  设置圆角
@@ -244,7 +242,7 @@
         
         
         
-//        button.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.3];
+        //        button.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.3];
         
         [button setBackgroundImage:[UIImage imageNamed:@"fatie"] forState:UIControlStateNormal];
         
@@ -257,9 +255,9 @@
         
         button.y = self.typeButton.y + index*(button.height + 8) + self.view.height;
         
-//        self.typeButton.x = xBJ;
-//        
-//        self.typeButton.y = yBJ + CGRectGetMaxY(self.titleFiled.frame);
+        //        self.typeButton.x = xBJ;
+        //
+        //        self.typeButton.y = yBJ + CGRectGetMaxY(self.titleFiled.frame);
         
         [button setTitle:str forState:UIControlStateNormal];
         
@@ -307,12 +305,12 @@
 -(void)chooseTypeAnimation:(UIButton *) but{
     
     [self showBeginAnimation];
-
-
+    
+    
 }
 
 -(void)chooseType:(UIButton *)but{
-
+    
     [self showEndAnimation];
     
     [self.typeButton setTitle:self.typeNameArray[but.tag] forState:UIControlStateNormal];
@@ -339,7 +337,7 @@
     [self.view insertSubview:mb belowSubview:[self.buttonArray firstObject]];
     
     [mb setTag:7];
-
+    
     for (UIButton *but in self.buttonArray) {
         
         NSInteger count = [self.buttonArray indexOfObject:but];
@@ -370,28 +368,28 @@
     _isAnimation = YES;
     
     
-        for (UIButton *but in self.buttonArray) {
+    for (UIButton *but in self.buttonArray) {
+        
+        NSInteger count = [self.buttonArray indexOfObject:but];
+        
+        [UIView animateWithDuration:1.2 delay:0+count * 0.1 usingSpringWithDamping:0.6 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             
-            NSInteger count = [self.buttonArray indexOfObject:but];
+            UIView *mb = [self.view viewWithTag:7];
+            but.transform = CGAffineTransformIdentity;
             
-            [UIView animateWithDuration:1.2 delay:0+count * 0.1 usingSpringWithDamping:0.6 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            mb.alpha = 0;
+            
+        } completion:^(BOOL finished) {
+            but.hidden = YES;
+            UIView *mb = [self.view viewWithTag:7];
+            [mb removeFromSuperview];
+            if (but == [self.buttonArray lastObject]) {
                 
-                UIView *mb = [self.view viewWithTag:7];
-                but.transform = CGAffineTransformIdentity;
-                
-                mb.alpha = 0;
-                
-            } completion:^(BOOL finished) {
-                but.hidden = YES;
-                UIView *mb = [self.view viewWithTag:7];
-                [mb removeFromSuperview];
-                if (but == [self.buttonArray lastObject]) {
-                    
-                    _isAnimation = NO;
-                }
-
-            }];
-        }
+                _isAnimation = NO;
+            }
+            
+        }];
+    }
 }
 
 
@@ -419,7 +417,7 @@
                 
             }else{
                 [MBProgressHUD showError:@"发送失败"];
-            
+                
             }
             
         }];

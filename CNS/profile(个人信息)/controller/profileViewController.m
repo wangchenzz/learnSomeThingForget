@@ -10,6 +10,10 @@
 
 #import "settingViewController.h"
 
+#import "ShowPersonalBBSViewController.h"
+
+#import "ShowBBSCommentViewController.h"
+
 @interface profileViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -27,7 +31,12 @@
 @property (nonatomic, strong) UILabel *anotherLabel;
 @property (nonatomic, assign) CGFloat scale;
 
+@property (nonatomic, retain) UIImage *oldBackNaviIm;
+
 @property (nonatomic, retain) NSMutableArray *ary;
+
+
+@property (nonatomic, assign) BOOL isPushing;
 @end
 
 @implementation profileViewController
@@ -38,8 +47,19 @@
     
     [super viewDidLoad];
     self.headerHeight = 300;
-    [self.view addSubview:self.tableView];
     [self setUpHeader];
+    
+    [self.view addSubview:self.tableView];
+    
+    [self doImportant];
+}
+-(void)doImportant{
+    
+    self.oldBackNaviIm = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    
+
+        //去掉底部线条
+        [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
 }
 
 
@@ -51,7 +71,7 @@
     //背景
     UIImageView *headerImageView = [[UIImageView alloc] init];
     headerImageView.bounds = bounds;
-    headerImageView.height = contentView.height * .44f;
+    headerImageView.height = contentView.height * .5f;
     
     self.contentImageBj = contentView.height  - headerImageView.height;
     
@@ -59,8 +79,6 @@
     
     headerImageView.y = contentView.y;
     
-    
-    //    [headerImageView setContentMode:UIViewContentModeScaleAspectFit];
     contentView.layer.masksToBounds = YES;
     
     /**
@@ -165,42 +183,55 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:bounds];
     [headerView addSubview:self.headerContentView];
+    
     self.tableView.tableHeaderView = headerView;;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
 }
 
+-(void)setNavi{
+//    UIColor *color = [UIColor colorWithRed:170/255.0 green:60/255.0 blue:99/255.0 alpha:0];
+//    UIImage *image = [UIImage imageWithBgColor:color];
+//    
+//    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    //去掉底部线条
+//    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+
+
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    if (_isPushing) {
+        return;
+    }
+
     CGFloat offset_Y = scrollView.contentOffset.y;
     
-    CGFloat alpha = (offset_Y + 40)/300.0f;
+    CGFloat alpha = (offset_Y )/300.0f;
+    
+    
     UIColor *color = [UIColor colorWithRed:170/255.0 green:60/255.0 blue:99/255.0 alpha:alpha];
     UIImage *image = [UIImage imageWithBgColor:color];
-    
+//
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    //去掉底部线条
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    
-    
+
     /**
      *  上面用来 完成导航条透明效果;
      */
-    if (offset_Y < -64) {
-        
-        NSLog(@"%f",offset_Y);
-        
+    if (offset_Y < 0) {
         //放大比例
-        CGFloat add_topHeight = -(offset_Y+CGRectGetMaxY(JSNavigationBounds));
+        CGFloat add_topHeight = -(offset_Y);
         self.scale = (self.headerHeight+add_topHeight)/self.headerHeight;
         //改变 frame
         CGRect contentView_frame = CGRectMake(0, -add_topHeight, self.view.width, self.headerHeight+add_topHeight);
+        
         self.headerContentView.frame = contentView_frame;
+        
         CGRect imageView_frame = CGRectMake(-(self.view.width*self.scale-self.view.width)/2.0f,
-                                            0,
-                                            self.view.width*self.scale,
-                                            self.headerContentView.height-self.contentImageBj);
+         0,self.view.width*self.scale,self.headerContentView.height-self.contentImageBj);
+        
         self.headerImageView.frame = imageView_frame;
         
         self.icon.centerY = CGRectGetMaxY(self.headerImageView.frame);
@@ -229,7 +260,7 @@
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.3];
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UIImageView *imageview = [[UIImageView alloc] init];
         
@@ -303,7 +334,7 @@
 -(UITableView *)tableView{
     if (_tableView == nil) {
         
-        CGRect tableView_frame = CGRectMake(0, -64, self.view.width, self.view.height+CGRectGetMaxY(JSNavigationBounds));
+        CGRect tableView_frame = CGRectMake(0, 0, self.view.width, self.view.height);
         _tableView = [[UITableView alloc] initWithFrame:tableView_frame style:UITableViewStylePlain];
         
         _tableView.delegate = self;
@@ -326,17 +357,51 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    _isPushing = YES;
+
+    
+    [self.navigationController.navigationBar setBackgroundImage:self.oldBackNaviIm forBarMetrics:UIBarMetricsDefault];
+    
+    if (indexPath.row == 1) {
+        ShowBBSCommentViewController *bbs = [[ShowBBSCommentViewController alloc] init];
+        
+        bbs.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:bbs animated:YES];
+        
+    }
+    
     
     if (indexPath.row == 2) {
+        
+    
         
         settingViewController *svc = [[settingViewController alloc] initWithStyle:UITableViewStyleGrouped];
         
         svc.hidesBottomBarWhenPushed = YES;
         
         [self.navigationController pushViewController:svc animated:YES];
-        
     }
     
+    else if (indexPath.row == 0) {
+        
+        ShowPersonalBBSViewController *spb = [[ShowPersonalBBSViewController alloc] init];
+        
+        spb.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:spb animated:YES];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    _isPushing = NO;
+    
+    [self setNavi];
 }
 
 

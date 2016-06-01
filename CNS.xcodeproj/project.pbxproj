@@ -17,6 +17,8 @@
 		040730E91C91376C00534773 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 040730E81C91376B00534773 /* Podfile.lock */; };
 		040849181CF2EE41009C2BCA /* pageViewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040849171CF2EE41009C2BCA /* pageViewsController.m */; };
 		040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040F2C4D1C99588D00C5A929 /* StroopModel.m */; };
+		04107E191CFE8016008A33D0 /* JSRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04107E181CFE8016008A33D0 /* JSRefreshTableViewController.m */; };
+		04107E2A1CFECB6A008A33D0 /* JSBBSBasicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04107E291CFECB6A008A33D0 /* JSBBSBasicVC.m */; };
 		0413BCBD1CEEA9550071A105 /* tableHeaderButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCBC1CEEA9550071A105 /* tableHeaderButtonView.m */; };
 		0413BCC01CEEED200071A105 /* JSBbsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCBF1CEEED200071A105 /* JSBbsInfoModel.m */; };
 		0413BCC31CEEF3760071A105 /* BBSInfoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */; };
@@ -31,6 +33,10 @@
 		0423B6AD1CE31AF10018E753 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423B6AC1CE31AF10018E753 /* NewsCell.m */; };
 		0425DC901CC8A63300D022E3 /* normalShowLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */; };
 		0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC921CC8C2FF00D022E3 /* showLevelCell.m */; };
+		042CE0E71CFC18F7009884A5 /* ShowPersonalBBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */; };
+		042CE0EA1CFC190B009884A5 /* ShowBBSCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */; };
+		042CE0ED1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */; };
+		042CE0F01CFC2B4B009884A5 /* searchPersonBBsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0EF1CFC2B4B009884A5 /* searchPersonBBsModel.m */; };
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
 		0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */; };
 		043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */; };
@@ -133,6 +139,10 @@
 		040849171CF2EE41009C2BCA /* pageViewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pageViewsController.m; sourceTree = "<group>"; };
 		040F2C4C1C99588D00C5A929 /* StroopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StroopModel.h; sourceTree = "<group>"; };
 		040F2C4D1C99588D00C5A929 /* StroopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StroopModel.m; sourceTree = "<group>"; };
+		04107E171CFE8016008A33D0 /* JSRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRefreshTableViewController.h; sourceTree = "<group>"; };
+		04107E181CFE8016008A33D0 /* JSRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRefreshTableViewController.m; sourceTree = "<group>"; };
+		04107E281CFECB6A008A33D0 /* JSBBSBasicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBBSBasicVC.h; sourceTree = "<group>"; };
+		04107E291CFECB6A008A33D0 /* JSBBSBasicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBBSBasicVC.m; sourceTree = "<group>"; };
 		0413BCBB1CEEA9550071A105 /* tableHeaderButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableHeaderButtonView.h; sourceTree = "<group>"; };
 		0413BCBC1CEEA9550071A105 /* tableHeaderButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tableHeaderButtonView.m; sourceTree = "<group>"; };
 		0413BCBE1CEEED200071A105 /* JSBbsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBbsInfoModel.h; sourceTree = "<group>"; };
@@ -159,6 +169,14 @@
 		0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = normalShowLevelController.m; path = ../../MainController/normalShowLevelController.m; sourceTree = "<group>"; };
 		0425DC911CC8C2FF00D022E3 /* showLevelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = showLevelCell.h; path = ../../MainController/showLevelCell.h; sourceTree = "<group>"; };
 		0425DC921CC8C2FF00D022E3 /* showLevelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = showLevelCell.m; path = ../../MainController/showLevelCell.m; sourceTree = "<group>"; };
+		042CE0E51CFC18F7009884A5 /* ShowPersonalBBSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPersonalBBSViewController.h; sourceTree = "<group>"; };
+		042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPersonalBBSViewController.m; sourceTree = "<group>"; };
+		042CE0E81CFC190B009884A5 /* ShowBBSCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBBSCommentViewController.h; sourceTree = "<group>"; };
+		042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBBSCommentViewController.m; sourceTree = "<group>"; };
+		042CE0EB1CFC1DD0009884A5 /* ShowPersonnalBBSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPersonnalBBSCell.h; sourceTree = "<group>"; };
+		042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPersonnalBBSCell.m; sourceTree = "<group>"; };
+		042CE0EE1CFC2B4B009884A5 /* searchPersonBBsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchPersonBBsModel.h; sourceTree = "<group>"; };
+		042CE0EF1CFC2B4B009884A5 /* searchPersonBBsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchPersonBBsModel.m; sourceTree = "<group>"; };
 		0438855A1C90237300E1A3E9 /* diamondsXib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = diamondsXib.xib; sourceTree = "<group>"; };
 		0438855C1C90251E00E1A3E9 /* SymbolAndDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolAndDigit.h; sourceTree = "<group>"; };
 		0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolAndDigit.m; sourceTree = "<group>"; };
@@ -382,6 +400,10 @@
 				04A70C651CEDAB6900B077D7 /* profileViewController.m */,
 				04060D891CF80C9400760301 /* settingViewController.h */,
 				04060D8A1CF80C9400760301 /* settingViewController.m */,
+				042CE0E51CFC18F7009884A5 /* ShowPersonalBBSViewController.h */,
+				042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */,
+				042CE0E81CFC190B009884A5 /* ShowBBSCommentViewController.h */,
+				042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -389,6 +411,8 @@
 		04011D5D1CCDEF5700C4F6D4 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				042CE0EE1CFC2B4B009884A5 /* searchPersonBBsModel.h */,
+				042CE0EF1CFC2B4B009884A5 /* searchPersonBBsModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -396,6 +420,8 @@
 		04011D5E1CCDEF5700C4F6D4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				042CE0EB1CFC1DD0009884A5 /* ShowPersonnalBBSCell.h */,
+				042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -510,6 +536,18 @@
 				04CE68321CEB0F4700D922A5 /* starView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		04107E161CFE7FE9008A33D0 /* BasicClass */ = {
+			isa = PBXGroup;
+			children = (
+				04107E171CFE8016008A33D0 /* JSRefreshTableViewController.h */,
+				04107E181CFE8016008A33D0 /* JSRefreshTableViewController.m */,
+				04107E281CFECB6A008A33D0 /* JSBBSBasicVC.h */,
+				04107E291CFECB6A008A33D0 /* JSBBSBasicVC.m */,
+			);
+			name = BasicClass;
+			path = MainController/BasicClass;
 			sourceTree = "<group>";
 		};
 		041FB9641C86817800F35659 /* CPT-持续注意力测试 */ = {
@@ -753,6 +791,7 @@
 				04B0FF2C1C8420180020D1A5 /* viewCategory */,
 				04B0FF061C841C720020D1A5 /* category */,
 				04B0FF251C841DC20020D1A5 /* MainController */,
+				04107E161CFE7FE9008A33D0 /* BasicClass */,
 				04011D571CCDEF5700C4F6D4 /* MainPage(首页) */,
 				04011D631CCDEF5700C4F6D4 /* TestsPage(测评) */,
 				04011D5F1CCDEF5700C4F6D4 /* SkillPage(论坛) */,
@@ -1077,6 +1116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E6C3101C89552800A92300 /* AppDelegate.m in Sources */,
+				042CE0ED1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m in Sources */,
 				04E6C3141C895DC300A92300 /* JSVisualAttentionModel.m in Sources */,
 				04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */,
 				041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */,
@@ -1103,8 +1143,10 @@
 				04B0FF3C1C8420610020D1A5 /* JSLoadLayer.m in Sources */,
 				04A5DD081C8FF85800D31DB9 /* SymbolDigitCodingTests.m in Sources */,
 				04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */,
+				04107E191CFE8016008A33D0 /* JSRefreshTableViewController.m in Sources */,
 				0423B6A31CE309510018E753 /* MBProgressHUD+MJ.m in Sources */,
 				04CE68271CEAE71A00D922A5 /* TestRoomController.m in Sources */,
+				042CE0E71CFC18F7009884A5 /* ShowPersonalBBSViewController.m in Sources */,
 				043FD7111CF5927600B48DFC /* sendBBSController.m in Sources */,
 				0485BAE41CA50B740012CECD /* ShiftingAttentionModel.m in Sources */,
 				04B0FF151C841C720020D1A5 /* NSDate+Extension.m in Sources */,
@@ -1115,6 +1157,7 @@
 				041DA7971CBF710500626349 /* JSTestsList.m in Sources */,
 				04060D8B1CF80C9400760301 /* settingViewController.m in Sources */,
 				04CE68161CEAB04300D922A5 /* buttonView.m in Sources */,
+				042CE0F01CFC2B4B009884A5 /* searchPersonBBsModel.m in Sources */,
 				0425DC901CC8A63300D022E3 /* normalShowLevelController.m in Sources */,
 				04011D6F1CCDF59200C4F6D4 /* animationScroll.m in Sources */,
 				047041F61CEC545900B37331 /* showLevelController.m in Sources */,
@@ -1131,6 +1174,7 @@
 				04CE68301CEB0B1800D922A5 /* questionTypeCell.m in Sources */,
 				0423B6AD1CE31AF10018E753 /* NewsCell.m in Sources */,
 				04E3291E1C86D60600843D08 /* JSLanguageAttentionModel.m in Sources */,
+				04107E2A1CFECB6A008A33D0 /* JSBBSBasicVC.m in Sources */,
 				04CE681E1CEAC76900D922A5 /* ModuleChooseController.m in Sources */,
 				04B0FF181C841C720020D1A5 /* UIButton+Extension.m in Sources */,
 				04B0FF161C841C720020D1A5 /* timerTool.m in Sources */,
@@ -1142,6 +1186,7 @@
 				04B0FF1A1C841C720020D1A5 /* UIView+Animated.m in Sources */,
 				04A70C631CEDAB5500B077D7 /* BBSControllerView.m in Sources */,
 				0456BBF51CE99056005A22AE /* inputCommentView.m in Sources */,
+				042CE0EA1CFC190B009884A5 /* ShowBBSCommentViewController.m in Sources */,
 				04B0FF1B1C841C720020D1A5 /* UIView+Frame.m in Sources */,
 				0413BCBD1CEEA9550071A105 /* tableHeaderButtonView.m in Sources */,
 				0423B6A71CE309510018E753 /* ZYQAssetPickerController.m in Sources */,

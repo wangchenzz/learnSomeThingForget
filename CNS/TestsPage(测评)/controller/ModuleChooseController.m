@@ -75,6 +75,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     TestRoomController *rom = [[TestRoomController alloc] initWithStyle:UITableViewStyleGrouped];
     
     rom.type = indexPath.row+1;

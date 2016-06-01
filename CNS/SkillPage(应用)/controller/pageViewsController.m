@@ -72,7 +72,6 @@
     
     [self.view addSubview:self.headerView];
     
-    
 }
 
 -(void)creatController{
@@ -96,7 +95,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
@@ -150,6 +148,11 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers{
     NSInteger index = [_vcArray indexOfObject:[pendingViewControllers firstObject]];
     _willIndex = index;
+    
+    
+    BBSControllerView *bb =self.vcArray[_willIndex];
+    
+    [bb.tableView.mj_header beginRefreshing];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
@@ -165,7 +168,6 @@
         [self.headerView setCurrentIndex:self.willIndex];
         
         
-        
     }
 }
 
@@ -173,13 +175,16 @@
 -(void)tableHeaderButtonView:(tableHeaderButtonView *)view didSelecte:(NSInteger)index{
     if (index > view.currentIndex) {
         [self.pvc setViewControllers:@[self.vcArray[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        
     }else{
         [self.pvc setViewControllers:@[self.vcArray[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     }
     self.title = @[@"最新帖子",@"注意力",@"社交能力",@"记忆力",@"阿斯伯格",@"反应能力",@"睡眠",@"冥想"][index];
     
+    BBSControllerView *bb =self.vcArray[index];
+    
+    [bb.tableView.mj_header beginRefreshing];
 }
-
 
 
 @end
