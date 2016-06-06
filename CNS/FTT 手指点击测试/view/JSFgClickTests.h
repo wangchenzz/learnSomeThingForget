@@ -62,7 +62,7 @@
 
 @end
 
-@interface JSFgClickTests : UIView
+@interface JSFgClickTests : testBaseView
 
 @property (nonatomic,weak) id <JSFgClickTestsDelegate> delegate;
 

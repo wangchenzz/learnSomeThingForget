@@ -77,12 +77,12 @@
         }
         
         
-        self.dataSourceArray = [@[] mutableCopy];
+        self.dataSourceArray  = [@[] mutableCopy];
         
         NSArray *listArray = returnObject[@"list"];
         for (NSDictionary *dic in listArray) {
             
-                        NSLog(@"%@",dic);
+//                        NSLog(@"%@",dic);
             JSBbsInfoModel *model = [[JSBbsInfoModel alloc] init];
             searchPersonBBsModel *railModel = [[searchPersonBBsModel alloc] init];
             

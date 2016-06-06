@@ -30,7 +30,7 @@
     /**
      *  在这里传输模块次
      *
-     *  @return <#return value description#>
+     *  @return
      */
     
     self.tableView.separatorStyle = NO;
@@ -43,6 +43,30 @@
     self.modelArray = self.normalModelArray;
     }
     [self decide];
+    
+    [self returnPage];
+}
+
+-(void)returnPage{
+    if (_isUpload) {
+        UIButton *but = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [but setTitle:@"< 返回" forState: UIControlStateNormal];
+        
+        [but setFrame:CGRectMake(0, 0, 64, 44)];
+ 
+        
+        
+        [but addTarget:self action:@selector(popTo) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:but];
+        
+        [self.navigationItem setLeftBarButtonItem:item];
+    }
+}
+
+-(void)popTo{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)decide{

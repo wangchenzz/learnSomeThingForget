@@ -35,6 +35,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //tabbar 主题；
+    
+    //设置tabbar item 的颜色；
+    self.tabBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
+    
+    
+    //设置普通状态下的tabbaritem字体；
+    //tintcolor 即是字体选中颜色；未设置情况下。
+    self.tabBar.tintColor = [UIColor orangeColor];
     
 //    
 //    loginViewController *view = [[loginViewController alloc] init];
@@ -69,16 +78,6 @@
 -(void)addJSChildViewController:(UIViewController *)childController withNormalImage:(NSString *)nname selectImage:(NSString *)sname title:(NSString *)title{
     
     childController.title = title;
-    
-    //tabbar 主题；
-    
-    //设置tabbar item 的颜色；
-    self.tabBar.barTintColor = [UIColor colorWithWhite:1 alpha:1];
-
-    
-    //设置普通状态下的tabbaritem字体；
-           //tintcolor 即是字体选中颜色；未设置情况下。
-   self.tabBar.tintColor = [UIColor orangeColor];
     
     NSMutableDictionary *normalAttri = [NSMutableDictionary dictionary];
     

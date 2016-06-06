@@ -16,10 +16,14 @@
 
 @property (nonatomic,retain) UILabel *tipsLabel;
 
+@property (nonatomic,retain) UIImageView *blackImage;
+
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipRight;
 
 
 @property (nonatomic,retain) UISwipeGestureRecognizer *swipLeft;
+
+@property (nonatomic,retain) NSTimer *actionTimer;
 
 @end
 
@@ -38,6 +42,23 @@
         self.swipRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipImage:)];
         self.swipLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipImage:)];
     
+        
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, self.width, 40)];
+        
+        UIImageView *blackView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.height - 40, self.width, 40)];
+
+        self.tipsLabel = titleLabel;
+        
+        self.blackImage = blackView;
+        
+        [blackView addSubview:titleLabel];
+        
+        
+        blackView.image = [UIImage imageNamed:@"black"];
+        
+        [self addSubview:blackView];
+        
         self.swipRight.direction = UISwipeGestureRecognizerDirectionRight;
         
         
@@ -53,34 +74,37 @@
     return self;
 }
 
+-(void)layoutSubviews{
+    self.tipsLabel.frame = CGRectMake(30, 0, self.width, 40);
+    
+    self.blackImage.frame = CGRectMake(0, self.height - 40, self.width, 40);
+
+}
+
 +(instancetype)getScroll{
     return [[self alloc]init];
 }
 
 -(void)showAnimation{
+    [self sd_setImageWithURL:[NSURL URLWithString:[self.delegate animationScroll:self imageForIndex:self.currentIndex]]];
+    
+    
+    [self.tipsLabel setTextColor:[UIColor whiteColor]];
+    
+    self.tipsLabel.text = [self.delegate animationScroll:self textForIndex:self.currentIndex];
+    
+    if (_actionTimer) {
+        
+    }else{
+        [self actionTimer];
+    }
+}
 
-    self.image = [self.delegate animationScroll:self imageForIndex:self.currentIndex];
-    
-    UIImageView *blackView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.height - 40, self.width, 40)];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, self.width, 40)];
-    
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    
-    titleLabel.text = [self.delegate animationScroll:self textForIndex:self.currentIndex];
-    
-    [blackView addSubview:titleLabel];
-    
-    self.tipsLabel = titleLabel;
-    
-    blackView.image = [UIImage imageNamed:@"black"];
-    
-    [self addSubview:blackView];
-    
-    NSTimer *actionTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(animationOn) userInfo:nil repeats:YES];
-
-    [actionTimer fire];
-    [[NSRunLoop currentRunLoop]addTimer:actionTimer forMode:NSRunLoopCommonModes];
+-(NSTimer *)actionTimer{
+    if (!_actionTimer) {
+        _actionTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(animationOn) userInfo:nil repeats:YES];
+    }
+    return _actionTimer;
 }
 
 -(NSInteger)numberOfCount{
@@ -103,7 +127,7 @@
         self.currentIndex = 0;
     }
     
-    self.image = [self.delegate animationScroll:self imageForIndex:self.currentIndex];
+    [self sd_setImageWithURL:[NSURL URLWithString:[self.delegate animationScroll:self imageForIndex:self.currentIndex]]];
     self.tipsLabel.text = [self.delegate animationScroll:self textForIndex:self.currentIndex];
 }
 

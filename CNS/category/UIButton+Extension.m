@@ -8,7 +8,31 @@
 
 #import "UIButton+Extension.h"
 
+#import <objc/runtime.h>
+
+
+static void *buttonKey = &buttonKey;
+
 @implementation UIButton (Extension)
+
+
+-(void)addBlockToButton:(UIControlEvents)event withBlock:(addBlock)block{
+    
+    objc_setAssociatedObject(self, &buttonKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+    [self addTarget:self action:@selector(blockMethd:) forControlEvents:event];
+    
+}
+
+-(void)blockMethd:(UIButton *)but{
+
+    addBlock add = objc_getAssociatedObject(self, &buttonKey);
+    
+    if (add) {
+        add();
+    }
+}
+
 
 /**
  *  代码简化

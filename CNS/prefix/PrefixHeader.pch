@@ -36,11 +36,21 @@
 #define JSFunc
 #endif
 
+
+
+#import "testBaseView.h"
+
+#import "NSString+Bounding.h"
+
+#import "JSModelCell.h"
+
 #import "UIImageView+WebCache.h"
 
 #import "AFNetworking.h"
 
 #import "MJRefresh.h"
+
+#import "JSUserManager.h"
 
 #import "UIButton+Extension.h"
 

@@ -34,7 +34,7 @@
         
         _backImage.image = [UIImage imageNamed:@"black"];
         
-        [_mainImage setFrame:CGRectMake(8, 0, JSFrame.size.width - 16, 108)];
+        [_mainImage setFrame:CGRectMake(8, 0, JSFrame.size.width - 16, (JSFrame.size.width - 16)/3)];
         
         
         [_backImage setFrame:CGRectMake(0,_mainImage.height -30, _mainImage.width, 30)];

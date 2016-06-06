@@ -262,7 +262,7 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
                 
             [self.commentModelArray insertObject:model atIndex:0];
             
-            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:nil];
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 
             JSLog(@"%@",[NSThread currentThread]);
             

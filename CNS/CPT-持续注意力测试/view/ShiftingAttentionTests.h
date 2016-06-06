@@ -20,7 +20,7 @@
 
 @end
 
-@interface ShiftingAttentionTests : UIView
+@interface ShiftingAttentionTests : testBaseView
 
 @property (nonatomic,weak) id <ShiftingAttentionTestsDelegate> delegate;
 +(instancetype)test;

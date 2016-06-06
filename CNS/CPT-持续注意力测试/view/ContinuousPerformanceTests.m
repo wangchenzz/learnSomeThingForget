@@ -94,6 +94,8 @@
      *  4.出现的次数;
      *  5.结束回调;
      */
+    
+    self.setAnimationOn = YES;
     [self getTestArray];
     
     self.actionTimer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(showlabel:) userInfo:nil repeats:YES];
@@ -137,7 +139,7 @@
         /**
          *  这里结束所有测试.
          */
-        
+        self.setAnimationOn = NO;
         [self.worsLabel removeFromSuperview];
         self.worsLabel = nil;
         [self.actionTimer invalidate];

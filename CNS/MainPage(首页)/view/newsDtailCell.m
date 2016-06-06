@@ -146,7 +146,7 @@
     
     if (!cell) {
         cell = [[newsDtailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identif];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -253,7 +253,7 @@
                 
                 NSInteger tureNum = [[self.model.likeNum substringFromIndex:2]  integerValue ]+1;
                 
-                self.model.likeNum = [NSString stringWithFormat:@"赞 %ld",tureNum];
+                self.model.likeNum = [NSString stringWithFormat:@"赞 %ld",(long)tureNum];
                 //?loginName=yxj&token=e3592eb60392ce73d6247e9aab02e93e&id=1
                 
                 NSMutableDictionary *dic = [NSMutableDictionary dictionary];

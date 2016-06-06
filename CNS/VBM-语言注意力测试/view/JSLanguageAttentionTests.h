@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "JSLanguageAttentionModel.h"
+
 @class JSLanguageAttentionTests;
 
 @protocol JSLanguageAttentionTestsDelegate <NSObject>
@@ -42,7 +43,7 @@
 @end
 
 
-@interface JSLanguageAttentionTests : UIView
+@interface JSLanguageAttentionTests : testBaseView
 
 @property (nonatomic,weak) id <JSLanguageAttentionTestsDelegate> delegate;
 

@@ -320,6 +320,8 @@
  *  这个名字还要改
  */
 -(void)beginOneTest{
+    
+    self.setAnimationOn = YES;
 
     [self.rightView addGestureRecognizer:self.rightTap];
     
@@ -346,6 +348,8 @@
     }
     
     if (self.currentCounts >= self.modelCotainArray.count) {
+        
+        self.setAnimationOn = NO;
         
         self.currentCounts = 0 ;
         [self.actionTimer invalidate];

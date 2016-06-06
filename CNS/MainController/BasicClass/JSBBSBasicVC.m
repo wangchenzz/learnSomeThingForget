@@ -29,7 +29,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.dataSourceArray count];
 }
 
@@ -66,8 +65,8 @@
         [_delegate JSBBSBasicVC:self didSelectedBBSModel:model];
     }
 //    else {
-//        EaseConversationModel *model = [self.dataArray objectAtIndex:indexPath.row];
-//        EaseMessageViewController *viewController = [[EaseMessageViewController alloc] initWithConversationChatter:model.conversation.conversationId conversationType:model.conversation.type];
+//         ConversationModel *model = [self.dataArray objectAtIndex:indexPath.row];
+//         MessageViewController *viewController = [[MessageViewController alloc] initWithConversationChatter:model.conversation.conversationId conversationType:model.conversation.type];
 //        viewController.title = model.title;
 //        [self.navigationController pushViewController:viewController animated:YES];
 //    }
@@ -80,7 +79,7 @@
 //- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 //    
 //    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        EaseConversationModel *model = [self.dataArray objectAtIndex:indexPath.row];
+//         ConversationModel *model = [self.dataArray objectAtIndex:indexPath.row];
 //        [[EMClient sharedClient].chatManager deleteConversation:model.conversation.conversationId deleteMessages:YES];
 //        [self.dataArray removeObjectAtIndex:indexPath.row];
 //        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];

@@ -11,6 +11,9 @@
 
 @interface sendBBSController ()
 
+
+@property (nonatomic,retain) UITextField *titleFiled;
+
 @property (nonatomic,retain) UILabel *titleTipsLabel;
 
 @property (nonatomic,retain) UIButton *typeButton;
@@ -18,8 +21,6 @@
 @property (nonatomic,assign) CGFloat kbHeight;
 
 @property (nonatomic,assign) NSInteger selectType;
-
-@property (nonatomic,retain) UITextField *titleFiled;
 
 @property (nonatomic,retain) NSMutableArray *buttonArray;
 

@@ -117,13 +117,12 @@
     
     self.isReadImage.layer.masksToBounds = YES;
     
-    if ([_frameModel.state isEqualToString:@"0"]) {
-        [self.isReadImage setBackgroundColor:[UIColor redColor]];
-        
-    }else{
-    
-        
-        [self.isReadImage setBackgroundColor:[UIColor clearColor]];;
+    if (_frameModel.state.length) {
+        if ([_frameModel.state isEqualToString:@"0"]) {
+            [self.isReadImage setBackgroundColor:[UIColor redColor]];
+        }else{
+            [self.isReadImage setBackgroundColor:[UIColor clearColor]];;
+        }
     }
     
     self.typeLabel.text = _frameModel.typeStr;

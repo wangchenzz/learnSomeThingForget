@@ -204,6 +204,8 @@
     
     if (!_clickTap) {
         self.clickTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickScreen)];
+        
+        self.clickTap.numberOfTouchesRequired = 1;
     }
     return _clickTap;
 }
@@ -242,6 +244,8 @@
     [self addGestureRecognizer:self.clickTap];
     
     [[timerTool tool] fireInTheHoll:self.calculateTimer];
+    
+    self.setAnimationOn = YES;
 
 }
 
@@ -293,6 +297,8 @@
             self.tipsLabel.text = @"";
             
             self.countDownLabel.text = @"";
+            
+            self.setAnimationOn = NO;
             
             /**
              *  测试完毕的回调;

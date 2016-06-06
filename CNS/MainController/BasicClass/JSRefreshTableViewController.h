@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JSRefreshTableViewController : UIViewController
+@interface JSRefreshTableViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 
 @property (nonatomic,strong) NSMutableArray *dataSourceArray;

@@ -12,7 +12,7 @@
 
 #import "ShowPersonalBBSViewController.h"
 
-#import "ShowBBSCommentViewController.h"
+#import "TheRerunSgViewContoller.h"
 
 @interface profileViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -311,7 +311,7 @@
             break;
         case 1:
             im.image = [UIImage imageNamed:@"tiezi"];
-            la.text = @"我的评论";
+            la.text = @"意见反馈";
             break;
         case 2:
             im.image = [UIImage imageNamed:@"setting"];
@@ -365,7 +365,7 @@
     [self.navigationController.navigationBar setBackgroundImage:self.oldBackNaviIm forBarMetrics:UIBarMetricsDefault];
     
     if (indexPath.row == 1) {
-        ShowBBSCommentViewController *bbs = [[ShowBBSCommentViewController alloc] init];
+        TheRerunSgViewContoller *bbs = [[TheRerunSgViewContoller alloc] init];
         
         bbs.hidesBottomBarWhenPushed = YES;
         

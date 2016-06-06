@@ -23,6 +23,13 @@
 		0413BCC01CEEED200071A105 /* JSBbsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCBF1CEEED200071A105 /* JSBbsInfoModel.m */; };
 		0413BCC31CEEF3760071A105 /* BBSInfoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */; };
 		041DA7971CBF710500626349 /* JSTestsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 041DA7961CBF710500626349 /* JSTestsList.m */; };
+		041F2DA41D011738007CFE79 /* ShowSegModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DA31D011738007CFE79 /* ShowSegModel.m */; };
+		041F2DA81D011E4B007CFE79 /* ShowSegCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DA71D011E4B007CFE79 /* ShowSegCell.m */; };
+		041F2DAD1D012DEA007CFE79 /* NSString+Bounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DAC1D012DEA007CFE79 /* NSString+Bounding.m */; };
+		041F2DB01D0136BA007CFE79 /* addSUGController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DAF1D0136BA007CFE79 /* addSUGController.m */; };
+		041F2DB31D0154DB007CFE79 /* testBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB21D0154DB007CFE79 /* testBaseView.m */; };
+		041F2DB61D016E56007CFE79 /* lunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB51D016E56007CFE79 /* lunchViewController.m */; };
+		041F2DB91D016F0B007CFE79 /* AppDelegate+lunchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB81D016F0B007CFE79 /* AppDelegate+lunchAnimation.m */; };
 		041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */; };
 		0423B6A31CE309510018E753 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423B69C1CE309510018E753 /* MBProgressHUD+MJ.m */; };
 		0423B6A41CE309510018E753 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0423B69D1CE309510018E753 /* MBProgressHUD.bundle */; };
@@ -34,7 +41,6 @@
 		0425DC901CC8A63300D022E3 /* normalShowLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC8F1CC8A63300D022E3 /* normalShowLevelController.m */; };
 		0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0425DC921CC8C2FF00D022E3 /* showLevelCell.m */; };
 		042CE0E71CFC18F7009884A5 /* ShowPersonalBBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */; };
-		042CE0EA1CFC190B009884A5 /* ShowBBSCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */; };
 		042CE0ED1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */; };
 		042CE0F01CFC2B4B009884A5 /* searchPersonBBsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042CE0EF1CFC2B4B009884A5 /* searchPersonBBsModel.m */; };
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
@@ -49,6 +55,10 @@
 		047041F61CEC545900B37331 /* showLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047041F51CEC545900B37331 /* showLevelController.m */; };
 		0475605E1CC7504F00CFD065 /* INetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0475605D1CC7504F00CFD065 /* INetworking.m */; };
 		047D08A01C8D69DA0092EAE4 /* JSFgClickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */; };
+		0480E82A1CFFD398007304F8 /* AppDelegate+NewVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 0480E8291CFFD398007304F8 /* AppDelegate+NewVision.m */; };
+		0480E82D1CFFDAB4007304F8 /* JSNewVisionViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0480E82C1CFFDAB4007304F8 /* JSNewVisionViewControler.m */; };
+		0480E8331D000266007304F8 /* JSUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0480E8321D000266007304F8 /* JSUserManager.m */; };
+		0480E8361D001224007304F8 /* TheRerunSgViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0480E8351D001224007304F8 /* TheRerunSgViewContoller.m */; };
 		0485BAE11CA50B620012CECD /* ShiftingAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */; };
 		0485BAE41CA50B740012CECD /* ShiftingAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485BAE31CA50B740012CECD /* ShiftingAttentionModel.m */; };
 		04864B7A1C96B8D00035DAB1 /* StroopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04864B791C96B8D00035DAB1 /* StroopTests.m */; };
@@ -151,6 +161,21 @@
 		0413BCC21CEEF3760071A105 /* BBSInfoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSInfoListCell.m; sourceTree = "<group>"; };
 		041DA7951CBF710500626349 /* JSTestsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTestsList.h; sourceTree = "<group>"; };
 		041DA7961CBF710500626349 /* JSTestsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTestsList.m; sourceTree = "<group>"; };
+		041F2DA21D011738007CFE79 /* ShowSegModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSegModel.h; sourceTree = "<group>"; };
+		041F2DA31D011738007CFE79 /* ShowSegModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSegModel.m; sourceTree = "<group>"; };
+		041F2DA51D011D46007CFE79 /* JSModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSModelCell.h; sourceTree = "<group>"; };
+		041F2DA61D011E4B007CFE79 /* ShowSegCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSegCell.h; sourceTree = "<group>"; };
+		041F2DA71D011E4B007CFE79 /* ShowSegCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSegCell.m; sourceTree = "<group>"; };
+		041F2DAB1D012DEA007CFE79 /* NSString+Bounding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bounding.h"; sourceTree = "<group>"; };
+		041F2DAC1D012DEA007CFE79 /* NSString+Bounding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bounding.m"; sourceTree = "<group>"; };
+		041F2DAE1D0136BA007CFE79 /* addSUGController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addSUGController.h; sourceTree = "<group>"; };
+		041F2DAF1D0136BA007CFE79 /* addSUGController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addSUGController.m; sourceTree = "<group>"; };
+		041F2DB11D0154DB007CFE79 /* testBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testBaseView.h; sourceTree = "<group>"; };
+		041F2DB21D0154DB007CFE79 /* testBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testBaseView.m; sourceTree = "<group>"; };
+		041F2DB41D016E56007CFE79 /* lunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lunchViewController.h; sourceTree = "<group>"; };
+		041F2DB51D016E56007CFE79 /* lunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lunchViewController.m; sourceTree = "<group>"; };
+		041F2DB71D016F0B007CFE79 /* AppDelegate+lunchAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+lunchAnimation.h"; sourceTree = "<group>"; };
+		041F2DB81D016F0B007CFE79 /* AppDelegate+lunchAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+lunchAnimation.m"; sourceTree = "<group>"; };
 		041FB9791C86825A00F35659 /* JSLanguageAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionTests.h; sourceTree = "<group>"; };
 		041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSLanguageAttentionTests.m; sourceTree = "<group>"; };
 		0423B69B1CE309510018E753 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
@@ -171,8 +196,6 @@
 		0425DC921CC8C2FF00D022E3 /* showLevelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = showLevelCell.m; path = ../../MainController/showLevelCell.m; sourceTree = "<group>"; };
 		042CE0E51CFC18F7009884A5 /* ShowPersonalBBSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPersonalBBSViewController.h; sourceTree = "<group>"; };
 		042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPersonalBBSViewController.m; sourceTree = "<group>"; };
-		042CE0E81CFC190B009884A5 /* ShowBBSCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBBSCommentViewController.h; sourceTree = "<group>"; };
-		042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBBSCommentViewController.m; sourceTree = "<group>"; };
 		042CE0EB1CFC1DD0009884A5 /* ShowPersonnalBBSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPersonnalBBSCell.h; sourceTree = "<group>"; };
 		042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPersonnalBBSCell.m; sourceTree = "<group>"; };
 		042CE0EE1CFC2B4B009884A5 /* searchPersonBBsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchPersonBBsModel.h; sourceTree = "<group>"; };
@@ -200,6 +223,14 @@
 		0475605D1CC7504F00CFD065 /* INetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INetworking.m; sourceTree = "<group>"; };
 		047D089E1C8D69DA0092EAE4 /* JSFgClickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSFgClickTests.h; sourceTree = "<group>"; };
 		047D089F1C8D69DA0092EAE4 /* JSFgClickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSFgClickTests.m; sourceTree = "<group>"; };
+		0480E8281CFFD398007304F8 /* AppDelegate+NewVision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+NewVision.h"; sourceTree = "<group>"; };
+		0480E8291CFFD398007304F8 /* AppDelegate+NewVision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+NewVision.m"; sourceTree = "<group>"; };
+		0480E82B1CFFDAB4007304F8 /* JSNewVisionViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNewVisionViewControler.h; sourceTree = "<group>"; };
+		0480E82C1CFFDAB4007304F8 /* JSNewVisionViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNewVisionViewControler.m; sourceTree = "<group>"; };
+		0480E8311D000266007304F8 /* JSUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSUserManager.h; sourceTree = "<group>"; };
+		0480E8321D000266007304F8 /* JSUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSUserManager.m; sourceTree = "<group>"; };
+		0480E8341D001224007304F8 /* TheRerunSgViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheRerunSgViewContoller.h; sourceTree = "<group>"; };
+		0480E8351D001224007304F8 /* TheRerunSgViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheRerunSgViewContoller.m; sourceTree = "<group>"; };
 		0485BADF1CA50B620012CECD /* ShiftingAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftingAttentionTests.h; path = "../../CPT-持续注意力测试/view/ShiftingAttentionTests.h"; sourceTree = "<group>"; };
 		0485BAE01CA50B620012CECD /* ShiftingAttentionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShiftingAttentionTests.m; path = "../../CPT-持续注意力测试/view/ShiftingAttentionTests.m"; sourceTree = "<group>"; };
 		0485BAE21CA50B740012CECD /* ShiftingAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShiftingAttentionModel.h; path = "../../CPT-持续注意力测试/model/ShiftingAttentionModel.h"; sourceTree = "<group>"; };
@@ -402,8 +433,10 @@
 				04060D8A1CF80C9400760301 /* settingViewController.m */,
 				042CE0E51CFC18F7009884A5 /* ShowPersonalBBSViewController.h */,
 				042CE0E61CFC18F7009884A5 /* ShowPersonalBBSViewController.m */,
-				042CE0E81CFC190B009884A5 /* ShowBBSCommentViewController.h */,
-				042CE0E91CFC190B009884A5 /* ShowBBSCommentViewController.m */,
+				0480E8341D001224007304F8 /* TheRerunSgViewContoller.h */,
+				0480E8351D001224007304F8 /* TheRerunSgViewContoller.m */,
+				041F2DAE1D0136BA007CFE79 /* addSUGController.h */,
+				041F2DAF1D0136BA007CFE79 /* addSUGController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -413,6 +446,8 @@
 			children = (
 				042CE0EE1CFC2B4B009884A5 /* searchPersonBBsModel.h */,
 				042CE0EF1CFC2B4B009884A5 /* searchPersonBBsModel.m */,
+				041F2DA21D011738007CFE79 /* ShowSegModel.h */,
+				041F2DA31D011738007CFE79 /* ShowSegModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -422,6 +457,8 @@
 			children = (
 				042CE0EB1CFC1DD0009884A5 /* ShowPersonnalBBSCell.h */,
 				042CE0EC1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m */,
+				041F2DA61D011E4B007CFE79 /* ShowSegCell.h */,
+				041F2DA71D011E4B007CFE79 /* ShowSegCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -545,6 +582,9 @@
 				04107E181CFE8016008A33D0 /* JSRefreshTableViewController.m */,
 				04107E281CFECB6A008A33D0 /* JSBBSBasicVC.h */,
 				04107E291CFECB6A008A33D0 /* JSBBSBasicVC.m */,
+				041F2DB11D0154DB007CFE79 /* testBaseView.h */,
+				041F2DB21D0154DB007CFE79 /* testBaseView.m */,
+				041F2DA51D011D46007CFE79 /* JSModelCell.h */,
 			);
 			name = BasicClass;
 			path = MainController/BasicClass;
@@ -866,6 +906,10 @@
 			children = (
 				04011D491CCDB03B00C4F6D4 /* loginViewController.h */,
 				04011D4A1CCDB03B00C4F6D4 /* loginViewController.m */,
+				0480E82B1CFFDAB4007304F8 /* JSNewVisionViewControler.h */,
+				0480E82C1CFFDAB4007304F8 /* JSNewVisionViewControler.m */,
+				041F2DB41D016E56007CFE79 /* lunchViewController.h */,
+				041F2DB51D016E56007CFE79 /* lunchViewController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -877,6 +921,8 @@
 				04B0FF2E1C8420610020D1A5 /* animationFlashLabel.m */,
 				04011D4C1CCDEC9000C4F6D4 /* UIImage+Render.h */,
 				04011D4D1CCDEC9000C4F6D4 /* UIImage+Render.m */,
+				0480E8311D000266007304F8 /* JSUserManager.h */,
+				0480E8321D000266007304F8 /* JSUserManager.m */,
 				04B0FF2F1C8420610020D1A5 /* eyeView.h */,
 				04B0FF301C8420610020D1A5 /* eyeView.m */,
 				04B0FF311C8420610020D1A5 /* JSLoading.h */,
@@ -887,6 +933,8 @@
 				04B0FF361C8420610020D1A5 /* JSPresentBut.m */,
 				04B0FF371C8420610020D1A5 /* JSWriteAnimationView.h */,
 				04B0FF381C8420610020D1A5 /* JSWriteAnimationView.m */,
+				041F2DAB1D012DEA007CFE79 /* NSString+Bounding.h */,
+				041F2DAC1D012DEA007CFE79 /* NSString+Bounding.m */,
 			);
 			name = viewCategory;
 			path = category;
@@ -899,6 +947,10 @@
 				0475605D1CC7504F00CFD065 /* INetworking.m */,
 				04E6C30B1C89552800A92300 /* AppDelegate.h */,
 				04E6C30C1C89552800A92300 /* AppDelegate.m */,
+				041F2DB71D016F0B007CFE79 /* AppDelegate+lunchAnimation.h */,
+				041F2DB81D016F0B007CFE79 /* AppDelegate+lunchAnimation.m */,
+				0480E8281CFFD398007304F8 /* AppDelegate+NewVision.h */,
+				0480E8291CFFD398007304F8 /* AppDelegate+NewVision.m */,
 				04E6C30D1C89552800A92300 /* JSTabBarController.h */,
 				04E6C30E1C89552800A92300 /* JSTabBarController.m */,
 				04E6C30F1C89552800A92300 /* PrefixHeader.pch */,
@@ -1117,16 +1169,19 @@
 			files = (
 				04E6C3101C89552800A92300 /* AppDelegate.m in Sources */,
 				042CE0ED1CFC1DD0009884A5 /* ShowPersonnalBBSCell.m in Sources */,
+				041F2DA41D011738007CFE79 /* ShowSegModel.m in Sources */,
 				04E6C3141C895DC300A92300 /* JSVisualAttentionModel.m in Sources */,
 				04B0FF281C841DEE0020D1A5 /* FirstViewController.m in Sources */,
 				041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */,
 				040730E71C9118D300534773 /* JSKeyBoardView.m in Sources */,
 				0404E3241CF424D3003DE794 /* DetailBBSController.m in Sources */,
 				04CE681B1CEAC6B000D922A5 /* ModuleCell.m in Sources */,
+				041F2DB01D0136BA007CFE79 /* addSUGController.m in Sources */,
 				04D0959A1CE418AE00DD4011 /* newsDtailCell.m in Sources */,
 				0425DC931CC8C2FF00D022E3 /* showLevelCell.m in Sources */,
 				04011D4B1CCDB03B00C4F6D4 /* loginViewController.m in Sources */,
 				04B0FF171C841C720020D1A5 /* UIBarButtonItem+Extension.m in Sources */,
+				0480E82D1CFFDAB4007304F8 /* JSNewVisionViewControler.m in Sources */,
 				048D57611CF434C0009A16BB /* answerModel.m in Sources */,
 				04B0FF3D1C8420610020D1A5 /* JSPresentBut.m in Sources */,
 				0413BCC31CEEF3760071A105 /* BBSInfoListCell.m in Sources */,
@@ -1135,12 +1190,18 @@
 				04B0FF391C8420610020D1A5 /* animationFlashLabel.m in Sources */,
 				043FD7141CF5962700B48DFC /* addCommentController.m in Sources */,
 				043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */,
+				041F2DA81D011E4B007CFE79 /* ShowSegCell.m in Sources */,
+				041F2DB31D0154DB007CFE79 /* testBaseView.m in Sources */,
 				04CE682D1CEB020400D922A5 /* questionModel.m in Sources */,
 				0413BCC01CEEED200071A105 /* JSBbsInfoModel.m in Sources */,
+				041F2DAD1D012DEA007CFE79 /* NSString+Bounding.m in Sources */,
 				04B0FF3B1C8420610020D1A5 /* JSLoading.m in Sources */,
+				0480E8331D000266007304F8 /* JSUserManager.m in Sources */,
 				04A5DD0D1C90075E00D31DB9 /* DiamandsView.m in Sources */,
 				0456BBF01CE9649D005A22AE /* JSComentModel.m in Sources */,
 				04B0FF3C1C8420610020D1A5 /* JSLoadLayer.m in Sources */,
+				0480E8361D001224007304F8 /* TheRerunSgViewContoller.m in Sources */,
+				0480E82A1CFFD398007304F8 /* AppDelegate+NewVision.m in Sources */,
 				04A5DD081C8FF85800D31DB9 /* SymbolDigitCodingTests.m in Sources */,
 				04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */,
 				04107E191CFE8016008A33D0 /* JSRefreshTableViewController.m in Sources */,
@@ -1169,6 +1230,7 @@
 				0423B6AA1CE30E8E0018E753 /* JSNewsModel.m in Sources */,
 				040F2C4E1C99588D00C5A929 /* StroopModel.m in Sources */,
 				048D57671CF44616009A16BB /* detailBBSmodel.m in Sources */,
+				041F2DB91D016F0B007CFE79 /* AppDelegate+lunchAnimation.m in Sources */,
 				04A273C71C882D4600B9FAE1 /* JSVisualAttentionTests.m in Sources */,
 				0423B6A51CE309510018E753 /* MBProgressHUD.m in Sources */,
 				04CE68301CEB0B1800D922A5 /* questionTypeCell.m in Sources */,
@@ -1186,7 +1248,6 @@
 				04B0FF1A1C841C720020D1A5 /* UIView+Animated.m in Sources */,
 				04A70C631CEDAB5500B077D7 /* BBSControllerView.m in Sources */,
 				0456BBF51CE99056005A22AE /* inputCommentView.m in Sources */,
-				042CE0EA1CFC190B009884A5 /* ShowBBSCommentViewController.m in Sources */,
 				04B0FF1B1C841C720020D1A5 /* UIView+Frame.m in Sources */,
 				0413BCBD1CEEA9550071A105 /* tableHeaderButtonView.m in Sources */,
 				0423B6A71CE309510018E753 /* ZYQAssetPickerController.m in Sources */,
@@ -1194,6 +1255,7 @@
 				04B0FF3A1C8420610020D1A5 /* eyeView.m in Sources */,
 				0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */,
 				04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */,
+				041F2DB61D016E56007CFE79 /* lunchViewController.m in Sources */,
 				04CE68101CEAAEA300D922A5 /* testPViewController.m in Sources */,
 				047041F31CEC4D2B00B37331 /* showLevelModel.m in Sources */,
 			);
@@ -1334,7 +1396,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1352,7 +1414,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CNS/prefix/PrefixHeader.pch";
 				INFOPLIST_FILE = CNS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TALEGENES.JS.CNS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

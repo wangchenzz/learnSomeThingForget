@@ -13,7 +13,7 @@
 
 @required
 
--(UIImage*)animationScroll:(animationScroll *)scroll imageForIndex:(NSInteger)index;
+-(NSString*)animationScroll:(animationScroll *)scroll imageForIndex:(NSInteger)index;
 
 -(NSString*)animationScroll:(animationScroll *)scroll textForIndex:(NSInteger)index;
 

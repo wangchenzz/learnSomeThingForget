@@ -45,7 +45,7 @@
 
 @end
 
-@interface JSVisualAttentionTests : UIView
+@interface JSVisualAttentionTests : testBaseView
 
 @property (nonatomic,weak) id<JSVisualAttentionTestsDelegate> delegate;
 

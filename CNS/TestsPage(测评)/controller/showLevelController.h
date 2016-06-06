@@ -13,6 +13,9 @@
 
 @property (nonatomic,retain) NSMutableArray *modelArray;
 
+/**
+ *  要上传, 等同于是刚测试完毕.  这里写在一起其实是个错误;
+ */
 @property (nonatomic,assign) BOOL isUpload;
 
 @end

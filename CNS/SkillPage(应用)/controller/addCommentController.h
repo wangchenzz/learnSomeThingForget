@@ -23,6 +23,10 @@
 
 @property (nonatomic,copy) NSString* BBSid;
 
+@property (nonatomic,retain) UITextView *commentView;
+
 @property (nonatomic,weak) id<addCommentControllerDelegate>delegate;
+
+-(void)sureSend:(UIBarButtonItem *)item;
 
 @end

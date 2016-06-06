@@ -39,9 +39,12 @@
 
 
 #define addCard @"http://www.yueqiao.org/SSM/card/addCard"
-      //
 
 #define getPersonBBs @"http://www.yueqiao.org/SSM/card/getCardByLoginName"
+
+#define getLeavemsgByPage @"http://www.yueqiao.org/SSM/leavemsg/getLeavemsgByPage"
+
+#define addSug @"http://www.yueqiao.org/SSM/leavemsg/addleavemsg"
 
 @property (nonatomic,copy) NSString *ipstr;
 

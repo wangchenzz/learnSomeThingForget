@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger,StroopTestType){
     StroopTestsTypeComplication ,
     StroopTestsTypeInContrast
 };
-@interface StroopTests : UIView
+@interface StroopTests : testBaseView
 
 @property (nonatomic,weak) id <StroopTestsDelegate> delegate;
 

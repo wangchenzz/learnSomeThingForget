@@ -98,6 +98,7 @@
     
     [self addGestureRecognizer:tap];
     
+    self.setAnimationOn = YES;
     
     self.tapScreen = tap;
 }
@@ -177,7 +178,7 @@
             [self.showImageView removeFromSuperview];
             [self.tipsLabel removeFromSuperview];
             [self removeGestureRecognizer:self.tapScreen];
-            
+            self.setAnimationOn = NO;
             if ([self.delegate respondsToSelector:@selector(JSVisualAttentionTests:didFinishShowRightImage:)]) {
                 [self.delegate JSVisualAttentionTests:self didFinsihTests:self.model];
             }

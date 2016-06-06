@@ -320,6 +320,8 @@
  *  简单测试.   高内聚,低耦合.
  */
 -(void)showSimplify{
+    self.setAnimationOn = YES;
+    
     self.StroopTestType = StroopTestsTypeSimplify;
     
     [self settingUi];
@@ -338,6 +340,7 @@
 
 
 -(void)showComplication{
+    self.setAnimationOn = YES;
     self.StroopTestType = StroopTestsTypeComplication;
     
     
@@ -357,6 +360,7 @@
 }
 
 -(void)showColorInContrast{
+    self.setAnimationOn = YES;
     self.StroopTestType = StroopTestsTypeInContrast;
     
     
@@ -402,6 +406,9 @@
         self.currentTimeTravel = 0;
         self.currentCount++;
         if (self.currentCount >= 20) {
+            
+            self.setAnimationOn = NO;
+            
             [self.timeTimer invalidate];
             
             [self.actionTimer invalidate];

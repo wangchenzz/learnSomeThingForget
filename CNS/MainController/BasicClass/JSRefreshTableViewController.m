@@ -8,7 +8,7 @@
 
 #import "JSRefreshTableViewController.h"
 
-@interface JSRefreshTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JSRefreshTableViewController ()
 
 @end
 
@@ -21,6 +21,11 @@
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+    UIImageView *backrounView = [[UIImageView alloc] init];
+    [backrounView setFrame:CGRectMake(0, 0, self.view.width, self.tableView.height)];
+    backrounView.image = [UIImage imageNamed:@"底色"];
+    [_tableView setValue:backrounView forKeyPath:@"backgroundView"];
     _tableView.tableFooterView = [[UIView alloc] init];;
     [self.view addSubview:_tableView];
     
@@ -164,9 +169,6 @@
 {
     static NSString *CellIdentifier = @"UITableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    
     return cell;
 }
 

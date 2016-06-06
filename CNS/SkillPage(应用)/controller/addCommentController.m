@@ -16,7 +16,6 @@ typedef NS_ENUM(NSInteger,JSEditingState) {
 
 @interface addCommentController ()
 
-@property (nonatomic,retain) UITextView *commentView;
 
 @property (nonatomic,assign) CGFloat kbHeight;
 

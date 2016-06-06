@@ -197,6 +197,8 @@
  */
 -(void)showTestWords{
     
+    self.setAnimationOn = YES;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickScreen)];
     
     [self addGestureRecognizer:tap];
@@ -214,6 +216,10 @@
 }
 
 -(void)clickScreen{
+    
+//    __weak __typeof__(self) weakSelf = self;
+
+    
 
     if ([self.delegate respondsToSelector:@selector(JSLanguageAttentionTests:didClickScreen:withCurrentCount:)]) {
         [self.delegate JSLanguageAttentionTests:self didClickScreen:self.model withCurrentCount:self.currentWordsCount];
@@ -229,6 +235,7 @@
         [self.tipsLabel removeFromSuperview];
         [self removeGestureRecognizer:self.tapScreen];
         if ([self.delegate respondsToSelector:@selector(JSLanguageAttentionTests:didFinsihTests:)]) {
+            self.setAnimationOn = NO;
             [self.delegate JSLanguageAttentionTests:self didFinsihTests:self.model];
         }
     }

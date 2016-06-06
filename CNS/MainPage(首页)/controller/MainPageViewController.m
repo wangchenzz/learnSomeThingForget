@@ -22,7 +22,14 @@
 
 @property (nonatomic,strong) NSMutableArray *ary;
 
+
+@property (nonatomic,strong) NSMutableArray *scrollViewArray;
+
+
 @property (nonatomic,assign) NSInteger currentPage;
+
+
+@property (nonatomic,retain) animationScroll *animationScrollView;
 
 @end
 
@@ -32,6 +39,8 @@
     [super viewDidLoad];
     
     self.newsInfoArray = [NSMutableArray array];
+    
+    self.scrollViewArray = [NSMutableArray array];
     
     self.ary = [NSMutableArray array];
     
@@ -53,7 +62,8 @@
 
 
 -(void)loadInfo{
-
+    
+    __weak MainPageViewController *weakSelf = self;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"curPage"] = [NSString stringWithFormat:@"%ld",self.currentPage];
     dic[@"type"] = @"1";
@@ -72,17 +82,48 @@
             for (NSDictionary *dic in infoAry) {
                 JSNewsModel *model = [[JSNewsModel alloc] init];
                 [model setValuesForKeysWithDictionary:dic];
-                [self.newsInfoArray addObject:model];
+                [weakSelf.newsInfoArray addObject:model];
             }
             
-            self.currentPage++;
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView reloadData];
+            weakSelf.currentPage++;
+            [weakSelf.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView reloadData];
         }
         else{
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
+    
+    
+    
+    NSMutableDictionary *dicScro = [NSMutableDictionary dictionary];
+    dicScro[@"type"] = @"0";
+    //    dic[@"loginName"] = ec8a48252a6f3e0b49435a22d843862a;
+    dicScro[@"loginName"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"loginName"];
+    
+    dicScro[@"token"] = [[NSUserDefaults standardUserDefaults]objectForKey:@"token"];
+    
+    
+    
+    [[INetworking shareNet] GET:newsUrl withParmers:dicScro do:^(id returnObject, BOOL isSuccess) {
+        NSArray *infoAry;
+        if (isSuccess) {
+            infoAry = returnObject[@"list"];
+        }
+        if (isSuccess && infoAry.count != 0) {
+            
+            for (NSDictionary *dic in infoAry) {
+                JSNewsModel *model = [[JSNewsModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [weakSelf.scrollViewArray addObject:model];
+                
+            }
+            [weakSelf.animationScrollView showAnimation];
+        }
+    }];
+
+    
+    
 }
 
 /**
@@ -96,9 +137,9 @@
     
     imaegView.delegate = self;
     
-    self.tableView.tableHeaderView = (UIView *)imaegView;
+    self.animationScrollView = imaegView;
     
-    [imaegView showAnimation];
+    self.tableView.tableHeaderView = (UIView *)imaegView;
     
 }
 
@@ -113,19 +154,39 @@
 #pragma mark - animationScrollDelegate
 
 -(void)animationScroll:(animationScroll *)scroll didClickInIndex:(NSInteger)index{
-    JSLog(@"%ld",index);
+    JSNewsModel *model = self.scrollViewArray [index];
+    
+    newsDetailController *newVC = [[newsDetailController alloc] init];
+    
+    newVC.hidesBottomBarWhenPushed = YES;
+    
+    newVC.currentModel = model;
+    
+    [self.navigationController pushViewController:newVC animated:YES];
+
+    
 }
 
 
--(UIImage *)animationScroll:(animationScroll *)scroll imageForIndex:(NSInteger)index{
+-(NSString *)animationScroll:(animationScroll *)scroll imageForIndex:(NSInteger)index{
+    JSNewsModel *model = self.scrollViewArray [index];
+    NSArray *imageArray = [model.images componentsSeparatedByString:@","];
+    
+        NSString *imastr = [NSString stringWithFormat:@"%@%@",basicUrlStr,imageArray.firstObject];
+    __block UIImage *ima;
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imastr] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            
+            ima = image;
 
-    return [UIImage imageNamed:@"banner"];
+        }];
+    return imastr;
+    
+    
 }
 
 -(NSString *)animationScroll:(animationScroll *)scroll textForIndex:(NSInteger)index{
-
-        return @"全球注意力训练,学习能力专家.";
-
+    JSNewsModel *model = self.scrollViewArray [index];
+    return model.title;
 }
 
 -(NSInteger)numberOfImageInScrollView:(animationScroll *)scroll{
@@ -202,7 +263,7 @@
     
     newsDetailController *newVC = [[newsDetailController alloc] init];
     
-   newVC.hidesBottomBarWhenPushed = YES;
+    newVC.hidesBottomBarWhenPushed = YES;
     
     newVC.currentModel = currentModel;
     

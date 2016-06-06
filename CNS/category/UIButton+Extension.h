@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^addBlock)();
+
 @interface UIButton (Extension)
+
+
 
 /**
  *  代码简化
@@ -25,5 +29,14 @@
  *  @return 按钮
  */
 +(UIButton *)buttonWithColor:(UIColor*)color target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents imageForNormal:(UIImage *)normalImage selectImage:(UIImage *)highlighImage titleForNoraml:(NSString *)title titleColor:(UIColor*)titlecolor whsize:(CGFloat)whsize;
+
+/**
+ *  为 button添加一个 block
+ *
+ *  @param event  执行状态
+ *  @param block 代码块
+ */
+
+-(void)addBlockToButton:(UIControlEvents)event withBlock:(addBlock)block;
 
 @end
