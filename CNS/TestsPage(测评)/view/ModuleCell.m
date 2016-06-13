@@ -32,19 +32,31 @@
         
         _nameLabel = [[UILabel alloc] init];
         
-        _backImage.image = [UIImage imageNamed:@"black"];
+        _backImage.image = [UIImage imageNamed:@"sanjiao"];
         
-        [_mainImage setFrame:CGRectMake(8, 0, JSFrame.size.width - 16, (JSFrame.size.width - 16)/3)];
+        [_mainImage setFrame:CGRectMake(0, 0, JSFrame.size.width , JSFrame.size.width/3 )];
+        
+        _nameLabel.width = _mainImage.width - 100;
+        
+        _nameLabel.height = 50;
+        
+        _nameLabel.centerY = _mainImage.centerY;
+        
+        _nameLabel.x = 30;
         
         
-        [_backImage setFrame:CGRectMake(0,_mainImage.height -30, _mainImage.width, 30)];
+        [_backImage sizeToFit];
+        
+        _backImage.centerY = _mainImage.centerY;
+        
+        _backImage.x = _mainImage.width - _backImage.width - 50;
         
         [_nameLabel setTextColor:[UIColor whiteColor]];
-        [_nameLabel setBackgroundColor:[UIColor clearColor]];
+        [_nameLabel setFont:[UIFont boldSystemFontOfSize:20]];
         
-        _nameLabel.frame = _backImage.bounds;
+//        _nameLabel.frame = _backImage.bounds;
         
-        [_backImage addSubview:_nameLabel];
+        [_mainImage addSubview:_nameLabel];
         
         [_mainImage addSubview:_backImage];
         

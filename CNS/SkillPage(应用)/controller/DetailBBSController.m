@@ -16,6 +16,8 @@
 
 @property (nonatomic,assign) NSIndexPath *currentIndexPath;
 
+@property (nonatomic,assign) NSInteger curPage;
+
 @property (nonatomic,retain) inputCommentView *inputView;
 
 /**
@@ -53,11 +55,23 @@
     
     [self setUpTableView];
     
-    [self setUpBBSInfo];
+//    [self setUpBBSInfo];
     
-    [self setComentButtonUp];
+//    [self setComentButtonUp];
     
-    [self setUpInputView];
+//    [self setUpInputView];
+    
+    self.curPage = 1;
+    
+    __weak __typeof__(self) weakSelf = self;
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        [weakSelf setUpBBSInfo];
+        
+        [weakSelf.tableView.mj_footer beginRefreshing];
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,22 +88,26 @@
     
     self.tableView = [[UITableView alloc] init];
     
-    self.tableView.frame = CGRectMake(0, 0, self.view.width,self.view.height);
+    self.tableView.frame = CGRectMake(0, 0, JSFrame.size.width,JSFrame.size.height);
     
     [self.view addSubview:self.tableView];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    
+//    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
     
-    UIImageView *backrounView = [[UIImageView alloc] init];
-    
-    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
-    
-    backrounView.image = [UIImage imageNamed:@"底色"];
-    
-    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
+//    UIImageView *backrounView = [[UIImageView alloc] init];
+//    
+//    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
+//    
+//    backrounView.image = [UIImage imageNamed:@"底色"];
+//    
+//    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
 }
 
 -(void)setUpBBSInfo{
@@ -102,7 +120,7 @@
     
     dic[@"id"] = self.basicModel.num;
     
-    dic[@"curPage"] = @"1";
+    dic[@"curPage"] = [NSString stringWithFormat:@"%ld",self.curPage];
     
     [[INetworking shareNet] GET:getCardById withParmers:dic do:^(id returnObject, BOOL isSuccess) {
     
@@ -111,7 +129,7 @@
             return ;
         }
         
-        self.answerArray = [@[] mutableCopy];
+//        self.answerArray = [@[] mutableCopy];
         
         NSArray *answers = returnObject[@"list"];
         
@@ -139,11 +157,30 @@
             [model getFrame];
             
             [self.answerArray addObject:model];
+            
         }
+        
+        [self.tableView.mj_footer endRefreshing];
+        
+        if (answers.count == 0) {
+            
+            return;
+        }
+        
+        self.curPage ++;
         
         [self.tableView reloadData];
         
+        
     }];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self setUpBBSInfo];
+
 }
 
 
@@ -364,54 +401,55 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 0) {
-        return;
-    }
-
-    answerModel *model = self.answerArray[indexPath.row - 1];
-    
-    if (!self.admin || model.isAnswer) {
-        return;
-    }
-    self.inputView.hidden = NO;
-    
-    _currentIndexPath = indexPath;
-    
-    
-    self.inputView.tipsSting = [NSString stringWithFormat:@"回复:%@",model.commentLoginName];
-    
-    
-    [self.inputView.inputTextView becomeFirstResponder];
+//    if (indexPath.row == 0) {
+//        return;
+//    }
+//
+//    answerModel *model = self.answerArray[indexPath.row - 1];
+//    
+//    if (!self.admin || model.isAnswer) {
+//        return;
+//    }
+//    self.inputView.hidden = NO;
+//    
+//    _currentIndexPath = indexPath;
+//    
+//    
+//    self.inputView.tipsSting = [NSString stringWithFormat:@"回复:%@",model.commentLoginName];
+//    
+//    
+//    [self.inputView.inputTextView becomeFirstResponder];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    static BOOL isAnimation;
-    static BOOL isHidden;
-    
-    if (scrollView.contentOffset.y > 10&&!isAnimation&&!isHidden) {
-        isAnimation = YES;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, -CGRectGetMaxY(JSNavigationBounds));
-            self.navigationController.navigationBar.alpha = 0.5;
+//    static BOOL isAnimation;
+//    static BOOL isHidden;
+//    &&!isAnimation&&!isHidden
+    if (scrollView.contentOffset.y > 100) {
+//        isAnimation = YES;
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, -CGRectGetMaxY(JSNavigationBounds));
+//            self.navigationController.navigationBar.alpha = 0.5;
 
-//            [self.navigationController setNavigationBarHidden:YES animated:YES];
-        } completion:^(BOOL finished) {
-            isAnimation = NO;
-            isHidden = YES;
-        }];
-    }else if(scrollView.contentOffset.y < 10&&!isAnimation&&isHidden){
-        isAnimation = YES;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
-
-            self.navigationController.navigationBar.alpha = 1;
-            
-//            [self.navigationController setNavigationBarHidden:NO animated:YES];
-        } completion:^(BOOL finished) {
-            isAnimation = NO;
-            isHidden = NO;
-        }];
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+//        } completion:^(BOOL finished) {
+//            isAnimation = NO;
+//            isHidden = YES;
+//        }];
+//        &&!isAnimation&&isHidden
+    }else if(scrollView.contentOffset.y < 20){
+//        isAnimation = YES;
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
+//
+//            self.navigationController.navigationBar.alpha = 1;
+        
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+//        } completion:^(BOOL finished) {
+//            isAnimation = NO;
+//            isHidden = NO;
+//        }];
     }
 }
 
@@ -446,27 +484,28 @@
 #pragma mark - inputCommentViewDelegate  回复栏的回调;
 
 -(void)inputCommentViewShowKeyBord:(inputCommentView *)view with:(CGFloat)heght{
-
+    
+    WeakObject(self);
     [UIView animateWithDuration:0.4 animations:^{
         
         
-        self.inputView.transform = CGAffineTransformMakeTranslation(0, -heght);
+        selfWeak.inputView.transform = CGAffineTransformMakeTranslation(0, -heght);
         
     } completion:^(BOOL finished) {
         
-        UIView *menb = [[UIView alloc] initWithFrame:self.view.bounds];
+        UIView *menb = [[UIView alloc] initWithFrame:selfWeak.view.bounds];
         
-        [self.view addSubview:menb];
+        [selfWeak.view addSubview:menb];
         
         menb.backgroundColor = [UIColor clearColor];
         
         menb.tag = 1;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHideKeyBoard:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:selfWeak action:@selector(tapHideKeyBoard:)];
     
         [menb addGestureRecognizer:tap];
         
-        [self.view insertSubview:menb belowSubview:self.inputView];
+        [selfWeak.view insertSubview:menb belowSubview:selfWeak.inputView];
         
     }];
     
@@ -520,12 +559,6 @@
     [[INetworking shareNet] GET:addAnser withParmers:dic do:^(id returnObject, BOOL isSuccess) {
        
         if (isSuccess) {
-            
-            NSLog(@"%@",returnObject);
-            
-            
-
-            
             [self.tableView reloadRowsAtIndexPaths:@[_currentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
         }
         

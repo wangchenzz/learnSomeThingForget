@@ -74,7 +74,7 @@
         
         self.userNameLabel = [[UILabel alloc] init];
         
-        _userNameLabel.textColor = [UIColor whiteColor];
+        _userNameLabel.textColor = JSTitleColor;
         
         _userNameLabel.textAlignment = NSTextAlignmentLeft;
         
@@ -88,7 +88,7 @@
         
         self.titleLabel = [[UILabel alloc] init];
         
-        [self.titleLabel setTextColor:[UIColor whiteColor]];
+        [self.titleLabel setTextColor:JSTitleColor];
         
         [self.titleLabel setNumberOfLines:0];
         
@@ -96,7 +96,7 @@
         
         self.contentLabel = [[UILabel alloc] init];
         
-        [self.contentLabel setTextColor:[UIColor whiteColor]];
+        [self.contentLabel setTextColor:JSContentTextColor];
         
         [self.contentLabel setNumberOfLines:0];
         
@@ -119,11 +119,11 @@
         
         self.commentNameLabel = [[UILabel alloc] init];
         
-        [self.commentNameLabel setTextColor:[UIColor whiteColor]];
+        [self.commentNameLabel setTextColor:JSTitleColor];
         
         self.commentContentLabel = [[UILabel alloc] init];
         
-        [self.commentContentLabel setTextColor:[UIColor whiteColor]];
+        [self.commentContentLabel setTextColor:JSContentTextColor];
         
         self.commentCreatTimeLabel = [[UILabel alloc] init];
         

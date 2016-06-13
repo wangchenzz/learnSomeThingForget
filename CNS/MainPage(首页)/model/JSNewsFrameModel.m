@@ -37,7 +37,7 @@
         
         CGRect titleR = [self.lmodel.title boundingRectWithSize:CGSizeMake(JSFrame.size.width-keplinth-8*keplinth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:titleDic context:nil];
         
-        self.titleRect = CGRectMake(keplinth, keplinth, JSFrame.size.width - 9*keplinth, titleR.size.height);
+        self.titleRect = CGRectMake(3*keplinth, 3*keplinth, titleR.size.width, titleR.size.height);
         
         
         
@@ -47,7 +47,7 @@
         
         self.creatTimeRect = [self.lmodel.createtime boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:diction context:nil];
         
-        self.creatTimeRect = CGRectMake(keplinth,(CGRectGetMaxY(_titleRect)), self.creatTimeRect.size.width, self.creatTimeRect.size.height);
+        self.creatTimeRect = CGRectMake(_titleRect.origin.x,(CGRectGetMaxY(_titleRect)), self.creatTimeRect.size.width, self.creatTimeRect.size.height);
         
         
 //        JSLog(@"%@",NSStringFromCGRect(self.creatTimeRect));
@@ -133,7 +133,7 @@
      *  总高度
      */
     
-    self.totalHeight = CGRectGetMaxY(self.likeTooButRect)+10*3;
+    self.totalHeight = CGRectGetMaxY(self.contentRect) + 30;
 
 }
 

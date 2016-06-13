@@ -18,6 +18,8 @@
 
 #import "pageViewsController.h"
 
+#import "BBSControllerView.h"
+
 /**
  *  测试的控制器
  *
@@ -45,27 +47,28 @@
     //tintcolor 即是字体选中颜色；未设置情况下。
     self.tabBar.tintColor = [UIColor orangeColor];
     
-//    
-//    loginViewController *view = [[loginViewController alloc] init];
-//    
-//    
-//    [self addJSChildViewController:view withNormalImage:nil selectImage:nil title:@"登陆界面"];
+    //
+    //    loginViewController *view = [[loginViewController alloc] init];
+    //
+    //
+    //    [self addJSChildViewController:view withNormalImage:nil selectImage:nil title:@"登陆界面"];
     
     MainPageViewController*v = [[MainPageViewController alloc] init];
     
-    [self addJSChildViewController:v withNormalImage:@"home1" selectImage:@"home2" title:@"首页"];
+    [self addJSChildViewController:v withNormalImage:@"shouye1" selectImage:@"shouye2" title:@"首页"];
     
     testPViewController *t = [[testPViewController alloc] init];
     
-    [self addJSChildViewController:t withNormalImage:@"cp1" selectImage:@"cp2" title:@"测评"];
+    [self addJSChildViewController:t withNormalImage:@"cep1" selectImage:@"cep2" title:@"测评"];
     
-    pageViewsController *pgc = [[pageViewsController alloc] init];
-//    
-    [self addJSChildViewController:pgc withNormalImage:@"lt1" selectImage:@"lt2" title:@"论坛"];
+//    pageViewsController *pgc = [[pageViewsController alloc] init];
+    BBSControllerView *pgc = [[BBSControllerView alloc] initWithType:1];
+    //
+    [self addJSChildViewController:pgc withNormalImage:@"luntan1" selectImage:@"luntan2" title:@"论坛"];
     
     profileViewController *pvc = [[profileViewController alloc] init];
     
-    [self addJSChildViewController:pvc withNormalImage:@"wo1" selectImage:@"wo2" title:@"我"];
+    [self addJSChildViewController:pvc withNormalImage:@"wode1" selectImage:@"wode2" title:@"我"];
     
 }
 
@@ -91,18 +94,18 @@
     selectAttri[NSFontAttributeName] = JSFont(12);
     
     selectAttri[NSForegroundColorAttributeName] = [UIColor orangeColor];
-
+    
     
     //此处预留的设置选中和普通状态的图片
-  
+    
     childController.tabBarItem.image = [UIImage imageNamed:nname];
     
-    childController.tabBarItem.selectedImage = [UIImage imageWithRenderNamed:sname];
-    
+//    childController.tabBarItem.selectedImage = [UIImage imageWithRenderNamed:sname];
+    childController.tabBarItem.selectedImage = [UIImage imageNamed:sname];
     //设置tabbar 的item的字体。
     
-
-
+    
+    
     [[UITabBarItem appearance] setTitleTextAttributes:selectAttri forState:UIControlStateSelected];
     [[UITabBarItem appearance] setTitleTextAttributes:normalAttri forState:UIControlStateNormal];
     
@@ -128,7 +131,22 @@
     [navi.navigationBar setTintColor:[UIColor whiteColor]];
     
     //设置导航栏 主体颜色；
-    [navi.navigationBar setBarTintColor:JSCOLOR];
+    //    [navi.navigationBar setBarTintColor:JSCOLOR];
+    
+    /**
+     *  这里修改了导航栏的背景颜色
+     */
+    
+    UIImage *image = [UIImage imageNamed:@"dise"];
+    //
+    //    UIColor *diseColor = [image imageToColor];
+    //
+    //    UIImage *ima = [UIImage imageWithBgColor:diseColor];
+    UIImage *scaleImage = [image scaleSize:CGSizeMake(navi.navigationBar.frame.size.width, navi.navigationBar.frame.size.height + JSStatusRect.size.height)];
+    
+    [navi.navigationBar setBackgroundImage:scaleImage forBarMetrics:UIBarMetricsDefault];
+    //去掉底部线条
+    [navi.navigationBar setShadowImage:[[UIImage alloc] init]];
     
     //修改状态栏主题
     [navi.navigationBar setBarStyle:UIBarStyleBlackOpaque];

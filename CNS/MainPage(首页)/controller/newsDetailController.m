@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
     JSRefreshStateLoading = 2
 };
 
-@interface newsDetailController ()<inputCommentViewDelegate>
+@interface newsDetailController ()
 
 @property (nonatomic,strong) JSNewsFrameModel *model;
 
@@ -104,27 +104,27 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
     }];
     }
 }
-
--(UIView *)mengBan{
-    if (!_mengBan) {
-        _mengBan = [[UIView alloc] init];
-        [_mengBan setFrame:JSFrame];
-        _mengBan.backgroundColor = [UIColor clearColor];
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchMB)];
-        
-        [_mengBan addGestureRecognizer:tap];
-        
-    }
-    return _mengBan;
-}
-
--(void)touchMB{
-
-    [self.view endEditing:YES];
-
-}
+//
+//-(UIView *)mengBan{
+//    if (!_mengBan) {
+//        _mengBan = [[UIView alloc] init];
+//        [_mengBan setFrame:JSFrame];
+//        _mengBan.backgroundColor = [UIColor clearColor];
+//        
+//        
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchMB)];
+//        
+//        [_mengBan addGestureRecognizer:tap];
+//        
+//    }
+//    return _mengBan;
+//}
+//
+//-(void)touchMB{
+//
+//    [self.view endEditing:YES];
+//
+//}
 
 #pragma mark - tableviewDelegate
 
@@ -180,105 +180,105 @@ typedef NS_ENUM(NSInteger,JSRefreshState){
 
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    
-    
-    if (section == 1) {
-        inputCommentView *viewT = [inputCommentView put];
-        
-        viewT.tipsSting = @"添加评论";
-        
-        viewT.delegate = self;
-        return viewT;
-    }else return nil;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    
+//    
+//    
+//    if (section == 1) {
+//        inputCommentView *viewT = [inputCommentView put];
+//        
+//        viewT.tipsSting = @"添加评论";
+//        
+//        viewT.delegate = self;
+//        return viewT;
+//    }else return nil;
+//}
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
-    if (section == 1) {
-        return 50;
-    }else return 0;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    
+//    if (section == 1) {
+//        return 50;
+//    }else return 0;
+//}
 
 
--(void)inputCommentViewShowKeyBord:(inputCommentView *)view with:(CGFloat)heght{
-    
-    
-    CGFloat sum = JSFrame.size.height - (heght + 50);
-    
-    CGFloat rum = self.model.totalHeight - self.tableView.contentOffset.y;
-    
-    
-    CGFloat offset = sum - rum;
-    
-    if (offset <=0) {
-        self.tableView.contentOffset  = CGPointMake(0, self.tableView.contentOffset.y - offset);
-    }
-    
-    
-}
+//-(void)inputCommentViewShowKeyBord:(inputCommentView *)view with:(CGFloat)heght{
+//    
+//    
+//    CGFloat sum = JSFrame.size.height - (heght + 50);
+//    
+//    CGFloat rum = self.model.totalHeight - self.tableView.contentOffset.y;
+//    
+//    
+//    CGFloat offset = sum - rum;
+//    
+//    if (offset <=0) {
+//        self.tableView.contentOffset  = CGPointMake(0, self.tableView.contentOffset.y - offset);
+//    }
+//    
+//    
+//}
 
--(void)inputCommentViewHideKeyBord:(inputCommentView *)view{
-
-    [_mengBan removeFromSuperview];
-
-}
+//-(void)inputCommentViewHideKeyBord:(inputCommentView *)view{
+//
+////    [_mengBan removeFromSuperview];
+//
+//}
 -(void)clickSend:(inputCommentView *)view{
     
     
-    if (!view.inputTextView.text.length) {
-        return;
-    }
-    
-    
-    NSString *comment = view.inputTextView.text;
-    NSString *loginName = [[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"];
-    NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
-    NSString *num = self.model.lmodel.num;
-    
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    
-    dic[@"content"] = comment;
-    dic[@"loginName"] = loginName;
-    dic[@"token"] = token;
-    dic[@"newsid"] = num;
-    
-    
-    [[INetworking shareNet] GET:addComment withParmers:dic do:^(id returnObject, BOOL isSuccess) {
-      
-        if (isSuccess) {
-            
-            [MBProgressHUD showSuccess:@"发表成功"];
-            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-            
-            dic[@"loginName"] = loginName;
-            dic[@"content"] = comment;
-            dic[@"createtime"] = @"刚刚";
-            dic[@"images"] = @"";
-            
-            
-            JSComentModel *model = [JSComentModel modelForDic:dic];
-                
-            [self.commentModelArray insertObject:model atIndex:0];
-            
-            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-
-            JSLog(@"%@",[NSThread currentThread]);
-            
-            if (_commentModelArray.count == 1) {
-                return ;
-            }
-            
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]  atScrollPosition:(UITableViewScrollPositionMiddle) animated:NO];
-            
-            [self.tableView setNeedsDisplay];
-            
-        }else{
-            
-            [MBProgressHUD showError:@"发表失败"];
-        }
-    }];
+//    if (!view.inputTextView.text.length) {
+//        return;
+//    }
+//    
+//    
+//    NSString *comment = view.inputTextView.text;
+//    NSString *loginName = [[NSUserDefaults standardUserDefaults]valueForKey:@"loginName"];
+//    NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+//    NSString *num = self.model.lmodel.num;
+//    
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    
+//    dic[@"content"] = comment;
+//    dic[@"loginName"] = loginName;
+//    dic[@"token"] = token;
+//    dic[@"newsid"] = num;
+//    
+//    
+//    [[INetworking shareNet] GET:addComment withParmers:dic do:^(id returnObject, BOOL isSuccess) {
+//      
+//        if (isSuccess) {
+//            
+//            [MBProgressHUD showSuccess:@"发表成功"];
+//            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//            
+//            dic[@"loginName"] = loginName;
+//            dic[@"content"] = comment;
+//            dic[@"createtime"] = @"刚刚";
+//            dic[@"images"] = @"";
+//            
+//            
+//            JSComentModel *model = [JSComentModel modelForDic:dic];
+//                
+//            [self.commentModelArray insertObject:model atIndex:0];
+//            
+//            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+//
+//            JSLog(@"%@",[NSThread currentThread]);
+//            
+//            if (_commentModelArray.count == 1) {
+//                return ;
+//            }
+//            
+//            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]  atScrollPosition:(UITableViewScrollPositionMiddle) animated:NO];
+//            
+//            [self.tableView setNeedsDisplay];
+//            
+//        }else{
+//            
+//            [MBProgressHUD showError:@"发表失败"];
+//        }
+//    }];
     
 }
 

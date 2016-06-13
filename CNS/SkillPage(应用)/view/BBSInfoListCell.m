@@ -61,7 +61,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         UIView *backRoundV = [[UIView alloc] initWithFrame:CGRectMake(12, 0, JSFrame.size.width -24, 0)];
         
-        [backRoundV setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.3]];
+        [backRoundV setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
         
         [self.contentView addSubview:backRoundV];
         
@@ -76,6 +76,10 @@ const NSString *titlesTrsid = @"123123123131223";
         
         [backRoundV addSubview:headerImageView];
         
+        
+        headerImageView.layer.cornerRadius = 32;
+        
+        headerImageView.layer.masksToBounds = YES;
         
         /**
          * titleLabel
@@ -93,7 +97,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         titleLabel.width = (backRoundV.width -titleLabel.x)/3.0*2;
         
-        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textColor = JSTitleColor;
         
         [backRoundV addSubview:titleLabel];
         
@@ -104,7 +108,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         timeLabel.font = JSFont(13);
         
-        timeLabel.textColor = [UIColor whiteColor];
+        timeLabel.textColor = JSContentTextColor;
         
         timeLabel.x = CGRectGetMaxX(titleLabel.frame);
         
@@ -133,7 +137,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         userNameLabel.textAlignment = NSTextAlignmentCenter;
         
-        userNameLabel.textColor = [UIColor whiteColor];
+        userNameLabel.textColor = JSContentDescColor;
         
         userNameLabel.font = JSFont(14);
         
@@ -147,7 +151,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         contentLabel.font = JSFont(14);
         
-        contentLabel.textColor = [UIColor whiteColor];
+        contentLabel.textColor = JSContentDescColor;
         
         contentLabel.x = titleLabel.x;
         
@@ -170,17 +174,17 @@ const NSString *titlesTrsid = @"123123123131223";
         
         anserCountLabel.font = JSFont(12);
         
-        anserCountLabel.textColor = [UIColor whiteColor];
+        anserCountLabel.textColor = JSContentTextColor;
         
         UIImageView *answerCountIcon = [[UIImageView alloc] init];
         
-        answerCountIcon.image = [UIImage imageNamed:@"say"];
+        answerCountIcon.image = [UIImage imageNamed:@"say2"];
         
         [answerCountIcon sizeToFit];
         
         UIImageView *watchCountIcon = [[UIImageView alloc] init];
         
-        watchCountIcon.image = [UIImage imageNamed:@"look"];
+        watchCountIcon.image = [UIImage imageNamed:@"look2"];
         
         UILabel *watchCountLabel = [[UILabel alloc] init];
         
@@ -188,7 +192,7 @@ const NSString *titlesTrsid = @"123123123131223";
         
         watchCountLabel.font = JSFont(12);
         
-        watchCountLabel.textColor = [UIColor whiteColor];
+        watchCountLabel.textColor = JSContentTextColor;
         
         [backRoundV addSubview:watchCountLabel];
         [backRoundV addSubview:watchCountIcon];

@@ -15,7 +15,18 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qidong" translatesAutoresizingMaskIntoConstraints="NO" id="x0d-9S-UZC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x0d-9S-UZC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="DnM-K8-Sg9"/>
+                            <constraint firstAttribute="trailing" secondItem="x0d-9S-UZC" secondAttribute="trailing" id="WNa-Eq-FuO"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="x0d-9S-UZC" secondAttribute="bottom" id="Yci-li-hBs"/>
+                            <constraint firstItem="x0d-9S-UZC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="et7-hm-6vz"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
@@ -24,4 +35,7 @@
             <point key="canvasLocation" x="55" y="377"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="qidong" width="295" height="571"/>
+    </resources>
 </document>

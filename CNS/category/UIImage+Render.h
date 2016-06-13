@@ -35,6 +35,8 @@
 
 
 
+- (UIImage *)imageByApplyingAlpha:(CGFloat)alpha  image:(UIImage*)image;
+
 
 /**
  *  返回图片的颜色

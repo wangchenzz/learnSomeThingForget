@@ -14,13 +14,13 @@
 
 
 -(void)setUpTablevewBackColor{
-    UIImageView *backrounView = [[UIImageView alloc] init];
-    
-    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
-    
-    backrounView.image = [UIImage imageNamed:@"底色"];
-    
-    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
+//    UIImageView *backrounView = [[UIImageView alloc] init];
+//    
+//    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
+//    
+//    backrounView.image = [UIImage imageNamed:@"底色"];
+//    
+//    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
 
 }
 

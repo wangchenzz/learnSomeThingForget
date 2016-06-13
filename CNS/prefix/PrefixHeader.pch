@@ -9,13 +9,36 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+/**
+ *  屏幕大小
+ */
 #define JSFrame [UIScreen mainScreen].bounds
 
+/**
+ *  状态栏大小
+ */
+#define JSStatusRect [[UIApplication sharedApplication] statusBarFrame]
+
+/**
+ *  导航栏大小
+ */
 #define JSNavigationBounds  self.navigationController.navigationBar.frame
 
+/**
+ *  字体宏
+ */
 #define JSFont(s)  [UIFont systemFontOfSize:(s)]
 
+/**
+ *  颜色宏
+ */
 #define JSColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+/**
+ *  weakSelf
+ */
+#define WeakObject(o) __weak __typeof(o) o##Weak = o;
+
 
 #define JSCOLOR JSColor(170, 60, 99)
 //定义UIimage对象
@@ -36,7 +59,7 @@
 #define JSFunc
 #endif
 
-
+#import "JSDefine.h"
 
 #import "testBaseView.h"
 

@@ -30,7 +30,7 @@
     self.title = @"模块测试";
     
     _nameArray = @[@"语言注意力测试",@"视觉注意力测试",@"手指点击测试",@"符号位数测试",@"颜色反差测试",@"注意力转移测试",@"持续注意力测试"];
-    _imageArray = @[@"yuyan",@"shijue",@"shouzhi",@"fuhao",@"yanse",@"zyl",@"chixu"];
+    _imageArray = @[@"ceshi1",@"ceshi2",@"ceshi3",@"ceshi4",@"ceshi5",@"ceshi6",@"ceshi7"];
 }
 
 - (void)didReceiveMemoryWarning {

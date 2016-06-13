@@ -55,7 +55,13 @@
 }
 -(void)doImportant{
     
-    self.oldBackNaviIm = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *image = [UIImage imageNamed:@"dise"];
+    
+    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
+
+    
+    self.oldBackNaviIm = scaleImage;
     
 
         //去掉底部线条
@@ -86,17 +92,17 @@
      */
     
     
-    UIVisualEffectView *backVisual = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    //将模糊视图的大小等同于自身
-    backVisual.frame = headerImageView.bounds;
-    //设置模糊视图的透明度
-    backVisual.alpha = 0.98;
-    
-    [headerImageView addSubview:backVisual];
-    
-//    [headerImageView sendSubviewToBack:backVisual];
-    
-    self.visualView = backVisual;
+//    UIVisualEffectView *backVisual = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//    //将模糊视图的大小等同于自身
+//    backVisual.frame = headerImageView.bounds;
+//    //设置模糊视图的透明度
+//    backVisual.alpha = 0.98;
+//    
+//    [headerImageView addSubview:backVisual];
+//    
+////    [headerImageView sendSubviewToBack:backVisual];
+//    
+//    self.visualView = backVisual;
     
     
     
@@ -129,7 +135,8 @@
     [icon sd_setImageWithURL:[NSURL URLWithString:urlStr]];
     
     
-    [headerImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
+//    [headerImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
+    headerImageView.image = [UIImage imageNamed:@"wode-bj"];
     
     
     
@@ -151,7 +158,7 @@
     label.centerY = CGRectGetMaxY(self.icon.frame) + 25;
     
     label.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"nickName"];
-    label.textColor = [UIColor grayColor];
+    label.textColor = JSTitleColor;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldSystemFontOfSize:17];
     label.numberOfLines = 0;
@@ -212,10 +219,16 @@
     CGFloat alpha = (offset_Y )/300.0f;
     
     
-    UIColor *color = [UIColor colorWithRed:170/255.0 green:60/255.0 blue:99/255.0 alpha:alpha];
-    UIImage *image = [UIImage imageWithBgColor:color];
+    UIImage *image = [UIImage imageNamed:@"dise"];
+    
+    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
+    
+    UIImage *alphaImage = [scaleImage imageByApplyingAlpha:alpha image:scaleImage];
+    
+    
+    
 //
-    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
 
     /**
      *  上面用来 完成导航条透明效果;
@@ -258,7 +271,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.3];
+        cell.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
         
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -266,7 +279,7 @@
         
         imageview.width = imageview.height = 20;
         
-        imageview.x = 10;
+        imageview.x = JSFrame.size.width / 3;
         
         imageview.y = 15;
         
@@ -279,7 +292,7 @@
         contentLabel.x= CGRectGetMaxX(imageview.frame) + 12;
         contentLabel.centerY = imageview.centerY;
         contentLabel.font = JSFont(15);
-        contentLabel.textColor = [UIColor whiteColor];
+        contentLabel.textColor = JSContentDescColor;
         contentLabel.textAlignment = NSTextAlignmentLeft;
         
         [cell.contentView addSubview:contentLabel];
@@ -288,7 +301,7 @@
          *  右侧图标
          */
         
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         imageview.tag = 1;
         contentLabel.tag = 2;
     }
@@ -306,15 +319,15 @@
     
     switch (indexPath.row) {
         case 0:
-            im.image = [UIImage imageNamed:@"say"];
+            im.image = [UIImage imageNamed:@"comment2"];
             la.text = @"我的帖子";
             break;
         case 1:
-            im.image = [UIImage imageNamed:@"tiezi"];
+            im.image = [UIImage imageNamed:@"tiezi2"];
             la.text = @"意见反馈";
             break;
         case 2:
-            im.image = [UIImage imageNamed:@"setting"];
+            im.image = [UIImage imageNamed:@"setting2"];
             la.text = @"设置";
             break;
         default:
@@ -341,13 +354,13 @@
         
         _tableView.dataSource = self;
         
-        UIImageView *backrounView = [[UIImageView alloc] init];
+//        UIImageView *backrounView = [[UIImageView alloc] init];
+//        
+//        [backrounView setFrame:CGRectMake(0, 0, self.view.width, self.tableView.height)];
         
-        [backrounView setFrame:CGRectMake(0, 0, self.view.width, self.tableView.height)];
-        
-        backrounView.image = [UIImage imageNamed:@"底色"];
-        
-        [_tableView setValue:backrounView forKeyPath:@"backgroundView"];
+//        backrounView.image = [UIImage imageNamed:@"底色"];
+//        
+//        [_tableView setValue:backrounView forKeyPath:@"backgroundView"];
         
     }
     

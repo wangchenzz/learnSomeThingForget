@@ -10,7 +10,7 @@
 
 #import "JSNewsModel.h"
 
-#define titleFont [UIFont boldSystemFontOfSize:24]
+#define titleFont [UIFont boldSystemFontOfSize:18]
 
 #define contentFont JSFont(13)
 

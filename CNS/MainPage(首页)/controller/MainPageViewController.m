@@ -56,7 +56,8 @@
     self.tabBarController.tabBar.hidden = NO;
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadInfo)];
-    JSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES).lastObject);
+
+    self.tableView.separatorStyle = NO;
 }
 
 
@@ -248,7 +249,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 100;
+    return 115;
 }
 
 /**
@@ -270,42 +271,42 @@
     [self.navigationController pushViewController:newVC animated:YES];
 
 }
+//
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//
+//    UIView *view =[[UIView alloc] init];
+//    
+//    [view setBackgroundColor:[UIColor clearColor]];
+//    
+//    UIView *backView =[[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.width, 38)];
+//    
+//    backView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.3];
+//    [view addSubview:backView];
+//    
+//    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(7, 7, 24, 24)];
+//    imageview.image = [UIImage imageNamed:@"new"];
+//    
+//    UILabel *titleLbale =[[UILabel alloc] init];
+//    
+//    titleLbale.frame = CGRectMake(38, 3, 140, 32);
+//    
+//    titleLbale.font = [UIFont boldSystemFontOfSize:20];
+//    
+//    titleLbale.textColor = [UIColor whiteColor];
+//    
+//    titleLbale.text = @"竞思新闻";
+//    
+//    [backView addSubview:imageview];
+//    
+//    [backView addSubview:titleLbale];
+//    
+//    return view;
+//    
+//}
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-
-    UIView *view =[[UIView alloc] init];
-    
-    [view setBackgroundColor:[UIColor clearColor]];
-    
-    UIView *backView =[[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.width, 38)];
-    
-    backView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.3];
-    [view addSubview:backView];
-    
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(7, 7, 24, 24)];
-    imageview.image = [UIImage imageNamed:@"new"];
-    
-    UILabel *titleLbale =[[UILabel alloc] init];
-    
-    titleLbale.frame = CGRectMake(38, 3, 140, 32);
-    
-    titleLbale.font = [UIFont boldSystemFontOfSize:20];
-    
-    titleLbale.textColor = [UIColor whiteColor];
-    
-    titleLbale.text = @"竞思新闻";
-    
-    [backView addSubview:imageview];
-    
-    [backView addSubview:titleLbale];
-    
-    return view;
-    
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-
-    return 50;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//
+////    return 50;
+//}
 
 @end

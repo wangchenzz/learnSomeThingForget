@@ -50,7 +50,7 @@
         
         NSMutableAttributedString *real = [[NSMutableAttributedString alloc] initWithString:realStr];
         
-          [real addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, real.length)];
+          [real addAttribute:NSForegroundColorAttributeName value:JSContentTextColor range:NSMakeRange(0, real.length)];
         
         [_answerString insertAttributedString:real atIndex:_answerString.length];
         

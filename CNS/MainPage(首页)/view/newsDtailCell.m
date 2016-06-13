@@ -29,6 +29,16 @@
 @property (nonatomic,retain) UIButton *likeButtonToo;
 
 
+/**
+ *  新闻头
+ */
+@property (nonatomic,retain) UIImageView *newsHeadreBack;
+
+/**
+ *  正文背景
+ */
+@property (nonatomic,retain) UIImageView *newsContentBack;
+
 @end
 
 @implementation newsDtailCell
@@ -45,6 +55,32 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        
+        UIImage *image = [UIImage imageNamed:@"xinwen-tou"];
+        
+        UIImageView *newsHeadreBack = [[UIImageView alloc] init];
+        newsHeadreBack.image = image;
+        
+//        newsHeadreBack.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.contentView addSubview:newsHeadreBack];
+        
+        self.newsHeadreBack = newsHeadreBack;
+        
+        /**
+         *  新闻背景
+         */
+        UIImageView *newsContentBack = [[UIImageView alloc] init];
+        newsContentBack.image = [UIImage imageNamed:@"kuang-sy"];
+        
+        newsContentBack.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.contentView addSubview:newsContentBack];
+        
+        self.newsContentBack = newsContentBack;
+        
+        
         UILabel *label = [[UILabel alloc] init];
         
         label.font = titleFont;
@@ -56,12 +92,11 @@
         
         self.titleLabel = label;
         
-        
         UILabel *label1 = [[UILabel alloc] init];
         
         label1.font = contentFont;
         
-        label1.textColor = [UIColor colorWithWhite:1 alpha:0.8];
+        label1.textColor = [UIColor whiteColor];
         
         self.timeLabel = label1;
         
@@ -69,7 +104,7 @@
         
         label2.font = contentFont;
         
-        label2.textColor = [UIColor colorWithWhite:1 alpha:0.8];
+        label2.textColor = [UIColor whiteColor];
         
         self.authorLabel = label2;
         
@@ -79,7 +114,7 @@
         
         [label3 setNumberOfLines:0];
         
-        label3.textColor = [UIColor whiteColor];
+        label3.textColor = JSContentTextColor;
         
         self.contentLabel = label3;
         
@@ -113,8 +148,8 @@
         
         self.likeButtonToo = buton2;
         
-        [self.contentView addSubview:buton2];
-        [self.contentView addSubview:buton1];
+//        [self.contentView addSubview:buton2];
+//        [self.contentView addSubview:buton1];
         [self.contentView addSubview:buton];
         [self.contentView addSubview:label3];
         [self.contentView addSubview:label2];
@@ -132,7 +167,9 @@
 //        [self.authorLabel setBackgroundColor:[UIColor redColor]];
         
         
-        self.backgroundColor = [UIColor clearColor];
+        
+        
+//        self.backgroundColor = [UIColor clearColor];
         
     }
     return self;
@@ -171,7 +208,8 @@
         self.contentLabel.frame = _model.contentRect;
         
         self.timeLabel.frame = _model.creatTimeRect;
-        
+    
+    
         for (int i = 0 ;i < _model.imageRectArray.count;i++) {
             NSString *rec = _model.imageRectArray[i];
             CGRect re = CGRectFromString(rec);
@@ -229,10 +267,15 @@
         [self.likeButtonToo setFrame:model.likeTooButRect];
 //        [self.likeButtonToo setImage:[UIImage imageNamed:@"comment"] forState:UIControlStateNormal];
 
-
+    /**
+     *  添加新闻头和正文背景;
+     */
+    
+    
+    _newsHeadreBack.frame = CGRectMake(0, 0, JSFrame.size.width, CGRectGetMaxY(_timeLabel.frame)+20);
+    
+    _newsContentBack.frame = CGRectMake(8, _contentLabel.y - 10, _contentLabel.width + 24 , _contentLabel.height + 20);
   
-
-//    }
 
 }
 

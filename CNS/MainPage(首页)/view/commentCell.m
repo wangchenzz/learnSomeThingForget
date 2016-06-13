@@ -55,17 +55,17 @@
         
         _userNameLabel.font = titleCommentFont;
         
-        _userNameLabel.textColor = JSColor(110, 110, 110);
+        _userNameLabel.textColor = JSTitleColor;
         
         _creatTimeLabel.font = timeFont;
         
-        _creatTimeLabel.textColor = JSColor(203, 203, 203);
+        _creatTimeLabel.textColor = JSContentDescColor;
         
         _userCommentLabel.font = contentCommentFont;
         
         _userCommentLabel.numberOfLines =0;
         
-        _userCommentLabel.textColor = [UIColor whiteColor];
+        _userCommentLabel.textColor = JSContentTextColor;
         
         
         [self.contentView addSubview:_userCommentLabel];

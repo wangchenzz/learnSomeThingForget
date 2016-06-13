@@ -16,6 +16,8 @@
 
 @property (nonatomic,retain) UILabel *contentInfoLabel;
 
+@property (nonatomic,retain) UIImageView *shenglueImage;
+
 @end
 
 @implementation NewsCell
@@ -26,7 +28,7 @@
     // Initialization code
 }
 
-
+//* 背景图片 kuang-sy*/
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -35,46 +37,60 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        UIView *backround = [[UIView alloc] init];
+        UIImageView *backround = [[UIImageView alloc] init];
         
         [backround setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:0.3]];
 
-        backround.frame = CGRectMake(0, 0, JSFrame.size.width, 100);
+        backround.frame = CGRectMake(10, 0, JSFrame.size.width - 2*10, 115);
         
         [self.contentView addSubview:backround];
-
-        UIImageView *imageview  = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
         
-        [self.contentView addSubview:imageview];
+        backround.image = [UIImage imageNamed:@"kuang-sy"];
+
+        UIImageView *imageview  = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 75, 75)];
+        
+        [backround addSubview:imageview];
         
         self.photoInfoImage = imageview;
         
         
         
-        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, JSFrame.size.width - 120, 30)];
+        UILabel *tit = [[UILabel alloc] initWithFrame:CGRectMake(105, 20, backround.width - CGRectGetMaxX(imageview.frame) - 20 - 35, 35)];
         
-        [tit setTextColor:[UIColor whiteColor]];
+        [tit setTextColor:JSTitleColor];
         
         [tit setFont:[UIFont boldSystemFontOfSize:15]];
         
         self.newsTitleLabel = tit;
         
+        self.shenglueImage = [[UIImageView alloc] init];
+        
+        self.shenglueImage.image =[UIImage imageNamed:@"shenglue"];
+        
+        [self.shenglueImage sizeToFit];
         
         
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 40, JSFrame.size.width - 120, 50)];
+        self.shenglueImage.centerY = self.newsTitleLabel.centerY;
+        
+        self.shenglueImage.x = backround.width - _shenglueImage.width - 15;
+        
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(105, 55, JSFrame.size.width - 120 - 2*10 - 20, 40)];
         
         [infoLabel setNumberOfLines:0];
         
-        infoLabel.textColor = [UIColor whiteColor];
+        infoLabel.textColor = JSContentDescColor;
         
-        [infoLabel setFont:[UIFont systemFontOfSize:14]];
+        [infoLabel setFont:[UIFont systemFontOfSize:15]];
         
         self.contentInfoLabel = infoLabel;
         
-        [self.contentView addSubview:tit];
+        [backround addSubview:tit];
         
-        [self.contentView addSubview:infoLabel];
+        [backround addSubview:infoLabel];
         
+        [backround addSubview:self.shenglueImage];
+        
+        [self.contentView addSubview:backround];
         
         self.backgroundColor = [UIColor clearColor];
         self.contentView.backgroundColor = [UIColor clearColor];
