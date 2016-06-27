@@ -25,15 +25,32 @@
 
 @property (nonatomic,assign) BOOL isShowNoDataImage;
 
-
+/**
+ *  下拉刷新方法
+ */
 -(void)tableViewRefreshHeader;
 
+/**
+ *  上拉刷新方法
+ */
 -(void)tableViewRefreshFooter;
 
+/**
+ *  显示数据方法
+ *
+ *  @param isHeader 是否是下拉刷新
+ *  @param load     是否马上刷新
+ */
 -(void)tableViewDidFinshRefresh:(BOOL)isHeader reload:(BOOL)load;
 
-//-(void)backRoundImageShow;
-//
-//-(void)backRoundImageHide;
+/**
+ *  显示无数据时候的方法
+ */
+-(void)showNoDataImage;
+
+/**
+ *  隐藏无数据图片
+ */
+-(void)hideNoDataImage;
 
 @end

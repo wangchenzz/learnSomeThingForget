@@ -47,8 +47,9 @@ static timerTool *timetool;
 //    [[NSRunLoop currentRunLoop] run];
 //        
 //    [timer fire];
-//        
 //    });
+    
+    
      [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 
 }

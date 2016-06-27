@@ -64,20 +64,20 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     
     lei.alpha = 0;
     
-    [lei addEffectView]; 
+    [lei addEffectView];
     
     [lei reset];
     
     lei.isSuccess = YES;
     
     [lei doStep1];
-
+    
     lei.conpletion = completion;
     
     [UIView animateWithDuration:0.5 animations:^{
-    
+        
         lei.alpha = 1;
-   
+        
     }];
 }
 
@@ -373,9 +373,9 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     CGFloat SEFrom = height / pathHeight;
     CGFloat SETo = 1.0;
     
-//     end status
-        self.verticalDisappearLayer.strokeStart = SSTo;
-        self.verticalDisappearLayer.strokeEnd = SETo;
+    //     end status
+    self.verticalDisappearLayer.strokeStart = SSTo;
+    self.verticalDisappearLayer.strokeEnd = SETo;
     
     // animation
     CABasicAnimation *startAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
@@ -655,7 +655,7 @@ static CGFloat const kVerticalFatLayerWidth = 6;
 - (void)processStep6SuccessA {
     
     self.JSLoadLayer.strokeColor = self.likeGreenColor.CGColor;
-
+    
 }
 
 // 对号出现
@@ -840,7 +840,9 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     } else if ([[anim valueForKey:kName] isEqualToString:@"step4"]) {
         [self doStep5];
     } else if ([[anim valueForKey:kName] isEqualToString:@"step5"]) {
-        [self doStep6Success];
+        //        [self doStep6Success];
+        
+        [self endOfLoading];
     }
     
     else if ([[anim valueForKey:kName] isEqualToString:@"step6Fail"]) {
@@ -848,17 +850,21 @@ static CGFloat const kVerticalFatLayerWidth = 6;
     }
     if([[anim valueForKey:kName] isEqualToString:@"fall"]||[[anim valueForKey:kName] isEqualToString:@"success"]){
         
-        if (self.conpletion) {
-        self.conpletion(YES);
-        }
-        
-        [UIView animateWithDuration:0.8 animations:^{
-            self.alpha = 0;
-        } completion:^(BOOL finished) {
-              [self removeFromSuperview];
-        }];
+        [self endOfLoading];
         
     }
+}
+
+-(void)endOfLoading{
+    if (self.conpletion) {
+        self.conpletion(YES);
+    }
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 @end

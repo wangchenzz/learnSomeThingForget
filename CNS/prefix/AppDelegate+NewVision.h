@@ -10,7 +10,11 @@
 
 @interface AppDelegate (NewVision)
 
+@property (nonatomic,copy) void(^doWhenPost)();
+
 
 -(BOOL)decideIsNewVisionCome;
+
+-(void)introduceNewVison:(void(^)())block;
 
 @end

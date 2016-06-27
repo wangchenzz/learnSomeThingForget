@@ -57,7 +57,8 @@
                 
             }];
         }else{
-        
+            
+            self.tableView.mj_footer = nil;
         }
     }
 }
@@ -75,7 +76,7 @@
                 
             }];
         }else{
-            
+            self.tableView.mj_header = nil;
         }
     }
 }
@@ -103,9 +104,9 @@
 -(void)setIsShowNoDataImage:(BOOL)isShowNoDataImage{
     if (_isShowNoDataImage != isShowNoDataImage) {
         if (_isShowNoDataImage) {
-//            [self backRoundImageShow];
+            [self showNoDataImage];
         }else{
-//            [self backRoundImageHide];
+            [self hideNoDataImage];
         }
     }
 }

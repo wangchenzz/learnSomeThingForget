@@ -34,20 +34,12 @@
 #pragma private
 
 -(void)setUpButtonItem{
-//    UIButton *buton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    [buton setFrame:CGRectMake(0, 0, 44, 44)];
-//    
-//    [buton setTitle:@"反馈" forState: UIControlStateNormal];
-//    
-//    [buton addTarget:self action:@selector(returnSEG:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barbut = [UIBarButtonItem itemWithTitle:@"攥写" andImage: nil targat:self action:@selector(returnSEG:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = barbut;
+    //    UIBarButtonItem *barbut = [UIBarButtonItem itemWithTitle:@"攥写" andImage: nil targat:self action:@selector(returnSEG:) forControlEvents:UIControlEventTouchUpInside];
+    //    self.navigationItem.rightBarButtonItem = barbut;
 }
 
 -(void)returnSEG:(UIButton *)sender{
     addSUGController *sc = [[addSUGController alloc] init];
-    
     [self.navigationController pushViewController:sc animated:YES];
 }
 
@@ -66,7 +58,7 @@
             [weakSelf.dataSourceArray removeAllObjects];
             NSArray *dataArray = returnObject[@"list"];
             for (NSDictionary *dic in dataArray) {
-             
+                
                 ShowSegModel *model = [[ShowSegModel alloc] initWithDic:dic];
                 
                 [weakSelf.dataSourceArray addObject:model];
@@ -77,7 +69,7 @@
         }
         
     }];
-
+    
 }
 
 -(void)tableViewRefreshFooter{
@@ -109,7 +101,7 @@
 
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+    
     return [self.dataSourceArray count];
 }
 
@@ -127,7 +119,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     return [ShowSegCell cellHeightWithModel:self.dataSourceArray[indexPath.row]];
 }
 

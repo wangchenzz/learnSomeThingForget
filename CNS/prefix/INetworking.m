@@ -16,6 +16,48 @@ static INetworking *network;
 static BOOL isNetWorking = YES;
 
 
+ NSString * const basicUrlStr = @"http://www.yueqiao.org/SSM";
+
+ NSString * const loginUrl = @"http://www.yueqiao.org/SSM/user/getLogin";
+
+
+ NSString * const loginUrlForVisitor = @"http://www.yueqiao.org/SSM/user/getLogin2";
+
+ NSString * const newsUrl = @"http://www.yueqiao.org/SSM/news/getNewsByType";
+
+ NSString * const DetailNews = @"http://www.yueqiao.org/SSM/news/selectNewById";
+
+ NSString * const LikeAddUrl = @"http://www.yueqiao.org/SSM/news/addZan";
+
+ NSString * const addComment = @"http://www.yueqiao.org/SSM/comment/addComment";
+
+ NSString * const getQustType = @"http://www.yueqiao.org/SSM/suject/getSubjectByType";
+
+ NSString * const addRecord = @"http://www.yueqiao.org/SSM/record/addRecord";
+
+ NSString * const getRecord = @"http://www.yueqiao.org/SSM/record/getRecordByloginName";
+
+
+ NSString * const getCard = @"http://www.yueqiao.org/SSM/card/getCardByType";
+
+ NSString * const getCardById = @"http://www.yueqiao.org/SSM/card/selectCardById";
+
+ NSString * const addPlunge = @"http://www.yueqiao.org/SSM/plunge/addPlunge";
+
+
+ NSString * const addAnser = @"http://www.yueqiao.org/SSM/plunge/insertPlungeHuifu";
+
+
+ NSString * const addCard = @"http://www.yueqiao.org/SSM/card/addCard";
+
+ NSString * const getPersonBBs = @"http://www.yueqiao.org/SSM/card/getCardByLoginName";
+
+ NSString * const getLeavemsgByPage = @"http://www.yueqiao.org/SSM/leavemsg/getLeavemsgByPage";
+
+ NSString * const addSug = @"http://www.yueqiao.org/SSM/leavemsg/addleavemsg";
+
+
+
 @implementation INetworking
 
 
@@ -52,11 +94,15 @@ static BOOL isNetWorking = YES;
                     
                     JSLog(@"WiFi网络");
                     
+                    isNetWorking = YES;
+                    
                     break;
                     
                 }
                     
                 case AFNetworkReachabilityStatusReachableViaWWAN:{
+                    
+                    isNetWorking = YES;
                     
                     JSLog(@"无线网络");
                     
@@ -65,6 +111,8 @@ static BOOL isNetWorking = YES;
                 }
                     
                 default:
+                    
+                    JSLog(@"未知网络");
                     
                     break;
                     
@@ -132,9 +180,8 @@ static BOOL isNetWorking = YES;
         _errorDolowdToDo();
         }
     }];
-
+    
     [downloadTask resume];
-
 }
 
 // 上传的方法’

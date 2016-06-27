@@ -70,11 +70,6 @@
         [weakSelf.tableView.mj_header beginRefreshing];
         
     }];
-    NSMutableArray *gifArray = [NSMutableArray array];
-    for (int i = 1; i < 11 ; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];
-        [gifArray addObject:image];
-    }
     
     header.automaticallyChangeAlpha = YES;
     

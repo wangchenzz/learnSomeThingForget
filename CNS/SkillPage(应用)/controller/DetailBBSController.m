@@ -55,12 +55,6 @@
     
     [self setUpTableView];
     
-//    [self setUpBBSInfo];
-    
-//    [self setComentButtonUp];
-    
-//    [self setUpInputView];
-    
     self.curPage = 1;
     
     __weak __typeof__(self) weakSelf = self;
@@ -96,18 +90,6 @@
     self.tableView.dataSource = self;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    
-//    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    
-//    UIImageView *backrounView = [[UIImageView alloc] init];
-//    
-//    [backrounView setFrame:CGRectMake(0, 0, self.view.width, JSFrame.size.height)];
-//    
-//    backrounView.image = [UIImage imageNamed:@"底色"];
-//    
-//    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
 }
 
 -(void)setUpBBSInfo{
@@ -122,10 +104,19 @@
     
     dic[@"curPage"] = [NSString stringWithFormat:@"%ld",self.curPage];
     
+    NSString *loginName = dic[@"loginName"];
+    
+    JSLog(@"%@",loginName);
+    
     [[INetworking shareNet] GET:getCardById withParmers:dic do:^(id returnObject, BOOL isSuccess) {
     
+        
+        
         if (!isSuccess) {
             [MBProgressHUD showError:@"连接失败"];
+          
+            
+            
             return ;
         }
         
@@ -217,20 +208,15 @@
         
         UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        
         [commentButton setTag:2];
-        
         
         commentButton.titleLabel.font = [UIFont systemFontOfSize:14];
         
         [commentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        
         [commentButton setTitle:@"添加评论" forState: UIControlStateNormal];
         
         [commentButton setBackgroundColor:JSCOLOR];
-        
-        
         
         [commentButton sizeToFit];
         

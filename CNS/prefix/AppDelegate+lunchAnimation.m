@@ -18,14 +18,15 @@ static void *wordsImageKey = &wordsImageKey;
 @implementation AppDelegate (lunchAnimation)
 
 -(void)animationComeOn{
-    [self doStep1];
+//    [self doStep1];
 }
 
 -(void)doStep1{
     
     UIImageView *mainImageView = [[UIImageView alloc] init];
     
-    mainImageView.image = [UIImage imageNamed:@"lunchBackRound"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"5750f570a3664e0605000540" ofType:@"jpg"];
+    mainImageView.image = [UIImage imageWithContentsOfFile:path];
     
     [mainImageView setFrame:CGRectMake(0, 0, JSFrame.size.width * 3, JSFrame.size.height)];
     
@@ -155,7 +156,6 @@ static void *wordsImageKey = &wordsImageKey;
         
         [self.wordsImageView removeFromSuperview];
         [self.mainImageView removeFromSuperview];
-    
     }
 }
 
@@ -166,7 +166,7 @@ static void *wordsImageKey = &wordsImageKey;
 }
 
 -(void)setMainImageView:(UIImageView *)mainImageView{
-    objc_setAssociatedObject(self, &mainImageKey, mainImageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &mainImageKey, mainImageView, OBJC_ASSOCIATION_ASSIGN);
 }
 
 -(UIImageView *)wordsImageView{

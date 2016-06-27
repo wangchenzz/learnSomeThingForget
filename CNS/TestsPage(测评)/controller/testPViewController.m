@@ -45,7 +45,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self setAutomaticallyAdjustsScrollViewInsets:YES];
+    //    [self setAutomaticallyAdjustsScrollViewInsets:YES];
     
 }
 
@@ -76,7 +76,7 @@
     tableView.scrollEnabled = NO;
     
     [ self . tableView setSeparatorColor : JSLineColor];
-//    [self.tableView.backgroundView addSubview:backView];
+    //    [self.tableView.backgroundView addSubview:backView];
     
     //    self.view1 = [buttonView viewWithTile:@"标准测试" withHeadImage:@"s" withIntroduce:@"系统的测试各项模块" withEnglishStr:@"Standard Assessment"] ;
     //    self.view1.width = JSFrame.size.width - 30;
@@ -120,8 +120,6 @@
     //    [self.view2 addGestureRecognizer:_tap2];
     //
     //    [self.view3 addGestureRecognizer:_tap3];
-    
-    
 }
 
 
@@ -233,38 +231,35 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if (indexPath.row  == 0) {
-            /**
-             *标准测试
-             */
-            FirstViewController *fc = [[FirstViewController alloc] init];
-    
-            [self.navigationController pushViewController:fc animated:YES];
-    
-    
-        }else if(indexPath.row  == 1){
-            /**
-             *模块测试
-             */
-            ModuleChooseController *vc = [[ModuleChooseController alloc] init];
-    
-            vc.hidesBottomBarWhenPushed = YES;
-    
-            [self.navigationController pushViewController:vc animated:YES];
-    
-    
-    
-            JSLog(@"2");
-        }else if (indexPath.row  == 2){
-    
-            showLevelController *level = [[showLevelController alloc] init];
-    
-            [self.navigationController pushViewController:level animated:YES];
-    //
-
-    
-}
-
+    if (indexPath.row  == 0) {
+        /**
+         *标准测试
+         */
+        FirstViewController *fc = [[FirstViewController alloc] init];
+        
+        [self.navigationController pushViewController:fc animated:YES];
+        
+        
+    }else if(indexPath.row  == 1){
+        /**
+         *模块测试
+         */
+        ModuleChooseController *vc = [[ModuleChooseController alloc] init];
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+        
+        JSLog(@"2");
+    }else if (indexPath.row  == 2){
+        
+        showLevelController *level = [[showLevelController alloc] init];
+        
+        [self.navigationController pushViewController:level animated:YES];
+        
+    }
 }
 
 
@@ -274,6 +269,8 @@
     [super viewWillAppear:animated];
     
     self.tabBarController.tabBar.hidden = NO;
+    
+    self.navigationController.navigationBar.hidden = NO;
     
 }
 

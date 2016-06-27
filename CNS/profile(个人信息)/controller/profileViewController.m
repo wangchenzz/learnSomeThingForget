@@ -56,16 +56,18 @@
 -(void)doImportant{
     
     
-    UIImage *image = [UIImage imageNamed:@"dise"];
+//    UIImage *image = [UIImage imageNamed:@"dise"];
+//    
+//    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
+//
+//    
+//    self.oldBackNaviIm = scaleImage;
+//    
+//
+//        //去掉底部线条
+//        [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
-    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
-
-    
-    self.oldBackNaviIm = scaleImage;
-    
-
-        //去掉底部线条
-        [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 
@@ -138,13 +140,15 @@
 //    [headerImageView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
     headerImageView.image = [UIImage imageNamed:@"wode-bj"];
     
-    
+    icon.userInteractionEnabled = YES;
     
     icon.layer.cornerRadius = 100/2.0f;
     icon.layer.masksToBounds = YES;
     icon.layer.borderWidth = 1.0f;
     icon.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.headerContentView addSubview:icon];
+    
+    
     self.icon = icon;
     
     UILabel *label = [[UILabel alloc] init];
@@ -216,19 +220,19 @@
 
     CGFloat offset_Y = scrollView.contentOffset.y;
     
-    CGFloat alpha = (offset_Y )/300.0f;
+//    CGFloat alpha = (offset_Y )/300.0f;
+//    
+//    
+//    UIImage *image = [UIImage imageNamed:@"dise"];
+//    
+//    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
+//    
+//    UIImage *alphaImage = [scaleImage imageByApplyingAlpha:alpha image:scaleImage];
     
     
-    UIImage *image = [UIImage imageNamed:@"dise"];
     
-    UIImage *scaleImage = [image scaleSize:CGSizeMake(JSNavigationBounds.size.width, JSNavigationBounds.size.height + JSStatusRect.size.height)];
-    
-    UIImage *alphaImage = [scaleImage imageByApplyingAlpha:alpha image:scaleImage];
-    
-    
-    
-//
-    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
+////
+//    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
 
     /**
      *  上面用来 完成导航条透明效果;
@@ -279,7 +283,7 @@
         
         imageview.width = imageview.height = 20;
         
-        imageview.x = JSFrame.size.width / 3;
+        imageview.centerX = JSFrame.size.width *.4;
         
         imageview.y = 15;
         
@@ -415,7 +419,44 @@
     _isPushing = NO;
     
     [self setNavi];
+    
+    self.navigationController.navigationBar.hidden = YES;
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIImage *image = [UIImage imageNamed:@"dise"];
+    //
+    //    UIColor *diseColor = [image imageToColor];
+    //
+    //    UIImage *ima = [UIImage imageWithBgColor:diseColor];
+    UIImage *scaleImage = [image scaleSize:CGSizeMake(self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height + JSStatusRect.size.height)];
+    [self.navigationController.navigationBar setBackgroundImage:scaleImage forBarMetrics:UIBarMetricsDefault];
+    
+}
+
+
+/**
+ *  点击了头像的回调
+ */
+
+/**
+ *
+ UIImagePickerController* picker = [[UIImagePickerController alloc]init];
+ picker.view.backgroundColor = [UIColor orangeColor];
+ 
+ UIImagePickerControllerSourceType sourcheType = UIImagePickerControllerSourceTypeCamera;
+ 
+ //    UIImagePickerControllerSourceType sourcheType = UIImagePickerControllerSourceTypeSavedPhotosAlbum | UIImagePickerControllerSourceTypePhotoLibrary;
+ picker.sourceType = sourcheType;
+ picker.delegate = self;
+ picker.allowsEditing = YES;
+ [self presentViewController:picker animated:YES completion:nil];
+ */
+
 
 
 @end

@@ -22,9 +22,17 @@
     
     [super viewDidLoad];
     
-    [self setUpTablevewBackColor];
+//    [self setUpTablevewBackColor];
+    
+    [self setNoDataImage];
     
     self.title =  @"设置";
+}
+
+-(void)setNoDataImage{
+
+    [self.view addSubview:[[UIImageView alloc] initWithFrame:JSFrame]];
+    
 }
 
 - (void)didReceiveMemoryWarning {

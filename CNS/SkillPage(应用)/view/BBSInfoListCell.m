@@ -7,7 +7,8 @@
 //
 
 
-const NSString *titlesTrsid = @"123123123131223";
+static NSString * const kName = @"1223132321";
+
 
 
 

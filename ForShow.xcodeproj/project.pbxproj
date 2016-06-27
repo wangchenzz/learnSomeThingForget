@@ -28,7 +28,6 @@
 		041F2DAD1D012DEA007CFE79 /* NSString+Bounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DAC1D012DEA007CFE79 /* NSString+Bounding.m */; };
 		041F2DB01D0136BA007CFE79 /* addSUGController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DAF1D0136BA007CFE79 /* addSUGController.m */; };
 		041F2DB31D0154DB007CFE79 /* testBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB21D0154DB007CFE79 /* testBaseView.m */; };
-		041F2DB61D016E56007CFE79 /* lunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB51D016E56007CFE79 /* lunchViewController.m */; };
 		041F2DB91D016F0B007CFE79 /* AppDelegate+lunchAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F2DB81D016F0B007CFE79 /* AppDelegate+lunchAnimation.m */; };
 		041FB97B1C86825A00F35659 /* JSLanguageAttentionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FB97A1C86825A00F35659 /* JSLanguageAttentionTests.m */; };
 		0423B6A31CE309510018E753 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423B69C1CE309510018E753 /* MBProgressHUD+MJ.m */; };
@@ -46,6 +45,7 @@
 		0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0438855A1C90237300E1A3E9 /* diamondsXib.xib */; };
 		0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */; };
 		043885611C9027E200E1A3E9 /* SymbolDigitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */; };
+		043C2CFD1D20CB580048BC1E /* 5750f570a3664e0605000540.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 043C2CFC1D20CB580048BC1E /* 5750f570a3664e0605000540.jpg */; };
 		043FD7111CF5927600B48DFC /* sendBBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043FD7101CF5927600B48DFC /* sendBBSController.m */; };
 		043FD7141CF5962700B48DFC /* addCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043FD7131CF5962700B48DFC /* addCommentController.m */; };
 		0456BBF01CE9649D005A22AE /* JSComentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0456BBEF1CE9649D005A22AE /* JSComentModel.m */; };
@@ -111,7 +111,6 @@
 		04E6C3111C89552800A92300 /* JSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C30E1C89552800A92300 /* JSTabBarController.m */; };
 		04E6C3141C895DC300A92300 /* JSVisualAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C3131C895DC300A92300 /* JSVisualAttentionModel.m */; };
 		04E6C3161C89800100A92300 /* ImageName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04E6C3151C89800100A92300 /* ImageName.plist */; };
-		04FDF7CF1D07CC59004C3CFB /* git.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FDF7CE1D07CC59004C3CFB /* git.xcassets */; };
 		04FDF7D51D07EF74004C3CFB /* JSBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDF7D41D07EF74004C3CFB /* JSBallView.m */; };
 		95E97B8D9D3F02446DAEC54C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC3A7BDF7FF8EE799389403 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -176,8 +175,6 @@
 		041F2DAF1D0136BA007CFE79 /* addSUGController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addSUGController.m; sourceTree = "<group>"; };
 		041F2DB11D0154DB007CFE79 /* testBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testBaseView.h; sourceTree = "<group>"; };
 		041F2DB21D0154DB007CFE79 /* testBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testBaseView.m; sourceTree = "<group>"; };
-		041F2DB41D016E56007CFE79 /* lunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lunchViewController.h; sourceTree = "<group>"; };
-		041F2DB51D016E56007CFE79 /* lunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lunchViewController.m; sourceTree = "<group>"; };
 		041F2DB71D016F0B007CFE79 /* AppDelegate+lunchAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+lunchAnimation.h"; sourceTree = "<group>"; };
 		041F2DB81D016F0B007CFE79 /* AppDelegate+lunchAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+lunchAnimation.m"; sourceTree = "<group>"; };
 		041FB9791C86825A00F35659 /* JSLanguageAttentionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSLanguageAttentionTests.h; sourceTree = "<group>"; };
@@ -209,6 +206,7 @@
 		0438855D1C90251E00E1A3E9 /* SymbolAndDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolAndDigit.m; sourceTree = "<group>"; };
 		0438855F1C9027E200E1A3E9 /* SymbolDigitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolDigitsModel.h; sourceTree = "<group>"; };
 		043885601C9027E200E1A3E9 /* SymbolDigitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolDigitsModel.m; sourceTree = "<group>"; };
+		043C2CFC1D20CB580048BC1E /* 5750f570a3664e0605000540.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5750f570a3664e0605000540.jpg; sourceTree = "<group>"; };
 		043FD70F1CF5927600B48DFC /* sendBBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendBBSController.h; sourceTree = "<group>"; };
 		043FD7101CF5927600B48DFC /* sendBBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendBBSController.m; sourceTree = "<group>"; };
 		043FD7121CF5962700B48DFC /* addCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addCommentController.h; sourceTree = "<group>"; };
@@ -340,7 +338,6 @@
 		04E6C3121C895DC300A92300 /* JSVisualAttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVisualAttentionModel.h; sourceTree = "<group>"; };
 		04E6C3131C895DC300A92300 /* JSVisualAttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVisualAttentionModel.m; sourceTree = "<group>"; };
 		04E6C3151C89800100A92300 /* ImageName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ImageName.plist; sourceTree = "<group>"; };
-		04FDF7CE1D07CC59004C3CFB /* git.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = git.xcassets; sourceTree = "<group>"; };
 		04FDF7D31D07EF74004C3CFB /* JSBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBallView.h; sourceTree = "<group>"; };
 		04FDF7D41D07EF74004C3CFB /* JSBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBallView.m; sourceTree = "<group>"; };
 		71E70B531ECE1EECF5159E97 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -811,6 +808,14 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		043C2CFB1D20CB340048BC1E /* appFile */ = {
+			isa = PBXGroup;
+			children = (
+				043C2CFC1D20CB580048BC1E /* 5750f570a3664e0605000540.jpg */,
+			);
+			path = appFile;
+			sourceTree = "<group>";
+		};
 		04B0FEC01C8419540020D1A5 = {
 			isa = PBXGroup;
 			children = (
@@ -854,9 +859,9 @@
 				041FB9701C86817800F35659 /* ST-颜色反差测试 */,
 				041FB96A1C86817800F35659 /* SAT-注意力转移测试 */,
 				041FB9641C86817800F35659 /* CPT-持续注意力测试 */,
+				043C2CFB1D20CB340048BC1E /* appFile */,
 				04B0FED81C8419540020D1A5 /* Assets.xcassets */,
 				045E2FBE1D0D3A7C0090470F /* NEWVision.xcassets */,
-				04FDF7CE1D07CC59004C3CFB /* git.xcassets */,
 				04B0FEDA1C8419540020D1A5 /* LaunchScreen.storyboard */,
 				04B0FEDD1C8419540020D1A5 /* Info.plist */,
 				04B0FECC1C8419540020D1A5 /* Supporting Files */,
@@ -921,8 +926,6 @@
 				04011D4A1CCDB03B00C4F6D4 /* loginViewController.m */,
 				0480E82B1CFFDAB4007304F8 /* JSNewVisionViewControler.h */,
 				0480E82C1CFFDAB4007304F8 /* JSNewVisionViewControler.m */,
-				041F2DB41D016E56007CFE79 /* lunchViewController.h */,
-				041F2DB51D016E56007CFE79 /* lunchViewController.m */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -1110,8 +1113,8 @@
 				045E2FBF1D0D3A7C0090470F /* NEWVision.xcassets in Resources */,
 				0438855B1C90237300E1A3E9 /* diamondsXib.xib in Resources */,
 				04E6C3161C89800100A92300 /* ImageName.plist in Resources */,
-				04FDF7CF1D07CC59004C3CFB /* git.xcassets in Resources */,
 				04CE68181CEAB05700D922A5 /* buttonView.xib in Resources */,
+				043C2CFD1D20CB580048BC1E /* 5750f570a3664e0605000540.jpg in Resources */,
 				04B0FED91C8419540020D1A5 /* Assets.xcassets in Resources */,
 				04B0FF021C841B1D0020D1A5 /* Default-568h@2x.png in Resources */,
 				0423B6A41CE309510018E753 /* MBProgressHUD.bundle in Resources */,
@@ -1278,7 +1281,6 @@
 				04B0FF3A1C8420610020D1A5 /* eyeView.m in Sources */,
 				0438855E1C90251E00E1A3E9 /* SymbolAndDigit.m in Sources */,
 				04CC90C91CAD02E2003D095C /* ContinuousPerformanceTests.m in Sources */,
-				041F2DB61D016E56007CFE79 /* lunchViewController.m in Sources */,
 				04CE68101CEAAEA300D922A5 /* testPViewController.m in Sources */,
 				047041F31CEC4D2B00B37331 /* showLevelModel.m in Sources */,
 			);

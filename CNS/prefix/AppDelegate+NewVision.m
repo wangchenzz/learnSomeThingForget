@@ -8,6 +8,10 @@
 
 #import "AppDelegate+NewVision.h"
 
+#import "JSNewVisionViewControler.h"
+
+#import <objc/runtime.h>
+
 @implementation AppDelegate (NewVision)
 
 -(BOOL)decideIsNewVisionCome{
@@ -23,6 +27,34 @@
     }else{
         return YES;
     }
+}
+
+-(void)introduceNewVison:(void(^)())block{
+    JSNewVisionViewControler *vc = [[JSNewVisionViewControler alloc] init];
+    
+    self.window.rootViewController =vc;
+    
+    
+    [self.window makeKeyAndVisible];
+    
+    self.doWhenPost = block;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(firstVisit) name:@"CNSgameHWMCD" object:nil];
+}
+
+-(void)firstVisit{
+    self.doWhenPost();
+}
+
+-(void)setDoWhenPost:(void (^)())doWhenPost{
+
+    objc_setAssociatedObject(self, @selector(setDoWhenPost:), doWhenPost, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+}
+
+-(void (^)())doWhenPost{
+
+    return objc_getAssociatedObject(self, @selector(setDoWhenPost:));
 }
 
 @end
