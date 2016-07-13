@@ -164,7 +164,7 @@
 
 -(void)returnToLast{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(instancetype)initWithIsModule:(BOOL)mo andWithState:(JSTestCurrentState )state andWithArray:(NSArray *)array andWithdifcultLevel:(NSInteger)level{
@@ -987,6 +987,7 @@
 -(void)endModulTest{
     showLevelModel *model = [[showLevelModel alloc] init];
     
+    model.testTime = [NSDate dateToBirthSring:[NSDate date]];
     
     
     switch (self.ModuleType) {

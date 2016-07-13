@@ -21,8 +21,7 @@
 //    backrounView.image = [UIImage imageNamed:@"底色"];
 //    
 //    [self.tableView setValue:backrounView forKeyPath:@"backgroundView"];
-
 }
 
 
-@end
+@end 

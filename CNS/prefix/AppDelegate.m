@@ -40,30 +40,47 @@ static NSString * const VpassWord = @"woyiwei";
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    _isAnimation = YES;
+//    _isAnimation = YES;
     
     /**
      *  先判断是否是新的版本,  1.是新版本就进入新版界面. 要求登录 进入.....
      */
     
-    if ([self decideIsNewVisionCome]) {
-        /**
-         *  确定显示新版本的更新
-         */
-        
-        _isAnimation = NO;
-        WeakObject(self);
-        [self introduceNewVison:^{
-            
-            [selfWeak normalLogin];
-            
-        }];
-        
-        return YES;
-    
-    }
+//    if ([self decideIsNewVisionCome]) {
+//        /**
+//         *  确定显示新版本的更新
+//         */
+//        
+//        _isAnimation = NO;
+//        WeakObject(self);
+//        [self introduceNewVison:^{
+//            
+//            [selfWeak normalLogin];
+//            
+//        }];
+//        
+//        return YES;
+//    
+//    }
 
     [self normalLogin];
+    
+    
+    /**
+     *  推送
+     */
+    //iOS8.0以后，如果需要使用本地推送通知，需要得到用户许可  --- 这里是注册服务
+    if (![application isRegisteredForRemoteNotifications]) {
+        UIUserNotificationSettings * setting =
+        [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+         UIUserNotificationTypeBadge |
+         UIUserNotificationTypeSound
+                                          categories:nil];
+        [application registerUserNotificationSettings:setting];
+        //注册远程推送通知
+        [application registerForRemoteNotifications];
+    }
+    
     
     return YES;
 }
@@ -87,7 +104,10 @@ static NSString * const VpassWord = @"woyiwei";
             
             if (isSuccess&&returnObject[@"msg"]) {
                 
-            }else if (isSuccess&&returnObject[@"user"]){
+                
+                
+            }
+            if (isSuccess&&returnObject[@"user"]){
                 
                 NSDictionary *dic = returnObject[@"user"];
                 
@@ -232,11 +252,11 @@ static NSString * const VpassWord = @"woyiwei";
 }
 
 
--(void)firstVisit{
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CNSgameHWMCD" object:nil];
-    [self normalLogin];
-}
+//-(void)firstVisit{
+//    
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CNSgameHWMCD" object:nil];
+//    [self normalLogin];
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
@@ -264,8 +284,104 @@ static NSString * const VpassWord = @"woyiwei";
 
 -(void)applicationShouldRequestHealthAuthorization:(UIApplication *)application{
 
-    
-
 }
+
+//-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken{
+//    const unsigned char *dataBuffer = (const unsigned char *)[deviceToken length];
+//    
+//    if (!dataBuffer) {
+//        return;
+//    }
+//    
+//    NSUInteger dataLength = [deviceToken length];
+//    
+//    NSMutableString *hexString = [NSMutableString stringWithCapacity:64];
+//    
+//    for (int i = 0; i < dataLength; ++i) {
+//        [hexString appendString:[NSString stringWithFormat:@"%02x",(unsigned)dataBuffer[i]]];
+//    }
+//    NSLog(@"%@,leng%lu",hexString,hexString.length);
+//}
+
+
+/**
+ *  copy 过来的代码;
+ */
+
+//- (void)application:(UIApplication *)application
+//didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+//    [self addDeviceToken:deviceToken];
+//}
+///* 保存deviceToken，并同步服务器上保存的deviceToken，以便能正确推送通知 */
+//- (void)addDeviceToken:(NSData *)deviceToken
+//{
+//    NSString *key = @"DeviceToken";
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    //取出原来的deviceToken，进行比较
+//    NSData *oldToken = [defaults objectForKey:key];
+//    if ([oldToken isEqualToData:deviceToken]) {
+//        //存入新的deviceToken
+//        [defaults setObject:deviceToken forKey:key];
+//        [defaults synchronize];
+//        //发送网络请求到服务器，说明deviceToken发生了改变
+//        [self sendDeviceTokenWithOldDeviceToken:oldToken newDeviceToken:deviceToken];
+//    }
+//}
+///* 发送网络请求到服务器，说明deviceToken发生了改变，服务器那边也要同步改变 */
+//- (void)sendDeviceTokenWithOldDeviceToken:(NSData *)oldToken newDeviceToken:(NSData *)newToken
+//{
+//    //发送到服务器，下面是服务器的一个接口
+//    NSString *urlStr = @"";
+//    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    //POST网络请求
+//    NSMutableURLRequest *requestM = [NSMutableURLRequest requestWithURL:url];
+//    requestM.HTTPMethod = @"POST";
+//    //POST请求的请求体
+//    NSString *bodyStr = [NSString stringWithFormat:@"oldToken=%@&newToken=%@",oldToken,newToken];
+//    requestM.HTTPBody = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
+//    //使用会话来发送网络请求
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURLSessionDataTask *dataTask =
+//    [session dataTaskWithRequest:requestM
+//               completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+//                   if(!error){
+//                       NSLog(@"Send Success !");
+//                   } else {
+//                       NSLog(@"Send Failure, error = %@",error.localizedDescription);
+//                   }
+//               }];
+//    //网络请求任务启动
+//    [dataTask resume];
+//}
+//
+//
+///* 收到远程推送通知时会调用 */
+//- (void)application:(UIApplication *)application
+//didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    NSString *title = @"远程推送通知";
+//    NSString *msg = userInfo[@"msg"];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+//                                                    message:msg
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"取消"
+//                                          otherButtonTitles:@"确定", nil];
+//    [alert show];
+//}
+
+//-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+//    if (application.applicationState == UIApplicationStateInactive) {
+//        //非活跃状态,手机锁屏,双击 home 键会进入这个状态.
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }else if (application.applicationState == UIApplicationStateBackground){
+//            //应用程序在后台运行,例如点击 home 建进入后台等
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }else if (application.applicationState == UIApplicationStateActive){
+//            //活跃状态,应用在前台运行时候就是这个状态
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }
+//}
 
 @end

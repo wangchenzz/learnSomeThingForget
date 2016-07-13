@@ -12,6 +12,8 @@
 
 #import "ShowPersonalBBSViewController.h"
 
+#import "tousuJubaoController.h"
+
 #import "TheRerunSgViewContoller.h"
 
 @interface profileViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -322,18 +324,22 @@
     UILabel *la =[cell viewWithTag:2];
     
     switch (indexPath.row) {
+//        case 0:
+//            im.image = [UIImage imageNamed:@"comment2"];
+//            la.text = @"我的帖子";
+//            break;
         case 0:
-            im.image = [UIImage imageNamed:@"comment2"];
-            la.text = @"我的帖子";
-            break;
-        case 1:
             im.image = [UIImage imageNamed:@"tiezi2"];
             la.text = @"意见反馈";
             break;
-        case 2:
+        case 1:
             im.image = [UIImage imageNamed:@"setting2"];
             la.text = @"设置";
             break;
+        case 2:
+            im.image = [UIImage imageNamed:@"comment2"];
+            la.text = @"投诉,举报";
+            
         default:
             break;
     }
@@ -381,7 +387,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:self.oldBackNaviIm forBarMetrics:UIBarMetricsDefault];
     
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
         TheRerunSgViewContoller *bbs = [[TheRerunSgViewContoller alloc] init];
         
         bbs.hidesBottomBarWhenPushed = YES;
@@ -391,7 +397,7 @@
     }
     
     
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         
     
         
@@ -402,9 +408,17 @@
         [self.navigationController pushViewController:svc animated:YES];
     }
     
-    else if (indexPath.row == 0) {
+//    else if (indexPath.row == 0) {
+//        
+//        ShowPersonalBBSViewController *spb = [[ShowPersonalBBSViewController alloc] init];
+//        
+//        spb.hidesBottomBarWhenPushed = YES;
+//        
+//        [self.navigationController pushViewController:spb animated:YES];
+//    }
+    else if (indexPath.row == 2) {
         
-        ShowPersonalBBSViewController *spb = [[ShowPersonalBBSViewController alloc] init];
+        tousuJubaoController *spb = [[tousuJubaoController alloc] init];
         
         spb.hidesBottomBarWhenPushed = YES;
         

@@ -23,8 +23,6 @@
 
 @property (nonatomic,assign) NSInteger currentCount;
 
-
-
 @property (nonatomic,retain) CADisplayLink *cad;
 
 @end

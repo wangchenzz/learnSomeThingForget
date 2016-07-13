@@ -120,29 +120,41 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    /**
+     *  测试版就是不能退出登录的
+     */
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [MBProgressHUD showError:@"不能这么做"];
+    
+    return;
 
-    UIAlertController *quitControl = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:@"请注意,一旦退出登录,你将无法再进行任何操作" preferredStyle:UIAlertControllerStyleAlert];
-    
-    quitControl.title = @"退出登录!";
-    quitControl.message = @"请注意,一旦退出登录,你将无法再进行任何操作";
-    
-    UIAlertAction *action1 =[UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleCancel handler:nil];
-    
-    __weak __typeof__(self) weakSelf = self;
-    
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [weakSelf ntmgtc];
-        
-    }];
-    
-    [quitControl addAction:action1];
-    
-    [quitControl addAction:action2];
-    
-    
-    [self presentViewController:quitControl animated:YES completion:nil];
+    /**
+     *  宣传板不需要退出登录功能;
+     */
+
+//    UIAlertController *quitControl = [UIAlertController alertControllerWithTitle:@"退出当前账号" message:@"请注意,一旦退出登录,你将无法再进行任何操作" preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    quitControl.title = @"退出登录!";
+//    quitControl.message = @"请注意,一旦退出登录,你将无法再进行任何操作";
+//    
+//    UIAlertAction *action1 =[UIAlertAction actionWithTitle:@"取消" style: UIAlertActionStyleCancel handler:nil];
+//    
+//    __weak __typeof__(self) weakSelf = self;
+//    
+//    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确认退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        
+//        [weakSelf ntmgtc];
+//        
+//    }];
+//    
+//    [quitControl addAction:action1];
+//    
+//    [quitControl addAction:action2];
+//    
+//    
+//    [self presentViewController:quitControl animated:YES completion:nil];
     
 }
 
